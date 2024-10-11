@@ -25,7 +25,7 @@ const Header = ({ title, items, onSelectItem, image = undefined }: Props) => {
 
 				<ul className="nav nav-pills">
 					{items.map((item, index) => (
-						<li className="nav-item">
+						<li key={index} className="nav-item">
 							<a
 								href="#"
 								className={
