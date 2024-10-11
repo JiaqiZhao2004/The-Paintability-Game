@@ -22,7 +22,7 @@ function Graph({adjacencyMatrix, onSelectItem }: Props) {
 
 	// This effect runs whenever the adjacency matrix updates
 	useEffect(() => {
-		const { nodes, edges } = convertAdjacencyMatrixToGraph(adjacencyMatrix);
+		const { nodes, edges } = convertAdjacencyMatrixToGraph(adjacencyMatrix, "default");
 		setNodes(nodes);
 		setEdges(edges);
 		console.log(edges);

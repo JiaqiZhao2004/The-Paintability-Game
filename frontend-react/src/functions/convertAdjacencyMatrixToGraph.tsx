@@ -1,7 +1,7 @@
 import { Node, Edge } from "react-flow-renderer";
 import { calculateNodePositions } from "./calculateNodePositions";
 
-export function convertAdjacencyMatrixToGraph(matrix: number[][]): {
+export function convertAdjacencyMatrixToGraph(matrix: number[][], nodeType: string): {
 	nodes: Node[];
 	edges: Edge[];
 } {
@@ -14,7 +14,7 @@ export function convertAdjacencyMatrixToGraph(matrix: number[][]): {
 			id: `node-${i}`,
 			data: { label: `Node ${i}` },
 			position: { x: x, y: y },
-			type: "default",
+			type: nodeType,
 			selectable: true,
 			draggable: true,
 		});
