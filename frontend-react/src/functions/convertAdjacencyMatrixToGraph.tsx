@@ -15,8 +15,6 @@ export function convertAdjacencyMatrixToGraph(matrix: number[][], nodeType: stri
 			data: { label: `Node ${i}`, active: false }, // 'active' is for showing if the node is selected
 			position: { x: x, y: y },
 			type: nodeType,
-			selectable: true,
-			draggable: true,
             style: { backgroundColor: 'white' }, // Initial color for inactive nodes
 		});
 	}
