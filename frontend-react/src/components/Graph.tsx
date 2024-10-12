@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import ReactFlow, {
 	addEdge,
 	MiniMap,
@@ -7,6 +7,7 @@ import ReactFlow, {
 	useNodesState,
 	useEdgesState,
 	Edge,
+	NodeMouseHandler,
 } from "react-flow-renderer";
 import { convertAdjacencyMatrixToGraph } from "../functions/convertAdjacencyMatrixToGraph";
 
@@ -15,29 +16,55 @@ interface Props {
 	onSelectItem: (item: string) => any;
 }
 
-function Graph({adjacencyMatrix, onSelectItem }: Props) {
-
+function Graph({ adjacencyMatrix, onSelectItem }: Props) {
 	const [nodes, setNodes, onNodesChange] = useNodesState([]);
 	const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+	const [selectedNodes, setSelectedNodes] = useState<string[]>([]);
 
 	// This effect runs whenever the adjacency matrix updates
 	useEffect(() => {
-		const { nodes, edges } = convertAdjacencyMatrixToGraph(adjacencyMatrix, "default");
+		const { nodes, edges } = convertAdjacencyMatrixToGraph(
+			adjacencyMatrix,
+			"default"
+		);
 		setNodes(nodes);
 		setEdges(edges);
 		console.log(edges);
-	}, [adjacencyMatrix])
+	}, [adjacencyMatrix]);
+
+	useEffect(() => {
+		console.log("Selected nodes:", selectedNodes);
+		
+		setNodes((prevNodes) =>
+			prevNodes.map((n) => {
+				let includes = selectedNodes.includes(n.id);
+				return {
+					...n,
+					active: includes,
+					style: {
+						backgroundColor: includes ? "black" : "white",
+						color: includes ? "white" : "black"
+					},
+				};
+			})
+		);
+	}, [selectedNodes]);
 
 	// const onConnect = useCallback(
 	// 	(params: Edge) => setEdges((eds) => addEdge(params, eds)),
 	// 	[setEdges]
 	// );
 
-	// //   const onNodeClick = (event, node) => {
-	// const onNodeClick = (event, node: string) => {
-	// 	console.log("Node clicked:", node);
-	// 	// Add any custom logic here when a node is clicked
-	// };
+	// append the id of the node clicked into selectedNodes[]. if it exists already, remove it.
+	const handleNodeClick: NodeMouseHandler = (_, node) => {
+		setSelectedNodes((prevNodes) => {
+			if (prevNodes.includes(node.id)) {
+				return prevNodes.filter((nodeId) => nodeId != node.id);
+			} else {
+				return [...prevNodes, node.id];
+			}
+		});
+	};
 
 	return (
 		<div style={{ height: 500 }}>
@@ -46,7 +73,7 @@ function Graph({adjacencyMatrix, onSelectItem }: Props) {
 				edges={edges}
 				// onNodesChange={onNodesChange}
 				// onEdgesChange={onEdgesChange}
-				// onNodeClick={onNodeClick}
+				onNodeClick={handleNodeClick}
 				// onConnect={onConnect}
 				fitView
 			>

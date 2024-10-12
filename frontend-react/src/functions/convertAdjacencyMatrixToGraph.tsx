@@ -12,11 +12,12 @@ export function convertAdjacencyMatrixToGraph(matrix: number[][], nodeType: stri
 		const { x, y } = calculateNodePositions(i, matrix.length);
 		nodes.push({
 			id: `node-${i}`,
-			data: { label: `Node ${i}` },
+			data: { label: `Node ${i}`, active: false }, // 'active' is for showing if the node is selected
 			position: { x: x, y: y },
 			type: nodeType,
 			selectable: true,
 			draggable: true,
+            style: { backgroundColor: 'white' }, // Initial color for inactive nodes
 		});
 	}
 
