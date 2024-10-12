@@ -1,12 +1,10 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ReactFlow, {
-	addEdge,
 	MiniMap,
 	Controls,
 	Background,
 	useNodesState,
 	useEdgesState,
-	Edge,
 	NodeMouseHandler,
 } from "react-flow-renderer";
 import { convertAdjacencyMatrixToGraph } from "../functions/convertAdjacencyMatrixToGraph";
@@ -14,10 +12,9 @@ import Button from "./Button";
 
 interface Props {
 	adjacencyMatrix: number[][];
-	onSelectItem: (item: string) => any;
 }
 
-function Graph({ adjacencyMatrix, onSelectItem }: Props) {
+function Graph({ adjacencyMatrix }: Props) {
 	const [nodes, setNodes, onNodesChange] = useNodesState([]);
 	const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 	const [selectedNodes, setSelectedNodes] = useState<string[]>([]);
@@ -68,14 +65,21 @@ function Graph({ adjacencyMatrix, onSelectItem }: Props) {
 	};
 
 	return (
-		<div style={{ height: 500 }}>
+		<div
+			style={{
+				height: "90vh",
+				display: "flex",
+				flexDirection: "column",
+				alignItems: "center",
+				justifyContent: "center", // Vertically center all content
+				gap: "100px", // Add spacing between elements
+				padding: "100px", // Add some padding to the container for spacing
+			}}
+		>
 			<ReactFlow
 				nodes={nodes}
 				edges={edges}
-				// onNodesChange={onNodesChange}
-				// onEdgesChange={onEdgesChange}
 				onNodeClick={handleNodeClick}
-				// onConnect={onConnect}
 				fitView
 			>
 				<MiniMap />
