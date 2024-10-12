@@ -10,6 +10,7 @@ import ReactFlow, {
 	NodeMouseHandler,
 } from "react-flow-renderer";
 import { convertAdjacencyMatrixToGraph } from "../functions/convertAdjacencyMatrixToGraph";
+import Button from "./Button";
 
 interface Props {
 	adjacencyMatrix: number[][];
@@ -34,7 +35,7 @@ function Graph({ adjacencyMatrix, onSelectItem }: Props) {
 
 	useEffect(() => {
 		console.log("Selected nodes:", selectedNodes);
-		
+
 		setNodes((prevNodes) =>
 			prevNodes.map((n) => {
 				let includes = selectedNodes.includes(n.id);
@@ -50,10 +51,10 @@ function Graph({ adjacencyMatrix, onSelectItem }: Props) {
 		);
 	}, [selectedNodes]);
 
-	// const onConnect = useCallback(
-	// 	(params: Edge) => setEdges((eds) => addEdge(params, eds)),
-	// 	[setEdges]
-	// );
+	const handleSubmit = () => {
+		// send request
+		setSelectedNodes([]);
+	};
 
 	// append the id of the node clicked into selectedNodes[]. if it exists already, remove it.
 	const handleNodeClick: NodeMouseHandler = (_, node) => {
@@ -81,6 +82,14 @@ function Graph({ adjacencyMatrix, onSelectItem }: Props) {
 				<Controls />
 				<Background color="#aaa" gap={16} />
 			</ReactFlow>
+
+			<Button
+				label="End Turn"
+				color="warning"
+				onClick={handleSubmit}
+				heightPctg={2}
+				widthPctg={10}
+			/>
 		</div>
 	);
 }
