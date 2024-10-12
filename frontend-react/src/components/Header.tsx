@@ -1,20 +1,22 @@
-import { useState } from "react";
 
 interface Props {
 	title: string;
 	items: string[];
-	onSelectItem: (item: string) => any;
+	redirects: string[];
+	selectedIndex: number;
 	image: string | undefined;
 }
 
-const Header = ({ title, items, onSelectItem, image = undefined }: Props) => {
-	const [selectedIndex, setSelectedIndex] = useState(2);
+const Header = ({ title, items, redirects, selectedIndex, image = undefined }: Props) => {
+
 
 	return (
-		<div className="container">
+		<div className="container"
+		style ={{height: "10vh",}}
+		>
 			<header className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
 				<a
-					href="/"
+					href=""
 					className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
 				>
 					<svg className="bi me-2" width="40" height="32">
@@ -27,15 +29,11 @@ const Header = ({ title, items, onSelectItem, image = undefined }: Props) => {
 					{items.map((item, index) => (
 						<li key={index} className="nav-item">
 							<a
-								href="#"
+								href={'/' + redirects[index]}
 								className={
 									selectedIndex === index ? "nav-link active" : "nav-link"
 								}
 								aria-current="page"
-								onClick={() => {
-									setSelectedIndex(index);
-									onSelectItem(item);
-								}}
 							>
 								{item}
 							</a>
