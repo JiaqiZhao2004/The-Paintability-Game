@@ -2,7 +2,6 @@
 import ReactLogo from "./assets/react.svg"; // adjust the path according to your file structure
 import GamePage from "./pages/GamePage";
 import Header from "./components/Header";
-import RolePage from "./pages/RolePage";
 import { useState } from "react";
 import StartPage from "./pages/StartPage";
 function App() {
@@ -26,7 +25,7 @@ function App() {
 					title="The Paintability Game"
 					description="A single-player strategy game based on graph theory."
 					onClickTutorial={() => setPage(1)}
-					onClickPlay={() => setPage(2)}
+					onClickPlay={() => {}}
 					image={ReactLogo}
 				/>
 			)}
