@@ -18,7 +18,7 @@ const GamePage = () => {
 
 	const [nodes, setNodes] = useNodesState([]);
 	const [edges, setEdges] = useEdgesState([]);
-	const [selectedNodes, setSelectedNodes] = useState<string[]>([]);
+	const [selectedNodeIds, setSelectedNodeIds] = useState<Set<string>>(new Set());
 
 	// This effect runs whenever the adjacency matrix updates
 	useEffect(() => {
@@ -32,11 +32,11 @@ const GamePage = () => {
 	}, [adjacencyMatrix]);
 
 	useEffect(() => {
-		console.log("Selected nodes:", selectedNodes);
+		console.log("Selected nodes:", selectedNodeIds);
 
 		setNodes((prevNodes) =>
 			prevNodes.map((n) => {
-				let includes = selectedNodes.includes(n.id);
+				let includes = selectedNodeIds.has(n.id);
 				return {
 					...n,
 					active: includes,
@@ -47,21 +47,23 @@ const GamePage = () => {
 				};
 			})
 		);
-	}, [selectedNodes]);
+	}, [selectedNodeIds]);
 
 	const handleSubmit = () => {
 		// send request
-		setSelectedNodes([]);
+		setSelectedNodeIds(new Set());
 	};
 
 	// append the id of the node clicked into selectedNodes[]. if it exists already, remove it.
 	const handleNodeClick: NodeMouseHandler = (_, node) => {
-		setSelectedNodes((prevNodes) => {
-			if (prevNodes.includes(node.id)) {
-				return prevNodes.filter((nodeId) => nodeId != node.id);
+		setSelectedNodeIds((prevSelectedNodeIds) => {
+			const newSelectedNodeIds = new Set(prevSelectedNodeIds);
+			if (newSelectedNodeIds.has(node.id)) {
+				newSelectedNodeIds.delete(node.id);
 			} else {
-				return [...prevNodes, node.id];
+				newSelectedNodeIds.add(node.id);
 			}
+			return newSelectedNodeIds;
 		});
 	};
 
