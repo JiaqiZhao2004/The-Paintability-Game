@@ -1,26 +1,91 @@
 import { useEffect, useState } from "react";
 import Graph from "../components/Graph";
+import {
+	useNodesState,
+	useEdgesState,
+	NodeMouseHandler,
+} from "react-flow-renderer";
+import { convertAdjacencyMatrixToGraph } from "../functions/convertAdjacencyMatrixToGraph";
+import Button from "../components/Button";
+import useFetchAdjacencyMatrix from "../hooks/useFetchAdjacencyMatrix";
+
 
 const GamePage = () => {
-	const [adjacencyMatrix, setAdjacencyMatrix] = useState([[]]);
+	// Get initial random adjacency matrix
+	const [adjacencyMatrix, setAdjacencyMatrix] = useFetchAdjacencyMatrix(
+		"http://localhost:5173/mockAdjacencyMatrix.json"
+	);
 
-	// Get initial random graph
+	const [nodes, setNodes] = useNodesState([]);
+	const [edges, setEdges] = useEdgesState([]);
+	const [selectedNodes, setSelectedNodes] = useState<string[]>([]);
+
+	// This effect runs whenever the adjacency matrix updates
 	useEffect(() => {
-		const fetchRandomAdjMat = async () => {
-			try {
-				const result = await fetch(
-					"http://localhost:5173/mockAdjacencyMatrix.json"
-				);
-				const jsonResult = await result.json();
-				console.log("Fetched adjacency matrix:", jsonResult); // Add this line for debugging
-				setAdjacencyMatrix(jsonResult);
-			} catch (error) {
-				console.error("Error fetching adjacency matrix:", error);
-			}
-		};
-		fetchRandomAdjMat();
-	}, []); // empty brackets []: only run once, when page is rendered
+		const { nodes, edges } = convertAdjacencyMatrixToGraph(
+			adjacencyMatrix,
+			"default"
+		);
+		setNodes(nodes);
+		setEdges(edges);
+		console.log(edges);
+	}, [adjacencyMatrix]);
 
-	return <Graph adjacencyMatrix={adjacencyMatrix} />;
+	useEffect(() => {
+		console.log("Selected nodes:", selectedNodes);
+
+		setNodes((prevNodes) =>
+			prevNodes.map((n) => {
+				let includes = selectedNodes.includes(n.id);
+				return {
+					...n,
+					active: includes,
+					style: {
+						backgroundColor: includes ? "black" : "white",
+						color: includes ? "white" : "black",
+					},
+				};
+			})
+		);
+	}, [selectedNodes]);
+
+	const handleSubmit = () => {
+		// send request
+		setSelectedNodes([]);
+	};
+
+	// append the id of the node clicked into selectedNodes[]. if it exists already, remove it.
+	const handleNodeClick: NodeMouseHandler = (_, node) => {
+		setSelectedNodes((prevNodes) => {
+			if (prevNodes.includes(node.id)) {
+				return prevNodes.filter((nodeId) => nodeId != node.id);
+			} else {
+				return [...prevNodes, node.id];
+			}
+		});
+	};
+
+	return (
+		<div
+			style={{
+				height: "90vh",
+				display: "flex",
+				flexDirection: "column",
+				alignItems: "center",
+				justifyContent: "center", // Vertically center all content
+				gap: "100px", // Add spacing between elements
+				padding: "100px", // Add some padding to the container for spacing
+			}}
+		>
+			<Graph nodes={nodes} edges={edges} handleNodeClick={handleNodeClick} />
+			<Button
+				label="End Turn"
+				color="warning"
+				onClick={handleSubmit}
+				heightPctg={2}
+				widthPctg={10}
+			/>{" "}
+		</div>
+	);
 };
 export default GamePage;
