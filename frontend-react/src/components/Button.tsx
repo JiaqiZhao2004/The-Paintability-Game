@@ -1,13 +1,13 @@
 interface Props {
 	label: string;
-	color?: "primary" | "secondary" | "danger" | "warning";
+	color?: "primary" | "secondary" | "danger" | "warning" | "outline-secondary";
 	onClick: () => void;
 	heightPctg?: number | string;
 	widthPctg?: number | string;
 	fontSize?: number;
 }
 
-const Button = ({ label, color, onClick, heightPctg, widthPctg, fontSize }: Props) => {
+const Button = ({ label="Button", color="primary", onClick=() => {}, heightPctg=1, widthPctg=1, fontSize=20 }: Props) => {
 	return (
 		<button
 			type="button"
