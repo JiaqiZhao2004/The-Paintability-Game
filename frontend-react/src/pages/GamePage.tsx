@@ -41,6 +41,7 @@ const GamePage = () => {
 					...n,
 					active: includes,
 					style: {
+						...n.style,
 						backgroundColor: includes ? "black" : "white",
 						color: includes ? "white" : "black",
 					},
