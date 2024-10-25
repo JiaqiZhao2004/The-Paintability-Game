@@ -25,7 +25,7 @@ function App() {
 					title="The Paintability Game"
 					description="A single-player strategy game based on graph theory."
 					onClickTutorial={() => setPage(1)}
-					onClickPlay={() => setPage(2)}
+					onClickPlay={() => {}}
 					image={ReactLogo}
 				/>
 			)}
