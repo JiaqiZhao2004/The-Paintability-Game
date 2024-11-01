@@ -5,10 +5,10 @@ import {
 	useEdgesState,
 	NodeMouseHandler,
 } from "react-flow-renderer";
-import { convertAdjacencyMatrixToGraph } from "../functions/convertAdjacencyMatrixToGraph";
+import { matrixToGraphWithHealth } from "../functions/matrixToGraphWithHealth";
 import Button from "../components/Button";
 import useFetchAdjacencyMatrix from "../hooks/useFetchAdjacencyMatrix";
-
+import useFetchVertexHealthList from "../hooks/useFetchVertexHealthList";
 
 const GamePage = () => {
 	// Get initial random adjacency matrix
@@ -16,15 +16,22 @@ const GamePage = () => {
 		"http://localhost:5173/mockAdjacencyMatrix.json"
 	);
 
+	const [vertexHealthList, setVertexHealthList] = useFetchVertexHealthList(
+		"http://localhost:5173/mockVertexHealthList.json"
+	);
+
 	const [nodes, setNodes] = useNodesState([]);
 	const [edges, setEdges] = useEdgesState([]);
-	const [selectedNodeIds, setSelectedNodeIds] = useState<Set<string>>(new Set());
+	const [selectedNodeIds, setSelectedNodeIds] = useState<Set<string>>(
+		new Set()
+	);
 
 	// This effect runs whenever the adjacency matrix updates
 	useEffect(() => {
-		const { nodes, edges } = convertAdjacencyMatrixToGraph(
+		const { nodes, edges } = matrixToGraphWithHealth(
 			adjacencyMatrix,
-			"default"
+			vertexHealthList,
+			"customNode"
 		);
 		setNodes(nodes);
 		setEdges(edges);
@@ -39,7 +46,8 @@ const GamePage = () => {
 				let includes = selectedNodeIds.has(n.id);
 				return {
 					...n,
-					active: includes,
+					// safe: ,
+					// health: ,
 					style: {
 						...n.style,
 						backgroundColor: includes ? "black" : "white",
