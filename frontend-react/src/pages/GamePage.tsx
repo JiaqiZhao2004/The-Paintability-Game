@@ -50,8 +50,8 @@ const GamePage = () => {
 					// health: ,
 					style: {
 						...n.style,
-						backgroundColor: includes ? "black" : "white",
-						color: includes ? "white" : "black",
+						backgroundColor: includes ? "black" : "transparent",
+						color: includes ? "transparent" : "black",
 					},
 				};
 			})
@@ -95,7 +95,7 @@ const GamePage = () => {
 				onClick={handleSubmit}
 				heightPctg={2}
 				widthPctg={10}
-			/>{" "}
+			/>
 		</div>
 	);
 };
