@@ -7,7 +7,7 @@ import StartPage from "./pages/StartPage";
 function App() {
 	const items = ["Home", "Tutorial", "Play"]; // elements in the header
 	const redirects = ["home", "tutorial", "play"]; // corresponding url endpoints
-	const [page, setPage] = useState(0);
+	const [page, setPage] = useState(2);
 
 	return (
 		<>

@@ -1,30 +1,24 @@
 import { Handle, NodeProps, Position } from "react-flow-renderer";
 import fortressImg from "../assets/fortress.png";
+import selectedfortressImg from "../assets/fortress_selected.png";
 
 const CustomNode = ({ data }: NodeProps) => {
 	return (
 		<div
 			style={{
 				width: "100px", // Set a fixed width for the node
-				padding: "10px",
-				// border: "1px solid black",
-				borderRadius: "8px",
+				padding: "5px",
+				verticalAlign: "middle",
 			}}
 		>
-			<img
-				src={fortressImg}
-				alt="Fortress"
-				style={{ width: "100%", height: "100%" }}
-			/>
-
+			<strong>Health: {data.health}</strong>
 			{/* Health Bar Container */}
 			<div
 				style={{
-					marginTop: "8px",
 					width: "100%",
-					height: "10px",
+					height: "8px",
 					backgroundColor: "#ddd",
-					borderRadius: "5px",
+					borderRadius: "1px",
 					overflow: "hidden",
 				}}
 			>
@@ -43,8 +37,13 @@ const CustomNode = ({ data }: NodeProps) => {
 				/>
 			</div>
 
-			<strong>Health: {data.health}</strong>
 			{/* <div>Safe: {data.safe}</div> */}
+
+			<img
+				src={data.selected ? selectedfortressImg : fortressImg}
+				alt="Fortress"
+				style={{ width: "110%", height: "auto" }}
+			/>
 
 			{/* Handle components for connections */}
 			<Handle

@@ -46,13 +46,11 @@ const GamePage = () => {
 				let includes = selectedNodeIds.has(n.id);
 				return {
 					...n,
-					// safe: ,
-					// health: ,
-					style: {
-						...n.style,
-						backgroundColor: includes ? "black" : "transparent",
-						color: includes ? "transparent" : "black",
+					data: {
+						...n.data,
+						selected: includes,
 					},
+					// safe: ,
 				};
 			})
 		);
