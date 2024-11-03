@@ -9,6 +9,15 @@ import { matrixToGraphWithHealth } from "../functions/matrixToGraphWithHealth";
 import Button from "../components/Button";
 import useFetchAdjacencyMatrix from "../hooks/useFetchAdjacencyMatrix";
 import useFetchVertexHealthList from "../hooks/useFetchVertexHealthList";
+import Header from "../components/Header";
+
+const StartPageHeader = {
+	title: "The Paintability Game",
+	items: ["Home", "Tutorial", "Play"],
+	redirects: ["home", "tutorial", "play"],
+	selectedIndex: 2,
+	image: undefined,
+};
 
 const GamePage = () => {
 	// Get initial random adjacency matrix
@@ -82,10 +91,10 @@ const GamePage = () => {
 				flexDirection: "column",
 				alignItems: "center",
 				justifyContent: "center", // Vertically center all content
-				gap: "100px", // Add spacing between elements
-				padding: "100px", // Add some padding to the container for spacing
+				gap: "30px", // Add spacing between elements
 			}}
 		>
+			<Header {...StartPageHeader} />
 			<Graph nodes={nodes} edges={edges} handleNodeClick={handleNodeClick} />
 			<Button
 				label="End Turn"
