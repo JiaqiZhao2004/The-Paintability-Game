@@ -4,10 +4,10 @@ interface Props {
 	items: string[];
 	redirects: string[];
 	selectedIndex: number;
-	image: string | undefined;
+	image?: string;
 }
 
-const Header = ({ title, items, redirects, selectedIndex, image = undefined }: Props) => {
+const Header = ( {title, items, redirects, selectedIndex, image = undefined} : Props) => {
 
 
 	return (
