@@ -1,7 +1,11 @@
 import { Node, Edge } from "react-flow-renderer";
 import { calculateNodePositions } from "./calculateNodePositions";
 
-export function convertAdjacencyMatrixToGraph(matrix: number[][], nodeType: string): {
+export function matrixToGraphWithHealth(
+	matrix: number[][],
+	health: number[],
+	nodeType: string
+): {
 	nodes: Node[];
 	edges: Edge[];
 } {
@@ -12,10 +16,16 @@ export function convertAdjacencyMatrixToGraph(matrix: number[][], nodeType: stri
 		const { x, y } = calculateNodePositions(i, matrix.length);
 		nodes.push({
 			id: `node-${i}`,
-			data: { label: `Node ${i}`, active: false }, // 'active' is for showing if the node is selected
+			data: {
+				label: `Node ${i}`,
+				maxHealth: health[i],
+				health: health[i],
+				safe: true,
+				selected: false,
+			}, // 'active' is for showing if the node is selected
 			position: { x: x, y: y },
 			type: nodeType,
-            style: { backgroundColor: 'white' }, // Initial color for inactive nodes
+			style: { backgroundColor: "transparent" }, // Initial color for inactive nodes
 		});
 	}
 
@@ -26,6 +36,8 @@ export function convertAdjacencyMatrixToGraph(matrix: number[][], nodeType: stri
 					id: `edge-${i}-${j}`,
 					source: `node-${i}`,
 					target: `node-${j}`,
+					type: "straight", // You can try 'straight' or 'smoothstep' types for edges
+					style: { strokeWidth: 5 },
 					animated: true,
 				});
 			}
