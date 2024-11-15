@@ -7,9 +7,9 @@ class PaintGraph{
     private winner: string;
  
     public constructor(vL: number[], aM: number[][]){
-        const n: number = vtxList.length;
         this.vtxList = [];
-        this.adjMat = [][];
+        const n: number = this.vtxList.length;
+        this.adjMat = aM.map(row => [...row]);
         this.vtxSafe = [];
         this.vtxAttack = [];
         this.gameOver = false;
@@ -28,7 +28,7 @@ class PaintGraph{
     }
  
     public getGraph(): number[][]{
-        return this.AdjMat;
+        return this.adjMat;
     }
  
     public getList(): number[]{
@@ -49,9 +49,69 @@ class PaintGraph{
     public attack(atkArr: number[]){
         for(let i=0; i<atkArr.length; i++){
             if(i < this.vtxList.length && this.vtxSafe[i] == false){
-                this.vtxAttack = true;
+                this.vtxAttack[i] = true; // changed from this.vtxAttack = true to this.vtxAttack[i] = true
             }
         }
     }
- 
- }
+    public defend(defArr: number[]): boolean {
+        let isValid = true;
+
+        for (let i = 0; i < defArr.length; i++) {
+            for (let j = 0; j < defArr.length; j++) {
+                if (this.isEdge(defArr[i], defArr[j])) {
+                    isValid = false;
+                    break;
+                }
+            }
+        }
+        if (!isValid) {
+            return false;
+        } else {
+            defArr.forEach (i => {
+                if (i < this.vtxList.length && this.vtxAttack[i]) {
+                    this.vtxSafe[i] = true;
+                    this.vtxAttack[i] = false;
+                }
+            });
+            this.vtxAttack.forEach((isAttacked, i) => {
+                if (isAttacked) {
+                    this.vtxList[i] -= -1;
+                    this.vtxAttack[i] = false;
+                }
+            });
+            return true;
+        }
+    }
+
+    public checkForWinner(): boolean {
+    // attacker wins if a vertex health reaches zero or below
+        if (this.vtxList.some(health => health <= 0)) {
+            this.winner = "Attacker";
+            this.gameOver = true;
+            return true;
+        
+        }
+
+        // defender win if all vert are safe
+        if (this.vtxSafe.every(safe => safe)) {
+            this.winner = "Defender";
+            this.gameOver = true;
+            return true;
+        }
+        return false;
+    }
+}
+const crimeAttempt = (id: string, jailCount: { [key: string]: number }) => {
+    return { ...jailCount, [id]: (jailCount[id] || 0) + 1 };
+};
+
+const turnChange = (currentTurn: 'Good' | 'Evil'): 'Good' | 'Evil' => {
+    return currentTurn === 'Good' ? 'Evil' : 'Good';
+};
+
+// const checkWinConditions = (jailCount: { [key: string]: number }, crimeLimit: number, turn: string) => {
+//     const gameWon = Object.values(jailCount).some((count) => count >= crimeLimit);
+//     return gameWon ? (turn === 'Good' ? 'Good' : 'Evil') : null;
+// };
+
+// we are checking for winnter and updating the game state 
