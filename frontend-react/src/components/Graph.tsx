@@ -6,6 +6,7 @@ import ReactFlow, {
 	Background,
 	NodeMouseHandler
 } from "react-flow-renderer";
+import CustomNode from "./CustomNode";
 
 interface Props {
 	nodes: Node[];
@@ -13,12 +14,17 @@ interface Props {
 	handleNodeClick: NodeMouseHandler;
 }
 
+const nodeTypes = {
+    customNode: CustomNode,
+};
+
 function Graph({ nodes,  edges, handleNodeClick }: Props) {
 
 	return (
 		<ReactFlow
 				nodes={nodes}
 				edges={edges}
+				nodeTypes={nodeTypes}
 				onNodeClick={handleNodeClick}
 				fitView
 			>
