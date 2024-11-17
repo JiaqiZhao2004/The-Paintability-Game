@@ -12,8 +12,8 @@ export function matrixToGraphWithHealth(
 	const nodes: Node[] = [];
 	const edges: Edge[] = [];
 
-	for (let i = 0; i < matrix.length; i++) {
-		const { x, y } = calculateNodePositions(i, matrix.length);
+	for (let i = 0; i < health.length; i++) {
+		const { x, y } = calculateNodePositions(i, health.length);
 		nodes.push({
 			id: `node-${i}`,
 			data: {
@@ -29,8 +29,8 @@ export function matrixToGraphWithHealth(
 		});
 	}
 
-	for (let i = 0; i < matrix.length; i++) {
-		for (let j = i + 1; j < matrix[i].length; j++) {
+	for (let i = 0; i < health.length; i++) {
+		for (let j = i + 1; j < health.length; j++) {
 			if (matrix[i][j] === 1) {
 				edges.push({
 					id: `edge-${i}-${j}`,
