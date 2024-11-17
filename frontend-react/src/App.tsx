@@ -33,7 +33,7 @@ function App() {
 					}
 				/>
 				{/* <Route path="/tutorial" element={} /> */}
-				<Route path="/game" element={<GamePage vL={K33_List} aM={K33} />} />
+				<Route path="/play" element={<GamePage vL={K33_List} aM={K33} />} />
 			</Routes>
 		</Router>
 	);
