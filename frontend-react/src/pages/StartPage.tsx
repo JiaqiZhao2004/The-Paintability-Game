@@ -7,7 +7,6 @@ interface Props {
 	title: string;
 	description: string;
 	onClickTutorial: () => any;
-	onClickPlay: () => any;
 	image: string | undefined;
 }
 
@@ -15,7 +14,6 @@ const StartPage = ({
 	title,
 	description,
 	onClickTutorial,
-	onClickPlay,
 	image = undefined,
 }: Props) => {
 	const [showRoleSelection, setShowRoleSelection] = useState(false);
@@ -39,7 +37,6 @@ const StartPage = ({
 							label="Play"
 							onClick={() => {
 								setShowRoleSelection(true);
-								onClickPlay();
 							}}
 							widthPctg={5}
 						/>
