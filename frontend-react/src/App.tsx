@@ -7,6 +7,9 @@ function App() {
 
 	const [page, setPage] = useState(2);
 
+	let K33: number[][] = [[0,0,0,1,1,1], [0,0,0,1,1,1], [0,0,0,1,1,1], [1,1,1,0,0,0], [1,1,1,0,0,0], [1,1,1,0,0,0]];
+	let K33_List: number[] = [2,2,2,2,2,2];
+
 	return (
 		<>
 			{page === 0 && (
@@ -18,7 +21,7 @@ function App() {
 					image={ReactLogo}
 				/>
 			)}
-			{page === 2 && <GamePage/>}
+			{page === 2 && <GamePage vL={K33_List} aM={K33}  />}
 		</>
 	);
 }

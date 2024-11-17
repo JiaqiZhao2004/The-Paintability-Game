@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Graph from "../components/Graph";
 import {
 	useNodesState,
@@ -7,9 +7,13 @@ import {
 } from "react-flow-renderer";
 import { matrixToGraphWithHealth } from "../functions/matrixToGraphWithHealth";
 import Button from "../components/Button";
-import useFetchAdjacencyMatrix from "../hooks/useFetchAdjacencyMatrix";
-import useFetchVertexHealthList from "../hooks/useFetchVertexHealthList";
 import Header from "../components/Header";
+import PaintGraph from "../game/PaintGraph";
+
+interface GamePageProps {
+	vL: number[];
+	aM: number[][];
+}
 
 const StartPageHeader = {
 	title: "The Paintability Game",
@@ -19,15 +23,8 @@ const StartPageHeader = {
 	image: undefined,
 };
 
-const GamePage = () => {
-	// Get initial random adjacency matrix
-	const [adjacencyMatrix, setAdjacencyMatrix] = useFetchAdjacencyMatrix(
-		"http://localhost:5173/mockAdjacencyMatrix.json"
-	);
-
-	const [vertexHealthList, setVertexHealthList] = useFetchVertexHealthList(
-		"http://localhost:5173/mockVertexHealthList.json"
-	);
+const GamePage = ({ vL, aM }: GamePageProps) => {
+	const game = useRef(new PaintGraph(vL, aM));
 
 	const [nodes, setNodes] = useNodesState([]);
 	const [edges, setEdges] = useEdgesState([]);
@@ -35,17 +32,18 @@ const GamePage = () => {
 		new Set()
 	);
 
+	const [round, setRound] = useState(1);
+
 	// This effect runs whenever the adjacency matrix updates
 	useEffect(() => {
 		const { nodes, edges } = matrixToGraphWithHealth(
-			adjacencyMatrix,
-			vertexHealthList,
+			game.current.getGraph(),
+			game.current.getList(),
 			"customNode"
 		);
 		setNodes(nodes);
 		setEdges(edges);
-		console.log(edges);
-	}, [adjacencyMatrix]);
+	}, [round]);
 
 	useEffect(() => {
 		console.log("Selected nodes:", selectedNodeIds);
