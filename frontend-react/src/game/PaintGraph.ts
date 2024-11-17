@@ -6,7 +6,7 @@ class PaintGraph {
 	private gameOver: boolean;
 	private winner: string;
 
-	public constructor(vL: number[], aM: number[][]){
+	public constructor(vL: number[], aM: number[][]) {
 		this.vtxList = vL;
 		const n: number = this.vtxList.length;
 		this.adjMat = aM.map((row) => [...row]);
@@ -14,7 +14,7 @@ class PaintGraph {
 		this.vtxAttack = [];
 		this.gameOver = false;
 		this.winner = "";
-		for(let i=0; i<n; i++){
+		for (let i = 0; i < n; i++) {
 			let temp: number[] = [];
 			for (let j = 0; j < aM[i].length; j++) {
 				temp.push(aM[i][j]);
@@ -23,7 +23,6 @@ class PaintGraph {
 			this.vtxSafe.push(false);
 			this.vtxAttack.push(false);
 		}
- 
 	}
 
 	public getGraph(): number[][] {
@@ -88,7 +87,6 @@ class PaintGraph {
 			this.winner = "Attacker";
 			this.gameOver = true;
 			return true;
-        
 		}
 
 		// defender win if all vert are safe
@@ -99,24 +97,32 @@ class PaintGraph {
 		}
 		return false;
 	}
-}
 
-export const crimeAttempt = (
-	id: string,
-	jailCount: { [key: string]: number }
-) => {
-	return { ...jailCount, [id]: (jailCount[id] || 0) + 1 };
+	public getGameState() {
+		return {
+			vtxList: this.vtxList,
+			vtxSafe: this.vtxSafe,
+			vtxAttack: this.vtxAttack,
+			gameOver: this.gameOver,
+			winner: this.winner,
+		};
+	}
+}
+const crimeAttempt = (id: string, jailCount: { [key: string]: number }) => {
+	let updatedJailCount: { [key: string]: number } = {};
+	for (const key in jailCount) {
+		updatedJailCount[key] = jailCount[key];
+	}
+	if (updatedJailCount.hasOwnProperty(id)) {
+		updatedJailCount[id] += 1; // if id exists icnrease by 1
+	} else {
+		updatedJailCount[id] = 1;
+	}
+	return updatedJailCount;
 };
 
-export const turnChange = (currentTurn: "Good" | "Evil"): "Good" | "Evil" => {
+const turnChange = (currentTurn: "Good" | "Evil"): "Good" | "Evil" => {
 	return currentTurn === "Good" ? "Evil" : "Good";
 };
-
-// const checkWinConditions = (jailCount: { [key: string]: number }, crimeLimit: number, turn: string) => {
-//     const gameWon = Object.values(jailCount).some((count) => count >= crimeLimit);
-//     return gameWon ? (turn === 'Good' ? 'Good' : 'Evil') : null;
-// };
-
-// we are checking for winnter and updating the game state
 
 export default PaintGraph;
