@@ -1,3 +1,38 @@
+/**
+ * @function matrixToGraphWithHealth
+ * @brief Converts an adjacency matrix and health data into a graph structure with nodes and edges.
+ *
+ * @param {number[][]} matrix - The adjacency matrix representing connections between nodes.
+ * @param {number[]} health - An array of integers representing the health values for each node.
+ * @param {string} nodeType - The type of the node, used for customization in the graph renderer.
+ * @return {Object} An object containing:
+ *   - `nodes`: An array of Node objects, each representing a node in the graph.
+ *   - `edges`: An array of Edge objects, each representing a connection between nodes.
+ *
+ * @details
+ * - Nodes are placed in a circular layout, with positions calculated by `calculateNodePositions`.
+ * - Each node contains metadata such as health, max health, and whether it's selected or safe.
+ * - Edges are generated for pairs of nodes where the adjacency matrix indicates a connection.
+ * - Edges can be customized with properties such as `type`, `style`, and animation.
+ *
+ * @example
+ * ```
+ * const adjacencyMatrix = [
+ *   [0, 1, 0],
+ *   [1, 0, 1],
+ *   [0, 1, 0],
+ * ];
+ * const health = [100, 80, 60];
+ * const graph = matrixToGraphWithHealth(adjacencyMatrix, health, "customNode");
+ * console.log(graph.nodes); // Array of nodes with health and metadata
+ * console.log(graph.edges); // Array of edges connecting nodes
+ * ```
+ *
+ * @note
+ * - The `matrix` and `health` arrays must be of compatible lengths.
+ * - Each node is assigned a unique ID based on its index.
+ */
+
 import { Node, Edge } from "react-flow-renderer";
 import { calculateNodePositions } from "./calculateNodePositions";
 
@@ -22,10 +57,10 @@ export function matrixToGraphWithHealth(
 				health: health[i],
 				safe: true,
 				selected: false,
-			}, // 'active' is for showing if the node is selected
+			},
 			position: { x: x, y: y },
 			type: nodeType,
-			style: { backgroundColor: "transparent" }, // Initial color for inactive nodes
+			style: { backgroundColor: "transparent" },
 		});
 	}
 
@@ -36,7 +71,7 @@ export function matrixToGraphWithHealth(
 					id: `edge-${i}-${j}`,
 					source: `node-${i}`,
 					target: `node-${j}`,
-					type: "straight", // You can try 'straight' or 'smoothstep' types for edges
+					type: "straight",
 					style: { strokeWidth: 5 },
 					animated: true,
 				});
