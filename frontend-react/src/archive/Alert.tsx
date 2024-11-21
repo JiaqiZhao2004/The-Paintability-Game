@@ -1,3 +1,7 @@
+/**
+ * @unused This component is unused
+ */
+
 import { ReactNode } from "react";
 
 interface Props {

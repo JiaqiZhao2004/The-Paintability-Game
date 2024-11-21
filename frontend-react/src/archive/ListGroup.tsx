@@ -1,3 +1,7 @@
+/**
+ * @unused This component is unused
+ */
+
 import { useState } from "react";
 interface Props {
     items: string[];
