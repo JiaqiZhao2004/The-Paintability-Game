@@ -1,3 +1,7 @@
+/**
+ * @deprecated This hook is no longer used. Fetching adjacency matrix is done by PaintGraph.ts
+ */
+
 import { useEffect, useState } from "react";
 
 const useFetchAdjacencyMatrix = (
@@ -10,7 +14,7 @@ const useFetchAdjacencyMatrix = (
 			try {
 				const result = await fetch(url);
 				const jsonResult = await result.json();
-				console.log("Fetched adjacency matrix:", jsonResult); // Add this line for debugging
+				console.log("Fetched adjacency matrix:", jsonResult);
 				setMatrix(jsonResult);
 			} catch (error) {
 				console.error("Error fetching adjacency matrix:", error);

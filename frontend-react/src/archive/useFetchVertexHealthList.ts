@@ -1,3 +1,7 @@
+/**
+ * @deprecated This hook is no longer used. Fetching vertex health is done by PaintGraph.ts
+ */
+
 import { useEffect, useState } from "react";
 
 const useFetchVertexHealthList = (
@@ -10,7 +14,7 @@ const useFetchVertexHealthList = (
 			try {
 				const result = await fetch(url);
 				const jsonResult = await result.json();
-				console.log("Fetched vertex health list:", jsonResult); // Add this line for debugging
+				console.log("Fetched vertex health list:", jsonResult);
 				setVertexHealthList(jsonResult);
 			} catch (error) {
 				console.error("Error fetching vertex health list:", error);
