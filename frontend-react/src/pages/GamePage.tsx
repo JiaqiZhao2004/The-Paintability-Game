@@ -1,5 +1,6 @@
 /**
  * @file GamePage.tsx
+ * @class GamePage
  * @brief The GamePage component for rendering and managing the core gameplay page.
  *
  * This component handles the rendering of a graph-based game, where players interact with graph nodes

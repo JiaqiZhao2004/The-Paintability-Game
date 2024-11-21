@@ -1,5 +1,6 @@
 /**
  * @file HomePage.tsx
+ * @class HomePage
  * @brief Renders the main starting page for "The Paintability Game."
  *
  * The `HomePage` component serves as the entry point of the game, allowing users to:

@@ -1,5 +1,6 @@
 /**
  * @file RolePage.tsx
+ * @class RolePage
  * @brief Role selection page for "The Paintability Game."
  *
  * The RolePage component allows players to select their role in the game.
