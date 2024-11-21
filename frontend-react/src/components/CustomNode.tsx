@@ -1,17 +1,49 @@
+/**
+ * @file CustomNode.tsx
+ * @brief A React Flow custom node component representing a fortress with dynamic visuals and interactions.
+ */
+
 import { Handle, NodeProps, Position } from "react-flow-renderer";
 import fortressImg from "../assets/fortress.png";
 import selectedfortressImg from "../assets/fortress_selected.png";
 
+/**
+ * @component CustomNode
+ * @brief A custom node component for React Flow that includes a dynamic health bar and customizable image.
+ *
+ * @param {NodeProps} data - The node data provided by React Flow, including health, maxHealth, and selection state.
+ *
+ * @details
+ * - The component visually represents a fortress node.
+ * - It includes:
+ *   - A health bar that updates its width and color based on health.
+ *   - A conditionally rendered image that changes when the node is selected.
+ *   - Input/output handles for connecting edges.
+ * - The node's style and functionality are determined by the `data` prop.
+ *
+ * @example
+ * ```
+ * <CustomNode
+ *   data={{
+ *     health: 75,
+ *     maxHealth: 100,
+ *     selected: true,
+ *   }}
+ * />
+ * ```
+ */
 const CustomNode = ({ data }: NodeProps) => {
 	return (
 		<div
 			style={{
-				width: "100px", // Set a fixed width for the node
+				width: "100px",
 				padding: "5px",
 				verticalAlign: "middle",
 			}}
 		>
+			{/* Display health value */}
 			<strong>Health: {data.health}</strong>
+
 			{/* Health Bar Container */}
 			<div
 				style={{
@@ -22,7 +54,7 @@ const CustomNode = ({ data }: NodeProps) => {
 					overflow: "hidden",
 				}}
 			>
-				{/* Health Bar */}
+				{/* Dynamic Health Bar */}
 				<div
 					style={{
 						width: `${(data.health / data.maxHealth) * 100}%`,
@@ -38,30 +70,33 @@ const CustomNode = ({ data }: NodeProps) => {
 			</div>
 
 			{/* <div>Safe: {data.safe}</div> */}
-
+			
+			{/* Fortress Image */}
 			<img
 				src={data.selected ? selectedfortressImg : fortressImg}
 				alt="Fortress"
 				style={{ width: "110%", height: "auto" }}
 			/>
 
-			{/* Handle components for connections */}
+			{/* Source Handle at center*/}
 			<Handle
 				type="source"
-				position={Position.Top} // Position.Top is used, but we're overriding the style
+				position={Position.Top}
 				style={{
 					background: "transparent",
 					border: 0,
 					position: "absolute",
 					top: "50%",
 					left: "50%",
-					transform: "translate(-50%, -50%)", // Center the handle
+					transform: "translate(-50%, -50%)",
 				}}
 				id="center"
 			/>
+
+			{/* Target Handle at center*/}
 			<Handle
 				type="target"
-				position={Position.Top} // Position.Top is used, but we're overriding the style
+				position={Position.Top}
 				style={{
 					background: "transparent",
 					border: 0,
@@ -69,7 +104,7 @@ const CustomNode = ({ data }: NodeProps) => {
 					position: "absolute",
 					top: "50%",
 					left: "50%",
-					transform: "translate(-50%, -50%)", // Center the handle
+					transform: "translate(-50%, -50%)",
 				}}
 				id="center"
 			/>
