@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import StartPage from "./pages/StartPage";
+import StartPage from "./pages/HomePage";
 import ReactLogo from "./assets/react.svg"; // adjust the path according to your file structure
 import GamePage from "./pages/GamePage";
 import { useState } from "react";
