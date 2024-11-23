@@ -35,11 +35,13 @@ import { randomGraph, randomList } from "../game/randomGen";
  *
  * @property {number} n - Number of verticies.
  * @property {number} p - Parameter for random edge generation. Edge density.
+ * @property {boolean} isEvilRole - Whether the player's role is Evil Mastermind.
  */
 
 interface GamePageProps {
 	n: number;
 	p: number;
+	isEvilRole: boolean;
 }
 
 /**
@@ -75,7 +77,7 @@ const GamePageHeader = {
  * - Updates graph visuals dynamically based on game progress.
  */
 
-const GamePage = ({ n, p }: GamePageProps) => {
+const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 	/**
 	 * @var aM
 	 * @brief Randomly generated adjacency matrix. Game start state.
@@ -161,6 +163,7 @@ const GamePage = ({ n, p }: GamePageProps) => {
 	const handleSubmit = () => {
 		// send request
 		setSelectedNodeIds(new Set());
+		console.log(isEvilRole);
 		setRound(round + 1);
 	};
 

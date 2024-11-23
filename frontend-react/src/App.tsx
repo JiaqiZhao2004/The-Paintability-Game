@@ -34,7 +34,9 @@ function App() {
 				{/* <Route path="/tutorial" element={} /> */}
 				<Route
 					path="/play"
-					element={<GamePage n={numNodes} p={edgeDensity} />}
+					element={
+						<GamePage n={numNodes} p={edgeDensity} isEvilRole={isEvilRole} />
+					}
 				/>
 
 				{/* Catch-all route for undefined paths */}
