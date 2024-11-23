@@ -27,18 +27,19 @@ import { matrixToGraphWithHealth } from "../functions/matrixToGraphWithHealth";
 import Button from "../components/Button";
 import Header from "../components/Header";
 import PaintGraph from "../game/PaintGraph";
+import { randomGraph, randomList } from "../game/randomGen";
 
 /**
  * @typedef GamePageProps
  * @brief Properties passed to the GamePage component.
  *
- * @property {number[]} vL - List of vertex health values.
- * @property {number[][]} aM - Adjacency matrix representing the graph structure.
+ * @property {number} n - Number of verticies.
+ * @property {number} p - Parameter for random edge generation. Edge density.
  */
 
 interface GamePageProps {
-	vL: number[];
-	aM: number[][];
+	n: number;
+	p: number;
 }
 
 /**
@@ -58,22 +59,35 @@ const GamePageHeader = {
  * @function GamePage
  * @brief The main gameplay page for the Paintability Game.
  *
- * @param {GamePageProps} props - The properties required for initializing the game.
+ * @param {number} n - The number of nodes in the graph.
  * @returns {JSX.Element} The JSX representation of the gameplay page.
  *
  * @details
- * This component initializes a PaintGraph instance with the provided adjacency matrix and vertex health list.
+ * This component randomly generates a pair of adjacency matrix and vertex health list, and hence initializes a PaintGraph instance.
  * It renders the game graph, manages the game state, and handles user interactions. The graph is updated
  * dynamically at the start of each round and when nodes are selected.
  *
  * **Key Features**:
+ * - Generates a random adjacency matrix and vertex health list as start state.
  * - Renders a graph with nodes and edges based on the adjacency matrix and health list.
  * - Handles user interactions, such as node selection and turn submission.
  * - Manages game state using the PaintGraph class.
  * - Updates graph visuals dynamically based on game progress.
  */
 
-const GamePage = ({ vL, aM }: GamePageProps) => {
+const GamePage = ({ n, p }: GamePageProps) => {
+	/**
+	 * @var aM
+	 * @brief Randomly generated adjacency matrix. Game start state.
+	 */
+	const aM = randomGraph(n, p);
+
+	/**
+	 * @var vL
+	 * @brief Randomly generated vertex health list. Game start state.
+	 */
+	const vL = randomList(aM, n);
+
 	/**
 	 * @var game
 	 * @brief Reference to the PaintGraph instance managing the game state and logic. Keeps all node and edge states.
