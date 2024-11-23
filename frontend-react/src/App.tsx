@@ -12,7 +12,8 @@ import { useState } from "react";
 function App() {
 
 	const [numNodes, setNumNodes] = useState(6);
-	const [edgeDensity, setEdgeDensity] = useState(0.5);	
+	const [edgeDensity, setEdgeDensity] = useState(0.5);
+	const [isEvilRole, setIsEvilRole] = useState(Math.random() > 0.5);
 
 	return (
 		<Router>
