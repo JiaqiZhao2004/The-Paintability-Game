@@ -7,17 +7,12 @@ import {
 import HomePage from "./pages/HomePage";
 import ReactLogo from "./assets/react.svg";
 import GamePage from "./pages/GamePage";
+import { useState } from "react";
 
 function App() {
-	let K33: number[][] = [
-		[0, 0, 0, 1, 1, 1],
-		[0, 0, 0, 1, 1, 1],
-		[0, 0, 0, 1, 1, 1],
-		[1, 1, 1, 0, 0, 0],
-		[1, 1, 1, 0, 0, 0],
-		[1, 1, 1, 0, 0, 0],
-	];
-	let K33_List: number[] = [2, 2, 2, 2, 2, 2];
+
+	const [numNodes, setNumNodes] = useState(6);
+	const [edgeDensity, setEdgeDensity] = useState(0.5);	
 
 	return (
 		<Router>
@@ -34,7 +29,7 @@ function App() {
 					}
 				/>
 				{/* <Route path="/tutorial" element={} /> */}
-				<Route path="/play" element={<GamePage vL={K33_List} aM={K33} />} />
+				<Route path="/play" element={<GamePage n={numNodes} p={edgeDensity} />} />
 
 				{/* Catch-all route for undefined paths */}
 				<Route path="*" element={<Navigate to="/home" replace />} />

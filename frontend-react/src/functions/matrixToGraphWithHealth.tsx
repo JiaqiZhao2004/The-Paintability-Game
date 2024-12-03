@@ -53,7 +53,7 @@ export function matrixToGraphWithHealth(
 			id: `node-${i}`,
 			data: {
 				label: `Node ${i}`,
-				maxHealth: health[i],
+				maxHealth: Math.max(...health),
 				health: health[i],
 				safe: true,
 				selected: false,
