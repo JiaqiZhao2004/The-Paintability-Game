@@ -10,9 +10,8 @@ import GamePage from "./pages/GamePage";
 import { useState } from "react";
 
 function App() {
-
 	const [numNodes, setNumNodes] = useState(6);
-	const [edgeDensity, setEdgeDensity] = useState(0.5);	
+	const [edgeDensity, setEdgeDensity] = useState(0.5);
 
 	return (
 		<Router>
@@ -29,7 +28,25 @@ function App() {
 					}
 				/>
 				{/* <Route path="/tutorial" element={} /> */}
-				<Route path="/play" element={<GamePage n={numNodes} p={edgeDensity} />} />
+				<Route
+					path="/play/evil"
+					element={<GamePage n={numNodes} p={edgeDensity} isEvilRole={true} />}
+				/>
+				<Route
+					path="/play/police"
+					element={<GamePage n={numNodes} p={edgeDensity} isEvilRole={false} />}
+				/>
+
+				<Route
+					path="/play/random"
+					element={
+						<GamePage
+							n={numNodes}
+							p={edgeDensity}
+							isEvilRole={Math.random() > 0.5}
+						/>
+					}
+				/>
 
 				{/* Catch-all route for undefined paths */}
 				<Route path="*" element={<Navigate to="/home" replace />} />

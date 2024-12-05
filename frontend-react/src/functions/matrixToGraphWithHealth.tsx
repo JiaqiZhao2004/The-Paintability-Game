@@ -39,7 +39,8 @@ import { calculateNodePositions } from "./calculateNodePositions";
 export function matrixToGraphWithHealth(
 	matrix: number[][],
 	health: number[],
-	nodeType: string
+	nodeType: string,
+	isEvilRole: boolean
 ): {
 	nodes: Node[];
 	edges: Edge[];
@@ -55,7 +56,7 @@ export function matrixToGraphWithHealth(
 				label: `Node ${i}`,
 				maxHealth: Math.max(...health),
 				health: health[i],
-				safe: true,
+				isEvilRole: isEvilRole,
 				selected: false,
 			},
 			position: { x: x, y: y },

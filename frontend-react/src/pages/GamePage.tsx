@@ -28,6 +28,7 @@ import Button from "../components/Button";
 import Header from "../components/Header";
 import PaintGraph from "../game/PaintGraph";
 import { randomGraph, randomList } from "../game/randomGen";
+import PlayerInfo from "../components/PlayerInfo";
 
 /**
  * @typedef GamePageProps
@@ -35,11 +36,13 @@ import { randomGraph, randomList } from "../game/randomGen";
  *
  * @property {number} n - Number of verticies.
  * @property {number} p - Parameter for random edge generation. Edge density.
+ * @property {boolean} isEvilRole - Whether the player's role is Evil Mastermind.
  */
 
 interface GamePageProps {
 	n: number;
 	p: number;
+	isEvilRole: boolean;
 }
 
 /**
@@ -75,7 +78,7 @@ const GamePageHeader = {
  * - Updates graph visuals dynamically based on game progress.
  */
 
-const GamePage = ({ n, p }: GamePageProps) => {
+const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 	/**
 	 * @var aM
 	 * @brief Randomly generated adjacency matrix. Game start state.
@@ -93,6 +96,12 @@ const GamePage = ({ n, p }: GamePageProps) => {
 	 * @brief Reference to the PaintGraph instance managing the game state and logic. Keeps all node and edge states.
 	 */
 	const game = useRef(new PaintGraph(vL, aM));
+
+	/**
+	 * @var isLeftPlayersTurn
+	 * @brief Whether the current turn is of the left player.
+	 */
+	const [isLeftPlayersTurn, setIsLeftPlayersTurn] = useState(true);
 
 	/**
 	 * @var displayedNodes
@@ -127,7 +136,8 @@ const GamePage = ({ n, p }: GamePageProps) => {
 		const { nodes, edges } = matrixToGraphWithHealth(
 			game.current.getGraph(),
 			game.current.getList(),
-			"customNode"
+			"customNode",
+			isEvilRole && isLeftPlayersTurn || !isEvilRole && !isLeftPlayersTurn
 		);
 		setDisplayedNodes(nodes);
 		setDisplayedEdges(edges);
@@ -161,6 +171,8 @@ const GamePage = ({ n, p }: GamePageProps) => {
 	const handleSubmit = () => {
 		// send request
 		setSelectedNodeIds(new Set());
+		console.log(isEvilRole);
+		setIsLeftPlayersTurn((prev) => !prev);
 		setRound(round + 1);
 	};
 
@@ -196,6 +208,22 @@ const GamePage = ({ n, p }: GamePageProps) => {
 			}}
 		>
 			<Header {...GamePageHeader} />
+			<div style={{ position: "absolute", top: 100, left: 110 }}>
+				<PlayerInfo
+					playerName="Player 1"
+					isEvilRole={isEvilRole}
+					glow={isLeftPlayersTurn}
+					left={true}
+				/>
+			</div>
+			<div style={{ position: "absolute", top: 100, right: 110 }}>
+				<PlayerInfo
+					playerName="Player 2"
+					isEvilRole={!isEvilRole}
+					glow={!isLeftPlayersTurn}
+					left={false}
+				/>
+			</div>
 			<Graph
 				nodes={displayedNodes}
 				edges={displayedEdges}
