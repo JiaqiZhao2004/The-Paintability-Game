@@ -28,6 +28,7 @@ import Button from "../components/Button";
 import Header from "../components/Header";
 import PaintGraph from "../game/PaintGraph";
 import { randomGraph, randomList } from "../game/randomGen";
+import PlayerInfo from "../components/PlayerInfo";
 
 /**
  * @typedef GamePageProps
@@ -95,6 +96,12 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 	 * @brief Reference to the PaintGraph instance managing the game state and logic. Keeps all node and edge states.
 	 */
 	const game = useRef(new PaintGraph(vL, aM));
+
+	/**
+	 * @var isLeftPlayersTurn
+	 * @brief Whether the current turn is of the left player.
+	 */
+	const [isLeftPlayersTurn, setIsLeftPlayersTurn] = useState(true);
 
 	/**
 	 * @var displayedNodes
@@ -199,6 +206,22 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 			}}
 		>
 			<Header {...GamePageHeader} />
+			<div style={{ position: "absolute", top: 100, left: 110 }}>
+				<PlayerInfo
+					playerName="Player 1"
+					isEvilRole={isEvilRole}
+					glow={isLeftPlayersTurn}
+					left={true}
+				/>
+			</div>
+			<div style={{ position: "absolute", top: 100, right: 110 }}>
+				<PlayerInfo
+					playerName="Player 2"
+					isEvilRole={!isEvilRole}
+					glow={!isLeftPlayersTurn}
+					left={false}
+				/>
+			</div>
 			<Graph
 				nodes={displayedNodes}
 				edges={displayedEdges}
