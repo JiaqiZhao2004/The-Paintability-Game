@@ -1,10 +1,12 @@
 # The-Paintability-Game
+
 A single-player web-based strategy game where players compete against a bot by interacting with a dynamically updating graph.
+![demo](demo.png)
 
 **Contributors:**  
-Annie Zeng ([link need update](https://github.com/))  
-Ethan Zhang ([link need update](https://github.com/))   
-Roy Zhao ([GitHub](https://github.com/JiaqiZhao2004))  
+Annie Zeng ([link need update](https://github.com/wolfywolf7890))  
+Ethan Zhang ([link need update](https://github.com/))  
+Roy Zhao ([GitHub](https://github.com/JiaqiZhao2004))
 
 ## Overview
 
@@ -20,15 +22,19 @@ This game has significant ties to graph theory concepts such as list coloring an
 ## Game Mechanics
 
 ### Player Actions:
+
 - **Evil Mastermind:** Chooses criminals (vertices) to attempt committing crimes.
 - **Law Enforcement:** Selects independent sets of criminals (vertices) to jail, adhering to the graph's constraints.
 
 ### Victory Conditions:
+
 - **Evil Player wins** if a criminal successfully commits a crime a set number of times.
 - **Good Player wins** if all criminals are jailed before or when this number is reached. If the criminal who reaches this number is jailed at the turn, the Good Player still wins.
 
 ### Graph Setup:
+
 Players can either:
+
 - Choose a predefined graph.
 - Generate a random graph, with control over certain properties (e.g., number of vertices).
 
@@ -44,6 +50,7 @@ Players can select their role (Good or Evil) or let the system assign one random
 ## Architecture
 
 ### Backend:
+
 - **Technology:** React, Python
 - **Responsibilities:**
   - Store game state, advance turns, and determine winners.
@@ -55,6 +62,7 @@ Players can select their role (Good or Evil) or let the system assign one random
   - Ensure the bot makes legal moves during gameplay.
 
 ### Frontend:
+
 - **Technology:** JavaScript (React)
 - **Responsibilities:**
   - Visualize the game graph and update game state based on user interactions.
@@ -63,7 +71,3 @@ Players can select their role (Good or Evil) or let the system assign one random
 - **Testing:**
   - Playtest to ensure correct functionality of user inputs and game progress.
   - Validate that the graph rendering matches the provided adjacency matrices.
-
-## Diagram
-
-(Insert diagram here showcasing the interaction between the backend and frontend, as well as an example game graph)
