@@ -101,7 +101,7 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 	 * @var isLeftPlayersTurn
 	 * @brief Whether the current turn is of the left player.
 	 */
-	const [isLeftPlayersTurn, setIsLeftPlayersTurn] = useState(true);
+	const [isLeftPlayersTurn, setIsLeftPlayersTurn] = useState(isEvilRole);
 
 	/**
 	 * @var displayedNodes
