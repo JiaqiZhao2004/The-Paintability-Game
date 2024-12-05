@@ -12,7 +12,6 @@ import { useState } from "react";
 function App() {
 	const [numNodes, setNumNodes] = useState(6);
 	const [edgeDensity, setEdgeDensity] = useState(0.5);
-	const [isEvilRole, setIsEvilRole] = useState(false);
 
 	return (
 		<Router>
@@ -24,18 +23,28 @@ function App() {
 							title="The Paintability Game"
 							description="A single-player strategy game based on graph theory."
 							onClickTutorial={() => {}}
-							onClickEvilCard={() => setIsEvilRole(true)}
-							onClickPoliceCard={() => setIsEvilRole(false)}
-							onClickRandomCard={() => setIsEvilRole(Math.random() > 0.5)}
 							image={ReactLogo}
 						/>
 					}
 				/>
 				{/* <Route path="/tutorial" element={} /> */}
 				<Route
-					path="/play"
+					path="/play/evil"
+					element={<GamePage n={numNodes} p={edgeDensity} isEvilRole={true} />}
+				/>
+				<Route
+					path="/play/police"
+					element={<GamePage n={numNodes} p={edgeDensity} isEvilRole={false} />}
+				/>
+
+				<Route
+					path="/play/random"
 					element={
-						<GamePage n={numNodes} p={edgeDensity} isEvilRole={isEvilRole} />
+						<GamePage
+							n={numNodes}
+							p={edgeDensity}
+							isEvilRole={Math.random() > 0.5}
+						/>
 					}
 				/>
 

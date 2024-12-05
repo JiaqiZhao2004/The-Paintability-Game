@@ -13,27 +13,8 @@
  * @module RolePage
  */
 
+import { useNavigate } from "react-router-dom";
 import Card from "../components/Card";
-
-interface Props {
-	/**
-	 * @function onClickEvilCard
-	 * @brief Callback function for role selection, set player role to EvilMastermind.
-	 */
-	onClickEvilCard: () => any;
-
-	/**
-	 * @function onClickPoliceCard
-	 * @brief Callback function for role selection, set player role to PoliceEnforcement.
-	 */
-	onClickPoliceCard: () => any;
-
-	/**
-	 * @function onClickRandomCard
-	 * @brief Callback function for role selection, randomly choose one out of the two.
-	 */
-	onClickRandomCard: () => any;
-}
 
 /**
  * @function RolePage
@@ -52,11 +33,14 @@ interface Props {
  *
  * @returns {JSX.Element} The rendered role selection page.
  */
-const RolePage = ({
-	onClickEvilCard,
-	onClickPoliceCard,
-	onClickRandomCard,
-}: Props) => {
+const RolePage = () => {
+
+	/**
+	 * @var navigate
+	 * @brief Part of react-router-dom to enable redirects to Game Page when a Card is clicked.
+	 */
+	const navigate = useNavigate();
+
 	/**
 	 * @var title
 	 * @brief The title displayed at the top of the role selection page.
@@ -77,7 +61,7 @@ const RolePage = ({
 		description:
 			"You select criminals, represented by vertices, to commit crimes on every turn.",
 		backgroundImg: " ",
-		onClick: onClickEvilCard,
+		onClick: () => navigate("/play/evil"),
 	};
 
 	/**
@@ -94,7 +78,7 @@ const RolePage = ({
 		description:
 			"You select criminals to be jailed on every turn, but you can only jail one criminal in a web of connected criminals.",
 		backgroundImg: " ",
-		onClick: onClickPoliceCard,
+		onClick: () => navigate("/play/police"),
 	};
 
 	/**
@@ -110,7 +94,7 @@ const RolePage = ({
 		title: "Random Role",
 		description: "We will choose a role for you.",
 		backgroundImg: "",
-		onClick: onClickRandomCard,
+		onClick: () => navigate("/play/random"),
 	};
 
 	/**
@@ -126,9 +110,7 @@ const RolePage = ({
 			<div className="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
 				{cards.map((item, index) => (
 					<div className="col" key={index}>
-						<a href="/play">
-							<Card {...item} />
-						</a>
+						<Card {...item} />
 					</div>
 				))}
 			</div>

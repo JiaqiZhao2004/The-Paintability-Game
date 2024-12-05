@@ -41,24 +41,6 @@ interface Props {
 	onClickTutorial: () => any;
 
 	/**
-	 * @function onClickEvilCard
-	 * @brief Callback function for role selection, set player role to EvilMastermind.
-	 */
-	onClickEvilCard: () => any;
-
-	/**
-	 * @function onClickPoliceCard
-	 * @brief Callback function for role selection, set player role to PoliceEnforcement.
-	 */
-	onClickPoliceCard: () => any;
-
-	/**
-	 * @function onClickRandomCard
-	 * @brief Callback function for role selection, randomly choose one out of the two.
-	 */
-	onClickRandomCard: () => any;
-
-	/**
 	 * @property {string | undefined} image
 	 * @brief Path to an optional image displayed on the Hero component.
 	 */
@@ -89,9 +71,6 @@ const HomePage = ({
 	title,
 	description,
 	onClickTutorial,
-	onClickEvilCard,
-	onClickPoliceCard,
-	onClickRandomCard,
 	image = undefined,
 }: Props) => {
 	/**
@@ -134,13 +113,7 @@ const HomePage = ({
 						widthPctg={4}
 					/>
 				</div>
-				{showRoleSelection && (
-					<RolePage
-						onClickEvilCard={onClickEvilCard}
-						onClickPoliceCard={onClickPoliceCard}
-						onClickRandomCard={onClickRandomCard}
-					/>
-				)}
+				{showRoleSelection && <RolePage />}
 			</div>
 		</div>
 	);
