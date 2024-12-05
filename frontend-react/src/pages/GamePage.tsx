@@ -168,15 +168,20 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 	const handleSubmit = () => {
 		const ids: number[] = Array.from(selectedNodeIds).map((id) => +id.slice(5));
 		console.log(ids);
+		let validMove = true;
 		if (isEvilsTurn) {
 			game.current.attack(ids);
 		} else {
-			game.current.defend(ids);
+			validMove = game.current.defend(ids);
 		}
-		console.log(game.current.getGameState());
 
-		setSelectedNodeIds(new Set());
-		setIsLeftPlayersTurn((prev) => !prev);
+		if (validMove) {
+			console.log(game.current.getGameState());
+			setSelectedNodeIds(new Set());
+			setIsLeftPlayersTurn((prev) => !prev);
+		} else {
+			console.log("Invalid");
+		}
 	};
 
 	/**
