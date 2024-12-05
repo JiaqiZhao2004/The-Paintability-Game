@@ -5,19 +5,20 @@
 
 import { Handle, NodeProps, Position } from "react-flow-renderer";
 import fortressImg from "../assets/fortress.png";
-import selectedfortressImg from "../assets/fortress_selected.png";
+import fortressTargetedImg from "../assets/fortress_targeted.png";
+import fortressProtectedImg from "../assets/fortress_protected.png";
 
 /**
  * @component CustomNode
  * @brief A custom node component for React Flow that includes a dynamic health bar and customizable image.
  *
- * @param {NodeProps} data - The node data provided by React Flow, including health, maxHealth, and selection state.
+ * @param {NodeProps} data - The node data provided by React Flow, including health, maxHealth, selection, and isEvilRole state.
  *
  * @details
  * - The component visually represents a fortress node.
  * - It includes:
  *   - A health bar that updates its width and color based on health.
- *   - A conditionally rendered image that changes when the node is selected.
+ *   - A conditionally rendered image that changes when the node is clicked, depending on the role of the player.
  *   - Input/output handles for connecting edges.
  * - The node's style and functionality are determined by the `data` prop.
  *
@@ -28,6 +29,7 @@ import selectedfortressImg from "../assets/fortress_selected.png";
  *     health: 75,
  *     maxHealth: 100,
  *     selected: true,
+ * 	   isEvilRole: true
  *   }}
  * />
  * ```
@@ -68,12 +70,10 @@ const CustomNode = ({ data }: NodeProps) => {
 					}}
 				/>
 			</div>
-
-			{/* <div>Safe: {data.safe}</div> */}
 			
 			{/* Fortress Image */}
 			<img
-				src={data.selected ? selectedfortressImg : fortressImg}
+				src={data.selected ? (data.isEvilRole ? fortressTargetedImg : fortressProtectedImg) : fortressImg}
 				alt="Fortress"
 				style={{ width: "110%", height: "auto" }}
 			/>

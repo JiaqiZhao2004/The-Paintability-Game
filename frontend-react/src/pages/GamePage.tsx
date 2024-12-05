@@ -136,7 +136,8 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 		const { nodes, edges } = matrixToGraphWithHealth(
 			game.current.getGraph(),
 			game.current.getList(),
-			"customNode"
+			"customNode",
+			isEvilRole
 		);
 		setDisplayedNodes(nodes);
 		setDisplayedEdges(edges);
