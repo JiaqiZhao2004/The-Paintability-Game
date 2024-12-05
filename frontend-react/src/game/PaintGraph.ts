@@ -73,7 +73,7 @@ class PaintGraph {
 			});
 			this.vtxAttack.forEach((isAttacked, i) => {
 				if (isAttacked) {
-					this.vtxList[i] -= -1;
+					this.vtxList[i] -= 1;
 					this.vtxAttack[i] = false;
 				}
 			});

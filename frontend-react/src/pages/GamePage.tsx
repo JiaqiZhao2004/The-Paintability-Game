@@ -123,11 +123,8 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 		new Set()
 	);
 
-	/**
-	 * @var round
-	 * @brief The current round number of the game.
-	 */
-	const [round, setRound] = useState(1);
+	let isEvilsTurn =
+		(isEvilRole && isLeftPlayersTurn) || (!isEvilRole && !isLeftPlayersTurn);
 
 	/**
 	 * @brief Effect to initialize and keep all displayed nodes and edges up to date with game when the round changes.
@@ -137,11 +134,11 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 			game.current.getGraph(),
 			game.current.getList(),
 			"customNode",
-			isEvilRole && isLeftPlayersTurn || !isEvilRole && !isLeftPlayersTurn
+			isEvilsTurn
 		);
 		setDisplayedNodes(nodes);
 		setDisplayedEdges(edges);
-	}, [round]);
+	}, [isLeftPlayersTurn]);
 
 	/**
 	 * @brief Effect to update node visuals when node is selected.
@@ -166,14 +163,20 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 
 	/**
 	 * @function handleSubmit
-	 * @brief Clears selected nodes and advances the game to the next round.
+	 * @brief
 	 */
 	const handleSubmit = () => {
-		// send request
+		const ids: number[] = Array.from(selectedNodeIds).map((id) => +id.slice(5));
+		console.log(ids);
+		if (isEvilsTurn) {
+			game.current.attack(ids);
+		} else {
+			game.current.defend(ids);
+		}
+		console.log(game.current.getGameState());
+
 		setSelectedNodeIds(new Set());
-		console.log(isEvilRole);
 		setIsLeftPlayersTurn((prev) => !prev);
-		setRound(round + 1);
 	};
 
 	/**
