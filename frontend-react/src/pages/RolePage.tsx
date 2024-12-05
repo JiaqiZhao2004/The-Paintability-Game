@@ -92,7 +92,7 @@ const RolePage = ({
 	const PoliceEnforcementCard = {
 		title: "Police Enforcement",
 		description:
-			"You select criminals to be jailed on every turn, with the restriction that no two connected criminals can be jailed in the same turn.",
+			"You select criminals to be jailed on every turn, but you can only jail one criminal in a web of connected criminals.",
 		backgroundImg: " ",
 		onClick: onClickPoliceCard,
 	};
