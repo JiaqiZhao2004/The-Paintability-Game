@@ -4,15 +4,16 @@ import {
 	Route,
 	Navigate,
 } from "react-router-dom";
-import HomePage from "./pages/HomePage";
 import ReactLogo from "./assets/react.svg";
+import HomePage from "./pages/HomePage";
+import TutorialPage from "./pages/TutorialPage";
 import GamePage from "./pages/GamePage";
 import { useState } from "react";
 
 function App() {
 	const [numNodes, setNumNodes] = useState(6);
 	const [edgeDensity, setEdgeDensity] = useState(0.5);
-
+	
 	return (
 		<Router>
 			<Routes>
@@ -22,12 +23,11 @@ function App() {
 						<HomePage
 							title="The Paintability Game"
 							description="A single-player strategy game based on graph theory."
-							onClickTutorial={() => {}}
 							image={ReactLogo}
 						/>
 					}
 				/>
-				{/* <Route path="/tutorial" element={} /> */}
+				<Route path="/tutorial" element={<TutorialPage />} />
 				<Route
 					path="/play/evil"
 					element={<GamePage n={numNodes} p={edgeDensity} isEvilRole={true} />}
