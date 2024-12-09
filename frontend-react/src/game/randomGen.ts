@@ -30,7 +30,7 @@ export function randomList(adjMat: number[][], n: number): number[] {
 		}
 		let x: number = Math.random();
 		if (x < 0.33333) {
-			if (deg > 0) {
+			if (deg > 1) {
 				deg = deg - 1;
 			}
 		}
