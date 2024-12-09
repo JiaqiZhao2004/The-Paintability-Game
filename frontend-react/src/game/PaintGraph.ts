@@ -46,11 +46,12 @@ class PaintGraph {
 
 	public attack(atkArr: number[]) {
 		for (let i = 0; i < atkArr.length; i++) {
-			if (i < this.vtxList.length && this.vtxSafe[i] == false) {
-				this.vtxAttack[i] = true; // changed from this.vtxAttack = true to this.vtxAttack[i] = true
+			if (i < this.vtxList.length && this.vtxSafe[atkArr[i]] == false) {
+				this.vtxAttack[atkArr[i]] = true; // changed from this.vtxAttack = true to this.vtxAttack[i] = true
 			}
 		}
 	}
+
 	public defend(defArr: number[]): boolean {
 		let isValid = true;
 
