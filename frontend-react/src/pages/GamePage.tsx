@@ -101,7 +101,7 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 	 * @var isLeftPlayersTurn
 	 * @brief Whether the current turn is of the left player.
 	 */
-	const [isLeftPlayersTurn, setIsLeftPlayersTurn] = useState(true);
+	const [isLeftPlayersTurn, setIsLeftPlayersTurn] = useState(isEvilRole);
 
 	/**
 	 * @var displayedNodes
@@ -123,11 +123,8 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 		new Set()
 	);
 
-	/**
-	 * @var round
-	 * @brief The current round number of the game.
-	 */
-	const [round, setRound] = useState(1);
+	let isEvilsTurn =
+		(isEvilRole && isLeftPlayersTurn) || (!isEvilRole && !isLeftPlayersTurn);
 
 	/**
 	 * @brief Effect to initialize and keep all displayed nodes and edges up to date with game when the round changes.
@@ -137,14 +134,18 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 			game.current.getGraph(),
 			game.current.getList(),
 			"customNode",
-			isEvilRole && isLeftPlayersTurn || !isEvilRole && !isLeftPlayersTurn
+			game.current.getGameState().vtxSafe,
+			game.current.getGameState().vtxAttack
 		);
 		setDisplayedNodes(nodes);
 		setDisplayedEdges(edges);
-	}, [round]);
+	}, [isLeftPlayersTurn]);
 
 	/**
 	 * @brief Effect to update node visuals when node is selected.
+	 * 1. Attacker can attack any node that is undefended.
+	 * 2. Defender can only defend targeted nodes in the previous round.
+	 * 3. If a node is defended, it stays defended throughout the game.
 	 */
 	useEffect(() => {
 		console.log("Selected nodes:", selectedNodeIds);
@@ -156,9 +157,11 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 					...n,
 					data: {
 						...n.data,
-						selected: includes,
+						targeted: isEvilsTurn ? includes : n.data.targeted,
+						defended: isEvilsTurn
+							? n.data.defended
+							: n.data.defended || includes,
 					},
-					// safe: ,
 				};
 			})
 		);
@@ -166,20 +169,35 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 
 	/**
 	 * @function handleSubmit
-	 * @brief Clears selected nodes and advances the game to the next round.
+	 * @brief
 	 */
 	const handleSubmit = () => {
-		// send request
-		setSelectedNodeIds(new Set());
-		console.log(isEvilRole);
-		setIsLeftPlayersTurn((prev) => !prev);
-		setRound(round + 1);
+		const ids: number[] = Array.from(selectedNodeIds).map((id) => +id.slice(5));
+		console.log(ids);
+		let validMove = true;
+		if (isEvilsTurn) {
+			game.current.attack(ids);
+		} else {
+			validMove = game.current.defend(ids);
+		}
+
+		if (validMove) {
+			console.log(game.current.getGameState());
+			setSelectedNodeIds(new Set());
+			setIsLeftPlayersTurn((prev) => !prev);
+		} else {
+			console.log("Invalid");
+		}
+		if (game.current.checkForWinner()) {
+			console.log("Winner is " + game.current.getGameState().winner);
+		}
 	};
 
 	/**
 	 * @function handleNodeClick
 	 * @brief Toggles the selection state of a node when clicked.
-	 *
+	 * 1. Attacker cannot select any node that is defended.
+	 * 2. Defender cannot select any node that is NOT targeted in the immediate last turn.
 	 * @param {React.MouseEvent} _ - The event object (not used).
 	 * @param {Node} node - The node being clicked.
 	 */
@@ -189,7 +207,10 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 			const newSelectedNodeIds = new Set(prevSelectedNodeIds);
 			if (newSelectedNodeIds.has(node.id)) {
 				newSelectedNodeIds.delete(node.id);
-			} else {
+			} else if (
+				(isEvilsTurn && !node.data.defended) ||
+				(!isEvilsTurn && node.data.targeted)
+			) {
 				newSelectedNodeIds.add(node.id);
 			}
 			return newSelectedNodeIds;
