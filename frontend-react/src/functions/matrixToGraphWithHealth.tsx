@@ -40,7 +40,8 @@ export function matrixToGraphWithHealth(
 	matrix: number[][],
 	health: number[],
 	nodeType: string,
-	isEvilRole: boolean
+	vtxSafe: boolean[],
+	vtxAttack: boolean[]
 ): {
 	nodes: Node[];
 	edges: Edge[];
@@ -56,8 +57,8 @@ export function matrixToGraphWithHealth(
 				label: `Node ${i}`,
 				maxHealth: Math.max(...health),
 				health: health[i],
-				isEvilRole: isEvilRole,
-				selected: false,
+				targeted: vtxAttack[i],
+				defended: vtxSafe[i],
 			},
 			position: { x: x, y: y },
 			type: nodeType,

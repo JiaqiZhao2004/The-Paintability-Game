@@ -134,7 +134,8 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 			game.current.getGraph(),
 			game.current.getList(),
 			"customNode",
-			isEvilsTurn
+			game.current.getGameState().vtxSafe,
+			game.current.getGameState().vtxAttack
 		);
 		setDisplayedNodes(nodes);
 		setDisplayedEdges(edges);
@@ -153,7 +154,8 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 					...n,
 					data: {
 						...n.data,
-						selected: includes,
+						targeted: isEvilsTurn ? includes : n.data.targeted,
+						defended: isEvilsTurn ? n.data.defended : (n.data.defended || includes),
 					},
 					// safe: ,
 				};
@@ -197,7 +199,10 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 			const newSelectedNodeIds = new Set(prevSelectedNodeIds);
 			if (newSelectedNodeIds.has(node.id)) {
 				newSelectedNodeIds.delete(node.id);
-			} else {
+			} else if (
+				(isEvilsTurn && !node.data.defended) ||
+				(!isEvilsTurn && node.data.targeted)
+			) {
 				newSelectedNodeIds.add(node.id);
 			}
 			return newSelectedNodeIds;
