@@ -143,6 +143,9 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 
 	/**
 	 * @brief Effect to update node visuals when node is selected.
+	 * 1. Attacker can attack any node that is undefended.
+	 * 2. Defender can only defend targeted nodes in the previous round.
+	 * 3. If a node is defended, it stays defended throughout the game.
 	 */
 	useEffect(() => {
 		console.log("Selected nodes:", selectedNodeIds);
@@ -155,9 +158,10 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 					data: {
 						...n.data,
 						targeted: isEvilsTurn ? includes : n.data.targeted,
-						defended: isEvilsTurn ? n.data.defended : (n.data.defended || includes),
+						defended: isEvilsTurn
+							? n.data.defended
+							: n.data.defended || includes,
 					},
-					// safe: ,
 				};
 			})
 		);
@@ -184,12 +188,16 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 		} else {
 			console.log("Invalid");
 		}
+		if (game.current.checkForWinner()) {
+			console.log("Winner is " + game.current.getGameState().winner);
+		}
 	};
 
 	/**
 	 * @function handleNodeClick
 	 * @brief Toggles the selection state of a node when clicked.
-	 *
+	 * 1. Attacker cannot select any node that is defended.
+	 * 2. Defender cannot select any node that is NOT targeted in the immediate last turn.
 	 * @param {React.MouseEvent} _ - The event object (not used).
 	 * @param {Node} node - The node being clicked.
 	 */
