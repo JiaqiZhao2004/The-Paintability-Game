@@ -6,7 +6,7 @@
 import { Handle, NodeProps, Position } from "react-flow-renderer";
 import fortressImg from "../assets/fortress.png";
 import fortressTargetedImg from "../assets/fortress_targeted.png";
-import fortressProtectedImg from "../assets/fortress_protected.png";
+import fortressProtectedImg from "../assets/fortress_defended.png";
 
 /**
  * @component CustomNode
