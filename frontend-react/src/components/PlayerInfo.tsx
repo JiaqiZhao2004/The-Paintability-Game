@@ -21,13 +21,15 @@ import PoliceEnforcementIcon from "../assets/police-enforcement.jpg";
  * @property {boolean} isEvilRole - Indicates if the player's role is "Evil Mastermind".
  * @property {boolean} glow - Determines if the component should display a glowing effect based on the role.
  * @property {boolean} left - Determines if the role icon should appear to the left of the player's name.
+ * @property {boolean} won - Determines if this player has won.
  */
 
 interface Props {
-    playerName: string;
-    isEvilRole: boolean;
-    glow: boolean;
-    left: boolean;
+	playerName: string;
+	isEvilRole: boolean;
+	glow: boolean;
+	left: boolean;
+	won: boolean;
 }
 
 /**
@@ -57,74 +59,80 @@ interface Props {
  *   isEvilRole={true}
  *   glow={true}
  *   left={true}
+ *   won={false}
  * />
  * ```
  */
 
-const PlayerInfo = ({ playerName, isEvilRole, glow, left }: Props) => {
-    const roleColors: { [key: string]: string } = {
-        red: "#ff4d4f", // Red
-        blue: "#1890ff", // Blue
-    };
+const PlayerInfo = ({ playerName, isEvilRole, glow, left, won }: Props) => {
+	const roleColors: { [key: string]: string } = {
+		red: "#ff4d4f", // Red
+		blue: "#1890ff", // Blue
+		won: "#ffd700", // Gold
+	};
 
-    const glowColor = isEvilRole ? roleColors["red"] : roleColors["blue"];
-    const noGlowColor = "#f9f9f9";
+	const glowColor = won
+		? roleColors["won"]
+		: isEvilRole
+		? roleColors["red"]
+		: roleColors["blue"];
+	const noGlowColor = "#f9f9f9";
 
-    const img = (
-        <img
-            src={isEvilRole ? EvilMastermindIcon : PoliceEnforcementIcon}
-            alt={`${isEvilRole ? "EvilMastermindIcon" : "PoliceEnforcementIcon"}`}
-            style={{
-                width: "80px",
-                height: "80px",
-                objectFit: "contain",
-                border: `2px solid ${glow ? glowColor : noGlowColor}`,
-            }}
-        />
-    );
+	const img = (
+		<img
+			src={isEvilRole ? EvilMastermindIcon : PoliceEnforcementIcon}
+			alt={`${isEvilRole ? "EvilMastermindIcon" : "PoliceEnforcementIcon"}`}
+			style={{
+				width: "80px",
+				height: "80px",
+				objectFit: "contain",
+				border: `2px solid ${glow ? glowColor : noGlowColor}`,
+			}}
+		/>
+	);
 
-    return (
-        <div
-            style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-                padding: "10px",
-                border: `2px solid ${glow ? glowColor : noGlowColor}`,
-                borderRadius: "8px",
-                backgroundColor: "#f9f9f9",
-                maxWidth: "300px",
-                boxShadow: `0 0 10px ${glow ? glowColor : noGlowColor}`,
-                transition: "box-shadow 0.3s ease",
-            }}
-        >
-            {left && img}
-            <div style={{ textAlign: left ? "left" : "right" }}>
-                <h3
-                    style={{
-                        margin: 0,
-                        fontSize: "28px",
-                        color: "#333",
-                        fontWeight: "bold",
-                    }}
-                >
-                    {playerName}
-                </h3>
-                <h3
-                    style={{
-                        margin: 0,
-                        fontSize: "16px",
-                        color: "#333",
-                        fontWeight: "bold",
-                        fontStyle: "italic",
-                    }}
-                >
-                    {isEvilRole ? "Evil Mastermind" : "Police Enforcement"}
-                </h3>
-            </div>
-            {!left && img}
-        </div>
-    );
+	return (
+		<div
+			style={{
+				display: "flex",
+				alignItems: "center",
+				gap: "10px",
+				padding: "10px",
+				border: `2px solid ${glow ? glowColor : noGlowColor}`,
+				borderRadius: "8px",
+				backgroundColor: won ? "#ffef99" : "#f9f9f9",
+				maxWidth: "300px",
+				boxShadow: `0 0 10px ${glow ? glowColor : noGlowColor}`,
+				transition: "box-shadow 0.3s ease",
+			}}
+		>
+			{left && img}
+			<div style={{ textAlign: left ? "left" : "right" }}>
+				<h3
+					style={{
+						margin: 0,
+						fontSize: "28px",
+						color: "#333",
+						fontWeight: "bold",
+					}}
+				>
+					{playerName}
+				</h3>
+				<h3
+					style={{
+						margin: 0,
+						fontSize: "16px",
+						color: "#333",
+						fontWeight: "bold",
+						fontStyle: "italic",
+					}}
+				>
+					{isEvilRole ? "Evil Mastermind" : "Police Enforcement"}
+				</h3>
+			</div>
+			{!left && img}
+		</div>
+	);
 };
 
 export default PlayerInfo;

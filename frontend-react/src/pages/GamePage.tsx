@@ -123,6 +123,12 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 		new Set()
 	);
 
+	/**
+	 * @var gameEnd
+	 * @brief Whether any player won.
+	 */
+	const [gameEnd, setGameEnd] = useState(false);
+
 	let isEvilsTurn =
 		(isEvilRole && isLeftPlayersTurn) || (!isEvilRole && !isLeftPlayersTurn);
 
@@ -151,7 +157,7 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 		console.log("Selected nodes:", selectedNodeIds);
 
 		setDisplayedNodes((prevNodes) =>
-			prevNodes.map((n) => {
+			prevNodes.map((n, index) => {
 				let includes = selectedNodeIds.has(n.id);
 				return {
 					...n,
@@ -160,7 +166,7 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 						targeted: isEvilsTurn ? includes : n.data.targeted,
 						defended: isEvilsTurn
 							? n.data.defended
-							: n.data.defended || includes,
+							: game.current.getGameState().vtxSafe[index] || includes,
 					},
 				};
 			})
@@ -190,6 +196,8 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 		}
 		if (game.current.checkForWinner()) {
 			console.log("Winner is " + game.current.getGameState().winner);
+			setGameEnd(true);
+			setIsLeftPlayersTurn((prev) => !prev);
 		}
 	};
 
@@ -217,6 +225,11 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 		});
 	};
 
+	let leftPlayerWon =
+		gameEnd &&
+		((isEvilRole && game.current.getGameState().winner == "Attacker") ||
+			(!isEvilRole && game.current.getGameState().winner == "Defender"));
+
 	return (
 		<div
 			style={{
@@ -224,8 +237,8 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 				display: "flex",
 				flexDirection: "column",
 				alignItems: "center",
-				justifyContent: "center", // Vertically center all content
-				gap: "30px", // Add spacing between elements
+				justifyContent: "center",
+				gap: "30px",
 			}}
 		>
 			<Header {...GamePageHeader} />
@@ -235,6 +248,7 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 					isEvilRole={isEvilRole}
 					glow={isLeftPlayersTurn}
 					left={true}
+					won={leftPlayerWon}
 				/>
 			</div>
 			<div style={{ position: "absolute", top: 100, right: 110 }}>
@@ -243,6 +257,7 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 					isEvilRole={!isEvilRole}
 					glow={!isLeftPlayersTurn}
 					left={false}
+					won={gameEnd && !leftPlayerWon}
 				/>
 			</div>
 			<Graph
@@ -250,13 +265,17 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 				edges={displayedEdges}
 				handleNodeClick={handleNodeClick}
 			/>
-			<Button
-				label="End Turn"
-				color="warning"
-				onClick={handleSubmit}
-				heightPctg={2}
-				widthPctg={10}
-			/>
+			{gameEnd ? (
+				<h4>{game.current.getGameState().winner + " is the Winner!"}</h4>
+			) : (
+				<Button
+					label="End Turn"
+					color="warning"
+					onClick={handleSubmit}
+					heightPctg={2}
+					widthPctg={10}
+				/>
+			)}
 		</div>
 	);
 };
