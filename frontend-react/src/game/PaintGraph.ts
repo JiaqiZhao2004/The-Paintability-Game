@@ -109,21 +109,5 @@ class PaintGraph {
 		};
 	}
 }
-const crimeAttempt = (id: string, jailCount: { [key: string]: number }) => {
-	let updatedJailCount: { [key: string]: number } = {};
-	for (const key in jailCount) {
-		updatedJailCount[key] = jailCount[key];
-	}
-	if (updatedJailCount.hasOwnProperty(id)) {
-		updatedJailCount[id] += 1; // if id exists icnrease by 1
-	} else {
-		updatedJailCount[id] = 1;
-	}
-	return updatedJailCount;
-};
-
-const turnChange = (currentTurn: "Good" | "Evil"): "Good" | "Evil" => {
-	return currentTurn === "Good" ? "Evil" : "Good";
-};
 
 export default PaintGraph;

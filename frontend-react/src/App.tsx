@@ -8,12 +8,14 @@ import ReactLogo from "./assets/react.svg";
 import HomePage from "./pages/HomePage";
 import TutorialPage from "./pages/TutorialPage";
 import GamePage from "./pages/GamePage";
-import { useState } from "react";
+// import { useState } from "react";
 
 function App() {
-	const [numNodes, setNumNodes] = useState(7);
-	const [edgeDensity, setEdgeDensity] = useState(0.6);
-	
+	// const [numNodes, setNumNodes] = useState(7);
+	// const [edgeDensity, setEdgeDensity] = useState(0.6);
+	const numNodes = 7;
+	const edgeDensity = 0.6;
+
 	return (
 		<Router>
 			<Routes>
