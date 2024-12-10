@@ -37,6 +37,9 @@ export function randomList(adjMat: number[][], n: number): number[] {
 		if (x > 0.66667) {
 			deg = deg + 1;
 		}
+		if ((deg === 0)) {
+			deg = deg + 1;
+		}
 		output.push(deg);
 	}
 	return output;

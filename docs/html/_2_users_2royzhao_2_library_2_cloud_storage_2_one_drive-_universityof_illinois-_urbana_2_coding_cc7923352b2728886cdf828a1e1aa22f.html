@@ -91,7 +91,7 @@ $(function(){ initResizable(false); });
 <p>A custom node component for React Flow that includes a dynamic health bar and customizable image. @component CustomNode </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">{NodeProps}</td><td>data - The node data provided by React Flow, including health, maxHealth, and selection state.</td></tr>
+    <tr><td class="paramname">{NodeProps}</td><td>data - The node data provided by React Flow, including health, maxHealth, targeted, and defended state.</td></tr>
   </table>
   </dd>
 </dl>
@@ -99,7 +99,7 @@ $(function(){ initResizable(false); });
 <li>The component visually represents a fortress node.</li>
 <li>It includes:<ul>
 <li>A health bar that updates its width and color based on health.</li>
-<li>A conditionally rendered image that changes when the node is selected.</li>
+<li>A conditionally rendered image that changes when the node is clicked, depending on the game moves of the players.</li>
 <li>Input/output handles for connecting edges.</li>
 </ul>
 </li>
@@ -109,10 +109,11 @@ $(function(){ initResizable(false); });
 <div class="line">  data={{</div>
 <div class="line">    health: 75,</div>
 <div class="line">    maxHealth: 100,</div>
-<div class="line">    selected: <span class="keyword">true</span>,</div>
+<div class="line">    targeted: <span class="keyword">false</span>,</div>
+<div class="line">    defended: <span class="keyword">false</span>,</div>
 <div class="line">  }}</div>
 <div class="line">/&gt;</div>
-<div class="ttc" id="a_custom_node_8tsx_html_ad14c0efd29400bb3e5fec924b0062da2"><div class="ttname"><a href="_custom_node_8tsx.html#ad14c0efd29400bb3e5fec924b0062da2">CustomNode</a></div><div class="ttdeci">const CustomNode</div><div class="ttdef"><b>Definition</b> CustomNode.tsx:35</div></div>
+<div class="ttc" id="a_custom_node_8tsx_html_ad14c0efd29400bb3e5fec924b0062da2"><div class="ttname"><a href="_custom_node_8tsx.html#ad14c0efd29400bb3e5fec924b0062da2">CustomNode</a></div><div class="ttdeci">const CustomNode</div><div class="ttdef"><b>Definition</b> CustomNode.tsx:37</div></div>
 </div><!-- fragment --><div class="fragment"></div><!-- fragment --><p> Paintability <a class="el" href="_custom_node_8tsx.html" title="A React Flow custom node component representing a fortress with dynamic visuals and interactions.">Game/frontend-react/src/components/CustomNode.tsx</a> </p>
 </div><!-- contents -->
 <!-- start footer part -->

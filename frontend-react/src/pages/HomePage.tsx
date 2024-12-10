@@ -20,6 +20,7 @@ import { useState } from "react";
 import Button from "../components/Button";
 import Hero from "../components/Hero";
 import RolePage from "./RolePage";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
 	/**
@@ -33,12 +34,6 @@ interface Props {
 	 * @brief A brief description of the game displayed on the HomePage.
 	 */
 	description: string;
-
-	/**
-	 * @property {function} onClickTutorial
-	 * @brief Callback function triggered when the "Tutorial" button is clicked.
-	 */
-	onClickTutorial: () => any;
 
 	/**
 	 * @property {string | undefined} image
@@ -61,23 +56,24 @@ interface Props {
  * - **Hero Section:** Displays the game's title, description, and an optional image.
  * - **Buttons:**
  *   - "Play" button toggles the role selection screen.
- *   - "Tutorial" button triggers the provided `onClickTutorial` callback.
+ *   - "Tutorial" button redirects to tutorial page.
  * - **RolePage:** Dynamically displayed below the buttons when role selection is active.
  *
  * @param {Props} props - Properties passed to the HomePage component.
  * @returns {JSX.Element} The rendered HomePage component.
  */
-const HomePage = ({
-	title,
-	description,
-	onClickTutorial,
-	image = undefined,
-}: Props) => {
+const HomePage = ({ title, description, image = undefined }: Props) => {
 	/**
 	 * @var {boolean} showRoleSelection
 	 * @brief State variable to toggle whether to show the role selection screen (hidden at first).
 	 */
 	const [showRoleSelection, setShowRoleSelection] = useState(false);
+
+	/**
+	 * @var navigate
+	 * @brief Part of react-router-dom to enable redirects to Game Page when a Card is clicked.
+	 */
+	const navigate = useNavigate();
 
 	return (
 		<div className="d-flex justify-content-center align-items-center vh-100">
@@ -85,7 +81,7 @@ const HomePage = ({
 				<Hero
 					title={title}
 					description={description}
-					image={showRoleSelection ? "" : image}
+					image={showRoleSelection ? undefined : image}
 				/>
 				<div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
 					{showRoleSelection ? (
@@ -109,7 +105,7 @@ const HomePage = ({
 					<Button
 						label="Tutorial"
 						color="outline-secondary"
-						onClick={onClickTutorial}
+						onClick={() => navigate("/tutorial")}
 						widthPctg={4}
 					/>
 				</div>
