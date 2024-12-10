@@ -24,12 +24,12 @@ export function randomList(adjMat: number[][], n: number): number[] {
 	for (let i = 0; i < n; i++) {
 		let deg: number = 0;
 		for (let j = 0; j < n; j++) {
-			if (adjMat[i][j] > 0 && Math.random() > 0.3) {
+			if (adjMat[i][j] > 0) {
 				deg = deg + 1;
 			}
 		}
 		let x: number = Math.random();
-		if (x < 0.7) {
+		if (x < 0.33333) {
 			if (deg > 1) {
 				deg = deg - 1;
 			}
