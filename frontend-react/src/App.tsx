@@ -13,8 +13,8 @@ import GamePage from "./pages/GamePage";
 function App() {
 	// const [numNodes, setNumNodes] = useState(7);
 	// const [edgeDensity, setEdgeDensity] = useState(0.6);
-	const numNodes = 7;
-	const edgeDensity = 0.6;
+	const numNodes = 6;
+	const edgeDensity = 0.5;
 
 	return (
 		<Router>
