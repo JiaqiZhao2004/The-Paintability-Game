@@ -4,8 +4,8 @@ A single-player web-based strategy game where players compete against a bot by i
 ![demo](demo.png)
 
 **Contributors:**  
-Annie Zeng ([link need update](https://github.com/wolfywolf7890))  
-Ethan Zhang ([link need update](https://github.com/))  
+Annie Zeng ([GitHub](https://github.com/wolfywolf7890))  
+Ethan Zhang ([GitHub](https://github.com/))  
 Roy Zhao ([GitHub](https://github.com/JiaqiZhao2004))
 
 ## Overview
