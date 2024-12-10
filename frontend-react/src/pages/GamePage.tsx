@@ -30,6 +30,7 @@ import PaintGraph from "../game/PaintGraph";
 import { randomGraph, randomList } from "../game/randomGen";
 import PlayerInfo from "../components/PlayerInfo";
 import TutorialPage from "./TutorialPage";
+import Alert from "../components/Alert";
 
 /**
  * @typedef GamePageProps
@@ -125,6 +126,12 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 	);
 
 	/**
+	 * @var invalidSelectionNotice
+	 * @brief Whether to show .
+	 */
+	const [invalidSelectionNotice, setInvalidSelectionNotice] = useState(false);
+
+	/**
 	 * @var gameEnd
 	 * @brief Whether any player won.
 	 */
@@ -178,6 +185,8 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 				};
 			})
 		);
+
+		setInvalidSelectionNotice(false);
 	}, [selectedNodeIds]);
 
 	/**
@@ -200,6 +209,7 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 			setIsLeftPlayersTurn((prev) => !prev);
 		} else {
 			console.log("Invalid");
+			setInvalidSelectionNotice(true);
 		}
 		if (game.current.checkForWinner()) {
 			console.log("Winner is " + game.current.getGameState().winner);
@@ -306,6 +316,11 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 							left={false}
 							won={gameEnd && !leftPlayerWon}
 						/>
+					</div>
+					<div style={{ position: "absolute", top: 100, verticalAlign: "middle" }}>
+						{invalidSelectionNotice && (
+							<Alert text="Your selection must be an independent set! See Tutorial Step 4." />
+						)}
 					</div>
 					<Graph
 						nodes={displayedNodes}
