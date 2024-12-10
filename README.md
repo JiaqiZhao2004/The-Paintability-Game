@@ -1,44 +1,51 @@
 # The-Paintability-Game
 
 A single-player web-based strategy game where 2 players compete against each other by interacting with a dynamically updating graph.
+
 ![demo](demo.png)
 
 **Contributors:**  
-Annie Zeng ([GitHub](https://github.com/wolfywolf7890)) Developed core game algorithms, game state management, and random graph generator.
-Ethan Zhang ([GitHub](https://github.com/)) Provided testing and validation for game algorithms.
-Roy Zhao ([GitHub](https://github.com/JiaqiZhao2004)) Developed core react frontend and dynamic visualizations.
+[Annie Zeng](https://github.com/wolfywolf7890): Developed core game algorithms, game state management, and random graph generator.  
+[Ethan Zhang](https://github.com/): Provided testing and validation for game algorithms.  
+[Roy Zhao](https://github.com/JiaqiZhao2004): Developed core react frontend and dynamic visualizations.  
 
 ## Overview
 
 The **Paintability Game** is a strategic, turn-based two-player game played on a graph, where the players take on the roles of “Good” (Law Enforcement) and “Evil” (Mastermind). The game revolves around preventing or enabling criminal activities at the vertices of the graph.
 
-- **Evil Player:** Chooses criminals (represented by vertices) to commit crimes on every turn.
-- **Good Player:** Selects criminals to be jailed on every turn, with the restriction that no two connected criminals can be jailed in the same turn.
+- **Evil Mastermind:** Chooses vertices (represented by fortresses) to attack on every turn.
+- **Police Enforcement:** Selects vertices to defend every turn, with the restriction that no two connected vertices can be protected together in the same turn.
 
-The Evil player wins if a criminal successfully commits a crime a set number of times, while Law Enforcement wins if such a number is not reached.
+**Evil Mastermind** wins if any vertex's health reaches zero, while **Law Enforcement** wins if all vertices are defended.
 
-This game has significant ties to graph theory concepts such as list coloring and chromatic numbers. It offers an interactive and engaging way for players to explore these concepts while learning about graph properties.
+This game ties significantly to graph theory concepts such as list coloring and chromatic numbers. It offers an interactive and engaging way for players to explore these concepts while learning about graph properties.
 
-## Game Mechanics
+## How To Play
+### Step 1 of 6:
+#### Choose whether you want to play as the Evil Mastermind or Police Enforcement.
+![Step 1](frontend-react/src/assets/tutorial/01.png)
 
-### Player Actions:
+### Step 2 of 6:
+#### You start out with a graph. Each vertex has a health bar.
+![Step 2](frontend-react/src/assets/tutorial/02.png)
 
-- **Evil Mastermind:** Chooses criminals (vertices) to attempt committing crimes.
-- **Law Enforcement:** Selects independent sets of criminals (vertices) to jail, adhering to the graph's constraints.
+### Step 3 of 6:
+#### At the start of each turn, the Evil Mastermind chooses vertices to attack however they desire.
+![Step 3](frontend-react/src/assets/tutorial/03.png)
 
-### Victory Conditions:
+### Step 4 of 6:
+#### The defender responds by protecing the attacked vertices. However, if two vertices share an edge, the defender can only protect one of them.
+![Step 4](frontend-react/src/assets/tutorial/04.png)
 
-- **Evil Player wins** if a criminal successfully commits a crime a set number of times.
-- **Good Player wins** if all criminals are jailed before or when this number is reached. If the criminal who reaches this number is jailed at the turn, the Good Player still wins.
+### Step 5 of 6:
+#### Any unprotected vertex at the end of the turn loses 1 health. Any successfully proteced vertex cannot be attacked again.
+![Step 5](frontend-react/src/assets/tutorial/05.png)
 
-### Graph Setup:
+### Step 6 of 6:
+#### The attacker wins if any vertex has been reduced to zero health. The defender wins if all vertices are safe.
+![Step 6](frontend-react/src/assets/tutorial/06.png)
 
-Players can either:
-
-- Choose a predefined graph.
-- Generate a random graph, with control over certain properties (e.g., number of vertices).
-
-Players can select their role (Good or Evil) or let the system assign one randomly. They also have access to a tutorial to learn the game rules and how the game connects to graph properties like chromatic numbers and list coloring.
+#### This tutorial is provided in the game to help you get familiar with the rules and how the game connects to graph properties like chromatic numbers and list coloring.
 
 ## Features
 
@@ -51,23 +58,15 @@ Players can select their role (Good or Evil) or let the system assign one random
 
 ### Backend:
 
-- **Technology:** React, Python
-- **Responsibilities:**
+- **Technology:** TypeScript 
+- **Functionality:**
   - Store game state, advance turns, and determine winners.
-  - Generate and manage graphs (both random and predefined).
-  - Implement the bot to play against human players in single-player mode.
-- **Testing:**
-  - Input game states to verify correct winner declaration.
-  - Inspect adjacency matrices to ensure valid random graph generation.
-  - Ensure the bot makes legal moves during gameplay.
+  - Generate and manage random graphs.
 
 ### Frontend:
 
-- **Technology:** JavaScript (React)
-- **Responsibilities:**
-  - Visualize the game graph and update game state based on user interactions.
-  - Accept user input for generating or selecting graphs (e.g., through adjacency lists).
+- **Technology:** React, TypeScript
+- **Functionality:**
+  - Visualize the game graph and update the game state based on user interactions.
+  - Accept user input to render nodes accordingly (e.g., targeted, defended).
   - Provide real-time feedback and updates during gameplay.
-- **Testing:**
-  - Playtest to ensure correct functionality of user inputs and game progress.
-  - Validate that the graph rendering matches the provided adjacency matrices.
