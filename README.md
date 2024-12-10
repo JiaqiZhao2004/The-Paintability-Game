@@ -1,12 +1,12 @@
 # The-Paintability-Game
 
-A single-player web-based strategy game where players compete against a bot by interacting with a dynamically updating graph.
+A single-player web-based strategy game where 2 players compete against each other by interacting with a dynamically updating graph.
 ![demo](demo.png)
 
 **Contributors:**  
-Annie Zeng ([GitHub](https://github.com/wolfywolf7890))  
-Ethan Zhang ([GitHub](https://github.com/))  
-Roy Zhao ([GitHub](https://github.com/JiaqiZhao2004))
+Annie Zeng ([GitHub](https://github.com/wolfywolf7890)) Developed core game algorithms, game state management, and random graph generator.
+Ethan Zhang ([GitHub](https://github.com/)) Provided testing and validation for game algorithms.
+Roy Zhao ([GitHub](https://github.com/JiaqiZhao2004)) Developed core react frontend and dynamic visualizations.
 
 ## Overview
 
