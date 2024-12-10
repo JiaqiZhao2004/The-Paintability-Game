@@ -11,8 +11,8 @@ import GamePage from "./pages/GamePage";
 import { useState } from "react";
 
 function App() {
-	const [numNodes, setNumNodes] = useState(6);
-	const [edgeDensity, setEdgeDensity] = useState(0.5);
+	const [numNodes, setNumNodes] = useState(7);
+	const [edgeDensity, setEdgeDensity] = useState(0.6);
 	
 	return (
 		<Router>
