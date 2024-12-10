@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['vite_2denv_2ed_2ets_0',['vite-env.d.ts',['../vite-env_8d_8ts.html',1,'']]]
+  ['usefetchadjacencymatrix_2ets_0',['useFetchAdjacencyMatrix.ts',['../use_fetch_adjacency_matrix_8ts.html',1,'']]],
+  ['usefetchvertexhealthlist_2ets_1',['useFetchVertexHealthList.ts',['../use_fetch_vertex_health_list_8ts.html',1,'']]]
 ];

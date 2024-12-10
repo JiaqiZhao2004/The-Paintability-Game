@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nodetypes_0',['nodeTypes',['../_graph_8tsx.html#ac30e8aeb7330b3439969100522bc78d9',1,'Graph.tsx']]]
+  ['jpg_0',['jpg',['../_player_info_8tsx.html#ac850ff2006b33057f9ae71593a9d1876',1,'PlayerInfo.tsx']]]
 ];

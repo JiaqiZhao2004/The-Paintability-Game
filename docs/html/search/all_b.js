@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['main_2etsx_0',['main.tsx',['../main_8tsx.html',1,'']]],
-  ['matrixtographwithhealth_1',['matrixToGraphWithHealth',['../matrix_to_graph_with_health_8tsx.html#a969813a92051ff4576563522cc0fe795',1,'matrixToGraphWithHealth.tsx']]],
-  ['matrixtographwithhealth_2etsx_2',['matrixToGraphWithHealth.tsx',['../matrix_to_graph_with_health_8tsx.html',1,'']]]
+  ['list_0',['Deprecated List',['../deprecated.html',1,'']]],
+  ['listgroup_1',['ListGroup',['../_list_group_8tsx.html#a5e6a0647676355d847f548a69df6d45f',1,'ListGroup:&#160;ListGroup.tsx'],['../_list_group_8tsx.html#a64aca49f7a0e45fc1b759c3e72c26fb4',1,'ListGroup({items, heading, onSelectItem}:Props):&#160;ListGroup.tsx']]],
+  ['listgroup_2etsx_2',['ListGroup.tsx',['../_list_group_8tsx.html',1,'']]]
 ];

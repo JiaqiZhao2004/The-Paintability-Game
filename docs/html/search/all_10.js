@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['turnchange_0',['turnChange',['../_paint_graph_8ts.html#aa9d03388352c2116102a427078b88185',1,'PaintGraph.ts']]]
+  ['svg_0',['svg',['../_app_8tsx.html#a12ad5b3df462648cbe64af47f6b9a052',1,'App.tsx']]]
 ];
