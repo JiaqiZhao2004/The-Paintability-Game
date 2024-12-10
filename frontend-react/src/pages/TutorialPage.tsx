@@ -8,6 +8,10 @@ import step6 from "../assets/tutorial/06.png";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 
+interface Props {
+	inSideBar: boolean;
+}
+
 const TutorialPageHeader = {
 	title: "The Paintability Game",
 	items: ["Home", "Tutorial", "Play"],
@@ -42,7 +46,6 @@ const tutorialSteps: TutorialStep[] = [
 		subtitle: "Step 3 of 6: ",
 		description:
 			"At the start of each turn, the Evil Mastermind chooses vertices to attack however they desire.",
-		// "The Evil Mastermind chose 4 vertices to attack.",
 		imageSrc: step3,
 		altText: "Selecting Your Role",
 	},
@@ -76,7 +79,7 @@ const tutorialSteps: TutorialStep[] = [
 	},
 ];
 
-const TutorialPage = () => {
+const TutorialPage = ({ inSideBar }: Props) => {
 	/**
 	 * @var navigate
 	 * @brief Part of react-router-dom to enable redirects to Game Page when a Card is clicked.
@@ -85,20 +88,27 @@ const TutorialPage = () => {
 
 	return (
 		<>
-			<Header {...TutorialPageHeader} />
+			{!inSideBar && <Header {...TutorialPageHeader} />}
 			<div
 				style={{
 					padding: "40px",
 					maxWidth: "840px",
 					margin: "0 auto",
 					textAlign: "center",
-                    paddingBottom: "100px"
+					paddingBottom: "100px",
 				}}
 			>
 				<h1 style={{ fontSize: "36px", marginBottom: "20px" }}>
 					Welcome to The Paintability Game!
 				</h1>
-				<div style={{ display: "flex", flexDirection: "column", gap: "30px", paddingBottom: "40px"}}>
+				<div
+					style={{
+						display: "flex",
+						flexDirection: "column",
+						gap: "30px",
+						paddingBottom: "40px",
+					}}
+				>
 					{tutorialSteps.map((step, index) => (
 						<div
 							key={index}
@@ -139,12 +149,14 @@ const TutorialPage = () => {
 						</div>
 					))}
 				</div>
-				<Button
-					label="Return"
-					color="outline-secondary"
-					onClick={() => navigate("/home")}
-					widthPctg={23}
-				/>
+				{!inSideBar && (
+					<Button
+						label="Return"
+						color="outline-secondary"
+						onClick={() => navigate("/home")}
+						widthPctg={20}
+					/>
+				)}
 			</div>
 		</>
 	);

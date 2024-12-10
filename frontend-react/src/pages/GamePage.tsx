@@ -29,6 +29,7 @@ import Header from "../components/Header";
 import PaintGraph from "../game/PaintGraph";
 import { randomGraph, randomList } from "../game/randomGen";
 import PlayerInfo from "../components/PlayerInfo";
+import TutorialPage from "./TutorialPage";
 
 /**
  * @typedef GamePageProps
@@ -128,6 +129,12 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 	 * @brief Whether any player won.
 	 */
 	const [gameEnd, setGameEnd] = useState(false);
+
+	/**
+	 * @var showTutorial
+	 * @brief Whether show tutorialPage on the left side.
+	 */
+	const [showTutorial, setShowTutorial] = useState(false);
 
 	let isEvilsTurn =
 		(isEvilRole && isLeftPlayersTurn) || (!isEvilRole && !isLeftPlayersTurn);
@@ -233,49 +240,91 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 	return (
 		<div
 			style={{
-				height: "90vh",
 				display: "flex",
-				flexDirection: "column",
-				alignItems: "center",
-				justifyContent: "center",
-				gap: "30px",
+				height: "100vh",
+				overflow: "hidden", // Prevents scrollbars from appearing unnecessarily
 			}}
 		>
-			<Header {...GamePageHeader} />
-			<div style={{ position: "absolute", top: 100, left: 110 }}>
-				<PlayerInfo
-					playerName="Player 1"
-					isEvilRole={isEvilRole}
-					glow={isLeftPlayersTurn}
-					left={true}
-					won={leftPlayerWon}
-				/>
-			</div>
-			<div style={{ position: "absolute", top: 100, right: 110 }}>
-				<PlayerInfo
-					playerName="Player 2"
-					isEvilRole={!isEvilRole}
-					glow={!isLeftPlayersTurn}
-					left={false}
-					won={gameEnd && !leftPlayerWon}
-				/>
-			</div>
-			<Graph
-				nodes={displayedNodes}
-				edges={displayedEdges}
-				handleNodeClick={handleNodeClick}
-			/>
-			{gameEnd ? (
-				<h4>{game.current.getGameState().winner + " is the Winner!"}</h4>
-			) : (
-				<Button
-					label="End Turn"
-					color="warning"
-					onClick={handleSubmit}
-					heightPctg={2}
-					widthPctg={10}
-				/>
+			{/* Left Section: Tutorial Page */}
+			{showTutorial && (
+				<div
+					style={{
+						width: "25%", // Adjust width to fit your preference
+						overflowY: "auto", // Makes the tutorial section scrollable
+						borderRight: "1px solid #ddd", // Optional: Adds a dividing line
+						padding: "10px",
+						backgroundColor: "#f9f9f9", // Optional: Light background for distinction
+					}}
+				>
+					<TutorialPage inSideBar={true} />
+				</div>
 			)}
+
+			{/* Right Section: Game Area */}
+			<div
+				style={{
+					flex: 1,
+					display: "flex",
+					flexDirection: "column",
+					position: "relative",
+				}}
+			>
+				<div
+					style={{
+						height: "90vh",
+						display: "flex",
+						flexDirection: "column",
+						alignItems: "center",
+						justifyContent: "center",
+						gap: "30px",
+					}}
+				>
+					<Header {...GamePageHeader} />
+					<div
+						style={{ position: "absolute", top: 215, left: 110, zIndex: 10 }}
+					>
+						<Button
+							label={`${showTutorial ? "Hide" : "Show"} Tutorial`}
+							color="outline-secondary"
+							onClick={() => setShowTutorial(!showTutorial)}
+						/>
+					</div>
+					<div style={{ position: "absolute", top: 100, left: 110 }}>
+						<PlayerInfo
+							playerName="Player 1"
+							isEvilRole={isEvilRole}
+							glow={isLeftPlayersTurn}
+							left={true}
+							won={leftPlayerWon}
+						/>
+					</div>
+					<div style={{ position: "absolute", top: 100, right: 110 }}>
+						<PlayerInfo
+							playerName="Player 2"
+							isEvilRole={!isEvilRole}
+							glow={!isLeftPlayersTurn}
+							left={false}
+							won={gameEnd && !leftPlayerWon}
+						/>
+					</div>
+					<Graph
+						nodes={displayedNodes}
+						edges={displayedEdges}
+						handleNodeClick={handleNodeClick}
+					/>
+					{gameEnd ? (
+						<h4>{game.current.getGameState().winner + " is the Winner!"}</h4>
+					) : (
+						<Button
+							label="End Turn"
+							color="warning"
+							onClick={handleSubmit}
+							heightPctg={2}
+							widthPctg={10}
+						/>
+					)}
+				</div>
+			</div>
 		</div>
 	);
 };

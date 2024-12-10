@@ -27,7 +27,7 @@ function App() {
 						/>
 					}
 				/>
-				<Route path="/tutorial" element={<TutorialPage />} />
+				<Route path="/tutorial" element={<TutorialPage inSideBar={false} />} />
 				<Route
 					path="/play/evil"
 					element={<GamePage n={numNodes} p={edgeDensity} isEvilRole={true} />}
