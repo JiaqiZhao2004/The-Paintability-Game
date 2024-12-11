@@ -51,7 +51,6 @@ This game ties significantly to graph theory concepts such as list coloring and 
 
 - **Interactive Gameplay:** Players click on graph vertices to make moves.
 - **Graph Selection:** Custom or randomly generated graphs.
-- **Single-Player Mode:** Play against a bot powered by an algorithm that simulates the Evil or Good player.
 - **Tutorial & Instruction:** Learn game mechanics and graph theory concepts as they relate to list coloring and chromatic numbers.
 
 ## Architecture
