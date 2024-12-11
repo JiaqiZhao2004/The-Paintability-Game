@@ -1,6 +1,6 @@
 # The-Paintability-Game
 
-A single-player web-based strategy game where 2 players compete against each other by interacting with a dynamically updating graph.
+A strategy game where 2 players compete against each other by interacting with a dynamically updating graph.
 
 ![demo](demo.png)
 
