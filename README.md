@@ -6,7 +6,7 @@ A strategy game where 2 players compete against each other by interacting with a
 
 **Contributors:**  
 [Annie Zeng](https://github.com/wolfywolf7890): Developed core game algorithms, game state management, and random graph generator.  
-[Ethan Zhang](https://github.com/): Provided testing and validation for game algorithms.  
+[Ethan Zhang](https://github.com/ethanhanzhang): Provided testing and validation for game algorithms.  
 [Roy Zhao](https://github.com/JiaqiZhao2004): Developed core react frontend and dynamic visualizations.  
 
 ## Overview
