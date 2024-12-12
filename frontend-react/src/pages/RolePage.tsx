@@ -15,6 +15,9 @@
 
 import { useNavigate } from "react-router-dom";
 import Card from "../components/Card";
+import policeEnforcementImg from "../assets/police-enforcement.jpg";
+import evilMastermindImg from "../assets/evil-mastermind.jpg";
+import centerFortressImg from "../assets/fortress-center.png";
 
 /**
  * @function RolePage
@@ -34,7 +37,6 @@ import Card from "../components/Card";
  * @returns {JSX.Element} The rendered role selection page.
  */
 const RolePage = () => {
-
 	/**
 	 * @var navigate
 	 * @brief Part of react-router-dom to enable redirects to Game Page when a Card is clicked.
@@ -48,7 +50,7 @@ const RolePage = () => {
 	const title: string = "Select Your Role";
 
 	/**
-	 * @constant EvilMasterMindCard
+	 * @constant EvilMastermindCard
 	 * @brief Configuration object for the "Evil Mastermind" role card.
 	 *
 	 * @property {string} title - Title of the role card.
@@ -56,11 +58,11 @@ const RolePage = () => {
 	 * @property {string} backgroundImg - Placeholder for the card's background image.
 	 * @property {function} onClick - Callback function triggered when the card is clicked.
 	 */
-	const EvilMasterMindCard = {
+	const EvilMastermindCard = {
 		title: "Evil Mastermind",
 		description:
 			"You select criminals, represented by vertices, to commit crimes on every turn.",
-		backgroundImg: " ",
+		backgroundImg: evilMastermindImg,
 		onClick: () => navigate("/play/evil"),
 	};
 
@@ -77,7 +79,7 @@ const RolePage = () => {
 		title: "Police Enforcement",
 		description:
 			"You select criminals to be jailed on every turn, but you can only jail one criminal in a web of connected criminals.",
-		backgroundImg: " ",
+		backgroundImg: policeEnforcementImg,
 		onClick: () => navigate("/play/police"),
 	};
 
@@ -93,7 +95,7 @@ const RolePage = () => {
 	const RandomRoleCard = {
 		title: "Random Role",
 		description: "We will choose a role for you.",
-		backgroundImg: "",
+		backgroundImg: centerFortressImg,
 		onClick: () => navigate("/play/random"),
 	};
 
@@ -101,7 +103,7 @@ const RolePage = () => {
 	 * @var cards
 	 * @brief Array of role card configurations.
 	 */
-	const cards = [EvilMasterMindCard, PoliceEnforcementCard, RandomRoleCard];
+	const cards = [EvilMastermindCard, PoliceEnforcementCard, RandomRoleCard];
 
 	return (
 		<div className="container px-4 py-5" id="custom-cards">
