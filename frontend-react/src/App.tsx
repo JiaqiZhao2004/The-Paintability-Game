@@ -13,8 +13,9 @@ import GamePage from "./pages/GamePage";
 function App() {
 	// const [numNodes, setNumNodes] = useState(7);
 	// const [edgeDensity, setEdgeDensity] = useState(0.6);
-	const numNodes = 6;
-	const edgeDensity = 0.5;
+	const numNodes = 8;
+	const edgeDensity = 0.6;
+	const difficulty = 0.35; // difficulty for defender
 
 	return (
 		<Router>
@@ -32,11 +33,25 @@ function App() {
 				<Route path="/tutorial" element={<TutorialPage inSideBar={false} />} />
 				<Route
 					path="/play/evil"
-					element={<GamePage n={numNodes} p={edgeDensity} isEvilRole={true} />}
+					element={
+						<GamePage
+							n={numNodes}
+							p={edgeDensity}
+							difficulty={difficulty}
+							isEvilRole={true}
+						/>
+					}
 				/>
 				<Route
 					path="/play/police"
-					element={<GamePage n={numNodes} p={edgeDensity} isEvilRole={false} />}
+					element={
+						<GamePage
+							n={numNodes}
+							p={edgeDensity}
+							difficulty={difficulty}
+							isEvilRole={false}
+						/>
+					}
 				/>
 
 				<Route
@@ -45,6 +60,7 @@ function App() {
 						<GamePage
 							n={numNodes}
 							p={edgeDensity}
+							difficulty={difficulty}
 							isEvilRole={Math.random() > 0.5}
 						/>
 					}

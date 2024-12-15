@@ -38,12 +38,14 @@ import Alert from "../components/Alert";
  *
  * @property {number} n - Number of verticies.
  * @property {number} p - Parameter for random edge generation. Edge density.
+ * @property {number} difficulty - The difficulty for the defender, 0 easiest, 1 hardest.
  * @property {boolean} isEvilRole - Whether the player's role is Evil Mastermind.
  */
 
 interface GamePageProps {
 	n: number;
 	p: number;
+	difficulty: number;
 	isEvilRole: boolean;
 }
 
@@ -65,6 +67,9 @@ const GamePageHeader = {
  * @brief The main gameplay page for the Paintability Game.
  *
  * @param {number} n - The number of nodes in the graph.
+ * @param {number} p - The density of edges in the graph.
+ * @param {number} difficulty - The difficulty for the defender, 0 easiest, 1 hardest.
+ * @param {boolean} isEvilRole - Whether the player is Evil Mastermind.
  * @returns {JSX.Element} The JSX representation of the gameplay page.
  *
  * @details
@@ -80,7 +85,7 @@ const GamePageHeader = {
  * - Updates graph visuals dynamically based on game progress.
  */
 
-const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
+const GamePage = ({ n, p, difficulty, isEvilRole }: GamePageProps) => {
 	/**
 	 * @var aM
 	 * @brief Randomly generated adjacency matrix. Game start state.
@@ -91,7 +96,7 @@ const GamePage = ({ n, p, isEvilRole }: GamePageProps) => {
 	 * @var vL
 	 * @brief Randomly generated vertex health list. Game start state.
 	 */
-	const vL = randomList(aM, n);
+	const vL = randomList(aM, n, difficulty);
 
 	/**
 	 * @var game
