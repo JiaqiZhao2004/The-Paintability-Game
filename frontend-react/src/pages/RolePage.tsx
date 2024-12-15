@@ -60,7 +60,7 @@ const RolePage = () => {
 	 */
 	const EvilMastermindCard = {
 		title: "Evil Mastermind",
-		description: "You select vertices to attack on every turn.",
+		description: "Select vertices to attack each turn.",
 		backgroundImg: evilMastermindImg,
 		onClick: () => navigate("/play/evil"),
 	};
@@ -76,7 +76,7 @@ const RolePage = () => {
 	 */
 	const PoliceEnforcementCard = {
 		title: "Police Enforcement",
-		description: "You select vertices to protect every turn.",
+		description: "Select vertices to protect each turn.",
 		backgroundImg: policeEnforcementImg,
 		onClick: () => navigate("/play/police"),
 	};
@@ -107,7 +107,7 @@ const RolePage = () => {
 		<div className="container px-4 py-5" id="custom-cards">
 			<h2 className="pb-2 border-bottom">{title}</h2>
 
-			<div className="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+			<div className="row row-cols-1 row-cols-lg-3 align-items-stretch p-5 g-5 py-5">
 				{cards.map((item, index) => (
 					<div className="col" key={index}>
 						<Card {...item} />
