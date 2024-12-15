@@ -76,7 +76,10 @@ const HomePage = ({ title, description, image = undefined }: Props) => {
 	const navigate = useNavigate();
 
 	return (
-		<div className="d-flex justify-content-center align-items-center vh-100">
+		<div
+			className="d-flex justify-content-center align-items-center"
+			style={{ minHeight: "100vh" }}
+		>
 			<div className="text-center w-100">
 				<Hero
 					title={title}
