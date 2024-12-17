@@ -102,40 +102,10 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:ae37f49d9bd4cec7027c2d5229ed42d24" id="r_ae37f49d9bd4cec7027c2d5229ed42d24"><td class="memItemLeft" align="right" valign="top">const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae37f49d9bd4cec7027c2d5229ed42d24">crimeAttempt</a></td></tr>
-<tr class="separator:ae37f49d9bd4cec7027c2d5229ed42d24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9d03388352c2116102a427078b88185" id="r_aa9d03388352c2116102a427078b88185"><td class="memItemLeft" align="right" valign="top">const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9d03388352c2116102a427078b88185">turnChange</a></td></tr>
-<tr class="separator:aa9d03388352c2116102a427078b88185"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a7faf50cae5d32ebd0299599f623d91" id="r_a3a7faf50cae5d32ebd0299599f623d91"><td class="memItemLeft" align="right" valign="top">export default&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a7faf50cae5d32ebd0299599f623d91">PaintGraph</a></td></tr>
 <tr class="separator:a3a7faf50cae5d32ebd0299599f623d91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="ae37f49d9bd4cec7027c2d5229ed42d24" name="ae37f49d9bd4cec7027c2d5229ed42d24"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae37f49d9bd4cec7027c2d5229ed42d24">&#9670;&#160;</a></span>crimeAttempt</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const crimeAttempt</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= (id: string, jailCount: { [key: string]: number }) =&gt; {</div>
-<div class="line">    let updatedJailCount: { [key: string]: number } = {};</div>
-<div class="line">    <span class="keywordflow">for</span> (<span class="keyword">const</span> key in jailCount) {</div>
-<div class="line">        updatedJailCount[key] = jailCount[key];</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">if</span> (updatedJailCount.hasOwnProperty(<span class="keywordtype">id</span>)) {</div>
-<div class="line">        updatedJailCount[id] += 1; </div>
-<div class="line">    } <span class="keywordflow">else</span> {</div>
-<div class="line">        updatedJailCount[id] = 1;</div>
-<div class="line">    }</div>
-<div class="line">    <span class="keywordflow">return</span> updatedJailCount;</div>
-<div class="line">}</div>
-</div><!-- fragment -->
-</div>
-</div>
 <a id="a3a7faf50cae5d32ebd0299599f623d91" name="a3a7faf50cae5d32ebd0299599f623d91"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3a7faf50cae5d32ebd0299599f623d91">&#9670;&#160;</a></span>PaintGraph</h2>
 
@@ -148,23 +118,6 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="aa9d03388352c2116102a427078b88185" name="aa9d03388352c2116102a427078b88185"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9d03388352c2116102a427078b88185">&#9670;&#160;</a></span>turnChange</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const turnChange</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= (currentTurn: <span class="stringliteral">&quot;Good&quot;</span> | <span class="stringliteral">&quot;Evil&quot;</span>): <span class="stringliteral">&quot;Good&quot;</span> | <span class="stringliteral">&quot;Evil&quot;</span> =&gt; {</div>
-<div class="line">    <span class="keywordflow">return</span> currentTurn === <span class="stringliteral">&quot;Good&quot;</span> ? <span class="stringliteral">&quot;Evil&quot;</span> : <span class="stringliteral">&quot;Good&quot;</span>;</div>
-<div class="line">}</div>
-</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
