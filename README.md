@@ -1,4 +1,6 @@
-# The-Paintability-Game
+# The Paintability Game
+
+[![Play The Game](https://img.shields.io/badge/Play_The_Game-Click_Here-brightgreen?style=for-the-badge)](https://the-paintability-game.netlify.app)
 
 A strategy game where 2 players compete against each other by interacting with a dynamically updating graph.
 
@@ -55,7 +57,7 @@ This tutorial is **also provided on the game page** to familiarize you with the 
 - **Tutorial & Instruction:** Learn game mechanics and graph theory concepts as they relate to list coloring and chromatic numbers.
 
 ## Architecture
-<img width="1192" alt="Project Structure new" src="https://github.com/user-attachments/assets/67943c63-84df-418c-9516-b10322d9e4f6">
+<img width="1192" alt="Project Structure new" src="project_structure.png">
 
 ### Backend:
 
@@ -71,3 +73,58 @@ This tutorial is **also provided on the game page** to familiarize you with the 
   - Visualize the game graph and update the game state based on user interactions.
   - Accept user input to render nodes accordingly (e.g., targeted, defended).
   - Provide real-time feedback and updates during gameplay.
+
+
+## Deploying the App with Docker
+
+Follow these steps to deploy the app on your machine using Docker:
+
+### Prerequisites
+
+- Make sure you have Docker installed on your machine. You can download it from [Docker's official website](https://www.docker.com/).
+
+---
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/JiaqiZhao2004/The-Paintability-Game
+cd frontend-react
+```
+
+---
+
+### 2. Build the Docker Image
+
+Run the following command to build the Docker image:
+
+```bash
+docker build -t paintability-game .
+```
+
+---
+
+### 3. Run the Docker Container
+
+Run the app in a Docker container by exposing the appropriate port (e.g., `5173`):
+
+```bash
+docker run -p 5173:5173 paintability-game
+```
+
+---
+
+### 4. Access the App
+
+Open your browser and navigate to:
+
+```
+http://localhost:5173
+```
+
+You should see the app running!
+
+
+### Notes
+
+- If you want to run the app with a custom port, replace `-p 5173:5173` with your desired port mapping (e.g., `-p 8080:5173`).
