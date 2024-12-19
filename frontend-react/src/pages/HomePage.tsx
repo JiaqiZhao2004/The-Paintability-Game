@@ -20,6 +20,7 @@ import Button from "../components/Button";
 import Hero from "../components/Hero";
 import RolePage from "./RolePage";
 import { useNavigate } from "react-router-dom";
+import "./HomePage.css";
 
 interface Props {
 	/**
@@ -69,53 +70,28 @@ const HomePage = ({ title, description, image = undefined }: Props) => {
 	const navigate = useNavigate();
 
 	return (
-		<div className="d-flex flex-column">
-			<section
-				className="d-flex flex-column align-items-center justify-content-center text-center vh-100"
-				style={{
-					background: "linear-gradient(to right, #a6c6b8, #f5d8a7, #c95f4a)",
-				}}
-			>
-				<div className="w-100">
-					<Hero title={title} description={description} image={image} />
-				</div>
-				<div className="container justify-content-center mb-4">
-					<a href={"#role-page"} style={{ textDecoration: "none" }}>
-						<Button
-							className={`me-4`}
-							label={"Play"}
-							color="dark"
-							widthPctg={18}
-							heightPctg={120}
-						/>
-					</a>
+		<>
+			<section className="top-half">
+				<Hero title={title} description={description} image={image} />
+
+				<div className="button-row">
+					<Button
+						label={"Play"}
+						color="dark"
+						onClick={() => (window.location.href = "#role-page")}
+					/>
 					<Button
 						label="Tutorial"
 						color="outline-secondary"
 						onClick={() => navigate("/tutorial")}
-						widthPctg={18}
-						heightPctg={120}
 					/>
 				</div>
 			</section>
-			<section className="vh-100">
-				<div
-					style={{
-						position: "absolute",
-						top: "100%",
-						left: "0",
-						width: "100%",
-						height: "100vh",
-						background: "linear-gradient(to right, #a6c6b8, #f5d8a7, #c95f4a)",
-						clipPath: "polygon(0 0, 100% 0, 100% 0%, 0% 5%)",
-						zIndex: 1,
-					}}
-				></div>
-				<div className="vh-100" style={{ zIndex: 2 }}>
-					<RolePage />
-				</div>
+			<section className="bottom-half">
+				<div className="colored-triangle" />
+				<RolePage />
 			</section>
-		</div>
+		</>
 	);
 };
 export default HomePage;
