@@ -15,9 +15,8 @@ const Card = ({ title, description, backgroundImg, onClick }: Props) => {
 				transition:
 					"transform 0.3s ease-in-out, background-color 0.3s ease-in-out", // Smooth scaling effect
 				transformOrigin: "center", // Scale from center
-				backgroundColor: "#212529",
-				color: "#e0e0e0",
-				flexBasis: "25%",
+				background: "radial-gradient(circle, #313539, #1d1d1d)",
+				flexBasis: "26%",
 			}}
 			onClick={onClick}
 			onMouseEnter={(e) => {
