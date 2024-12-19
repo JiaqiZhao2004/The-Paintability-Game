@@ -71,7 +71,12 @@ const HomePage = ({ title, description, image = undefined }: Props) => {
 
 	return (
 		<div className="d-flex flex-column">
-			<section className="d-flex flex-column align-items-center justify-content-center text-center vh-100">
+			<section
+				className="d-flex flex-column align-items-center justify-content-center text-center vh-100"
+				style={{
+					background: "linear-gradient(to right, #a6c6b8, #f5d8a7, #c95f4a)",
+				}}
+			>
 				<div className="w-100">
 					<Hero title={title} description={description} image={image} />
 				</div>
@@ -94,10 +99,23 @@ const HomePage = ({ title, description, image = undefined }: Props) => {
 					/>
 				</div>
 			</section>
-				<section className="vh-100">
+			<section className="vh-100">
+				<div
+					style={{
+						position: "absolute",
+						top: "100%",
+						left: "0",
+						width: "100%",
+						height: "100vh",
+						background: "linear-gradient(to right, #a6c6b8, #f5d8a7, #c95f4a)",
+						clipPath: "polygon(0 0, 100% 0, 100% 0%, 0% 5%)",
+						zIndex: 1,
+					}}
+				></div>
+				<div className="vh-100" style={{ zIndex: 2 }}>
 					<RolePage />
 				</div>
-				</section>
+			</section>
 		</div>
 	);
 };
