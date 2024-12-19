@@ -14,7 +14,7 @@
  */
 
 import { useNavigate } from "react-router-dom";
-import Card from "../components/Card";
+import RoleCard from "../components/RoleCard";
 import policeEnforcementImg from "../assets/police-enforcement.jpg";
 import evilMastermindImg from "../assets/evil-mastermind.jpg";
 import centerFortressImg from "../assets/fortress-center.png";
@@ -116,13 +116,16 @@ const RolePage = () => {
 			<div
 				style={{
 					display: "flex",
+					flexWrap: "wrap",
 					alignItems: "stretch",
 					justifyContent: "center",
-					gap: "3.5%",
+					gap: "1.5rem",
 				}}
 			>
 				{cards.map((item) => (
-					<Card {...item} />
+					<div style={{ flex: "1 1 0.3", maxWidth: "360px"}}>
+						<RoleCard {...item} />
+					</div>
 				))}
 			</div>
 		</div>
