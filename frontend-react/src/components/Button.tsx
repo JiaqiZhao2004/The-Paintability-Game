@@ -1,8 +1,16 @@
 interface Props {
 	className?: string;
 	label: string;
-	color?: "primary" | "secondary" | "danger" | "warning" | "outline-secondary";
-	onClick: () => void;
+	color?:
+		| "primary"
+		| "secondary"
+		| "danger"
+		| "warning"
+		| "outline-secondary"
+		| "outline-dark"
+		| "dark";
+	background?: string;
+	onClick?: () => void;
 	heightPctg?: number | string;
 	widthPctg?: number | string;
 	fontSize?: number;
@@ -12,6 +20,7 @@ const Button = ({
 	className = "",
 	label = "Button",
 	color = "primary",
+	background,
 	onClick = () => {},
 	heightPctg = 100,
 	widthPctg = 100,
@@ -26,6 +35,7 @@ const Button = ({
 				width: `${widthPctg}%`,
 				height: `${heightPctg}%`,
 				fontSize: fontSize,
+				background: background,
 			}}
 		>
 			{label}
