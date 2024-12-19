@@ -154,7 +154,7 @@ const TutorialPage = ({ inSideBar }: Props) => {
 						label="Return"
 						color="outline-secondary"
 						onClick={() => navigate("/home")}
-						widthPctg={20}
+						widthPctg={50}
 					/>
 				)}
 			</div>
