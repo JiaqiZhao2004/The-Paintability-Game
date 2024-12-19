@@ -104,8 +104,12 @@ const RolePage = () => {
 	const cards = [EvilMastermindCard, PoliceEnforcementCard, RandomRoleCard];
 
 	return (
-		<div className="d-flex flex-column text-center justify-content-center w-100 h-100 gap-5">
-			<h2 className="pb-2 border-bottom" id="role-page">
+		<div className="d-flex flex-column text-center justify-content-center w-100 h-100 gap-2">
+			<h2
+				className="pb-2 border-bottom"
+				id="role-page"
+				style={{ fontStyle: "italic" }}
+			>
 				{title}
 			</h2>
 
@@ -114,7 +118,7 @@ const RolePage = () => {
 					display: "flex",
 					alignItems: "stretch",
 					justifyContent: "center",
-					gap: "3%",
+					gap: "3.5%",
 				}}
 			>
 				{cards.map((item) => (

@@ -64,12 +64,6 @@ interface Props {
  */
 const HomePage = ({ title, description, image = undefined }: Props) => {
 	/**
-	 * @var {boolean} showRoleSelection
-	 * @brief State variable to toggle whether to show the role selection screen (hidden at first).
-	 */
-	const [showRoleSelection, setShowRoleSelection] = useState(false);
-
-	/**
 	 * @var navigate
 	 * @brief Part of react-router-dom to enable redirects to Game Page when a Card is clicked.
 	 */
@@ -81,15 +75,12 @@ const HomePage = ({ title, description, image = undefined }: Props) => {
 				<div className="w-100">
 					<Hero title={title} description={description} image={image} />
 				</div>
-				<div className="container justify-content-center mb-5">
-					<a href={showRoleSelection ? "#role-page" : "#"} style={{ textDecoration: "none" }}>
+				<div className="container justify-content-center mb-4">
+					<a href={"#role-page"} style={{ textDecoration: "none" }}>
 						<Button
-							className="me-4"
-							label={showRoleSelection ? "Return" : "Play"}
-							color={showRoleSelection ? "secondary" : "primary"}
-							onClick={() => {
-								setShowRoleSelection(!showRoleSelection);
-							}}
+							className={`me-4`}
+							label={"Play"}
+							color="dark"
 							widthPctg={18}
 							heightPctg={120}
 						/>
@@ -103,12 +94,10 @@ const HomePage = ({ title, description, image = undefined }: Props) => {
 					/>
 				</div>
 			</section>
-			{showRoleSelection && (
 				<section className="vh-100">
 					<RolePage />
-					<div> </div>
+				</div>
 				</section>
-			)}
 		</div>
 	);
 };
