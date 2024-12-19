@@ -16,7 +16,6 @@
  * @module HomePage
  */
 
-import { useState } from "react";
 import Button from "../components/Button";
 import Hero from "../components/Hero";
 import RolePage from "./RolePage";
