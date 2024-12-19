@@ -82,16 +82,18 @@ const HomePage = ({ title, description, image = undefined }: Props) => {
 					<Hero title={title} description={description} image={image} />
 				</div>
 				<div className="container justify-content-center mb-5">
-					<Button
-						className="me-4"
-						label={showRoleSelection ? "Return" : "Play"}
-						color={showRoleSelection ? "secondary" : "primary"}
-						onClick={() => {
-							setShowRoleSelection(!showRoleSelection);
-						}}
-						widthPctg={18}
-						heightPctg={120}
-					/>
+					<a href={showRoleSelection ? "#role-page" : "#"} style={{ textDecoration: "none" }}>
+						<Button
+							className="me-4"
+							label={showRoleSelection ? "Return" : "Play"}
+							color={showRoleSelection ? "secondary" : "primary"}
+							onClick={() => {
+								setShowRoleSelection(!showRoleSelection);
+							}}
+							widthPctg={18}
+							heightPctg={120}
+						/>
+					</a>
 					<Button
 						label="Tutorial"
 						color="outline-secondary"
@@ -104,6 +106,7 @@ const HomePage = ({ title, description, image = undefined }: Props) => {
 			{showRoleSelection && (
 				<section className="vh-100">
 					<RolePage />
+					<div> </div>
 				</section>
 			)}
 		</div>

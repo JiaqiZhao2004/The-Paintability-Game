@@ -104,11 +104,10 @@ const RolePage = () => {
 	const cards = [EvilMastermindCard, PoliceEnforcementCard, RandomRoleCard];
 
 	return (
-		<div
-			className="d-flex flex-column text-center justify-content-center w-100 h-100 gap-5"
-			id="role-page"
-		>
-			<h2 className="pb-2 border-bottom">{title}</h2>
+		<div className="d-flex flex-column text-center justify-content-center w-100 h-100 gap-5">
+			<h2 className="pb-2 border-bottom" id="role-page">
+				{title}
+			</h2>
 
 			<div
 				style={{
