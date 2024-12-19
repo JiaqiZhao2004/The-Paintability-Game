@@ -13,15 +13,17 @@ const RoleCard = ({ title, description, backgroundImg, onClick }: Props) => {
 	return (
 		<div className="role-card" onClick={onClick}>
 			<img src={backgroundImg} alt={title} />
-			<h3>
-				{words.map((word) => (
-					<>
-						{word}
-						<br />
-					</>
-				))}
-			</h3>
-			<p>{description}</p>
+			<div className="text-section">
+				<h3>
+					{words.map((word) => (
+						<>
+							{word}
+							<br />
+						</>
+					))}
+				</h3>
+				<p>{description}</p>
+			</div>
 		</div>
 	);
 };

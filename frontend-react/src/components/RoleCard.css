@@ -28,6 +28,11 @@
 	margin-bottom: 10%;
 }
 
+.role-card .text-section {
+	display: flex;
+	flex-direction: column;
+}
+
 .role-card h3 {
 	font-size: 2.5rem;
 	line-height: 1;
@@ -37,4 +42,37 @@
 
 .role-card p {
 	font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+	.role-card {
+		flex-direction: row;
+		text-align: left;
+		padding: 5%;
+	}
+
+	.role-card img {
+		height: auto;
+		width: 40%;
+		margin-bottom: 0%;
+		margin-right: 10%;
+	}
+
+	.role-card .text-section {
+		justify-content: center;
+	}
+
+	.role-card h3,
+	.role-card p {
+		margin: 0;
+		padding-bottom: clamp(0px, 2vw, 1rem);
+	}
+
+	.role-card h3 {
+		font-size: clamp(0.85rem, 5.5vw, 2.5rem);
+	}
+
+	.role-card p {
+		font-size: clamp(0.5rem, 2.5vw, 1rem);
+	}
 }
