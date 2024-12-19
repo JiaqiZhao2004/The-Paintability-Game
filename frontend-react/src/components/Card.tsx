@@ -17,6 +17,7 @@ const Card = ({ title, description, backgroundImg, onClick }: Props) => {
 				transformOrigin: "center", // Scale from center
 				backgroundColor: "#212529",
 				color: "#e0e0e0",
+				flexBasis: "25%",
 			}}
 			onClick={onClick}
 			onMouseEnter={(e) => {
@@ -42,7 +43,7 @@ const Card = ({ title, description, backgroundImg, onClick }: Props) => {
 				});
 			}} // Reset on hover out
 		>
-			<div className="d-flex flex-column p-5 text-white">
+			<div className="d-flex flex-column p-5 text-white text-center">
 				<img
 					src={backgroundImg}
 					alt={title}
@@ -52,7 +53,7 @@ const Card = ({ title, description, backgroundImg, onClick }: Props) => {
 						marginBottom: "10%", // Add spacing below the image
 					}}
 				></img>
-				<h3 className="display-6 lh-1 pb-3 text-center fw-bold">
+				<h3 className="display-6 lh-1 pb-3 fw-bold">
 					{words.map((word) => (
 						<>
 							{word}
@@ -60,7 +61,7 @@ const Card = ({ title, description, backgroundImg, onClick }: Props) => {
 						</>
 					))}
 				</h3>
-				<p className="h-50">{description}</p>
+				<p>{description}</p>
 			</div>
 		</div>
 	);
