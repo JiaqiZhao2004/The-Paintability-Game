@@ -4,7 +4,7 @@ import {
 	Route,
 	Navigate,
 } from "react-router-dom";
-import ReactLogo from "./assets/react.svg";
+import FortressImg from "./assets/fortress_defended.png";
 import HomePage from "./pages/HomePage";
 import TutorialPage from "./pages/TutorialPage";
 import GamePage from "./pages/GamePage";
@@ -26,7 +26,7 @@ function App() {
 						<HomePage
 							title="The Paintability Game"
 							description="A single-player strategy game based on graph theory."
-							image={ReactLogo}
+							image={FortressImg}
 						/>
 					}
 				/>

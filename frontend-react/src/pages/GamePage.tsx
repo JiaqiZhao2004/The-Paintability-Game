@@ -339,8 +339,8 @@ const GamePage = ({ n, p, difficulty, isEvilRole }: GamePageProps) => {
 							label="End Turn"
 							color="warning"
 							onClick={handleSubmit}
-							heightPctg={2}
-							widthPctg={10}
+							heightPctg={15}
+							widthPctg={25}
 						/>
 					)}
 				</div>

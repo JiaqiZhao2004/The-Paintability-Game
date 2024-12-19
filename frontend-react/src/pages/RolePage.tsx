@@ -104,14 +104,25 @@ const RolePage = () => {
 	const cards = [EvilMastermindCard, PoliceEnforcementCard, RandomRoleCard];
 
 	return (
-		<div className="container px-4 py-5" id="custom-cards">
-			<h2 className="pb-2 border-bottom">{title}</h2>
+		<div className="d-flex flex-column text-center justify-content-center w-100 h-100 gap-2">
+			<h2
+				className="pb-2 border-bottom"
+				id="role-page"
+				style={{ fontStyle: "italic" }}
+			>
+				{title}
+			</h2>
 
-			<div className="row row-cols-1 row-cols-lg-3 align-items-stretch p-5 g-5 py-5">
-				{cards.map((item, index) => (
-					<div className="col" key={index}>
-						<Card {...item} />
-					</div>
+			<div
+				style={{
+					display: "flex",
+					alignItems: "stretch",
+					justifyContent: "center",
+					gap: "3.5%",
+				}}
+			>
+				{cards.map((item) => (
+					<Card {...item} />
 				))}
 			</div>
 		</div>
