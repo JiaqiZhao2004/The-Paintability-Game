@@ -76,44 +76,36 @@ const HomePage = ({ title, description, image = undefined }: Props) => {
 	const navigate = useNavigate();
 
 	return (
-		<div
-			className="d-flex justify-content-center align-items-center"
-			style={{ minHeight: "100vh" }}
-		>
-			<div className="text-center w-100">
-				<Hero
-					title={title}
-					description={description}
-					image={showRoleSelection ? undefined : image}
-				/>
-				<div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-					{showRoleSelection ? (
-						<Button
-							label="Return"
-							color="secondary"
-							onClick={() => {
-								setShowRoleSelection(false);
-							}}
-							widthPctg={5}
-						/>
-					) : (
-						<Button
-							label="Play"
-							onClick={() => {
-								setShowRoleSelection(true);
-							}}
-							widthPctg={5}
-						/>
-					)}
+		<div className="d-flex flex-column">
+			<section className="d-flex flex-column align-items-center justify-content-center text-center vh-100">
+				<div className="w-100">
+					<Hero title={title} description={description} image={image} />
+				</div>
+				<div className="container justify-content-center mb-5">
+					<Button
+						className="me-4"
+						label={showRoleSelection ? "Return" : "Play"}
+						color={showRoleSelection ? "secondary" : "primary"}
+						onClick={() => {
+							setShowRoleSelection(!showRoleSelection);
+						}}
+						widthPctg={18}
+						heightPctg={120}
+					/>
 					<Button
 						label="Tutorial"
 						color="outline-secondary"
 						onClick={() => navigate("/tutorial")}
-						widthPctg={4}
+						widthPctg={18}
+						heightPctg={120}
 					/>
 				</div>
-				{showRoleSelection && <RolePage />}
-			</div>
+			</section>
+			{showRoleSelection && (
+				<section className="vh-100">
+					<RolePage />
+				</section>
+			)}
 		</div>
 	);
 };
