@@ -15,7 +15,7 @@ interface Props {
 const TutorialPageHeader = {
 	title: "The Paintability Game",
 	items: ["Home", "Tutorial", "Play"],
-	redirects: ["home", "tutorial", "play"],
+	redirects: ["home", "tutorial", "home#role-page"],
 	selectedIndex: 1,
 	image: undefined,
 };

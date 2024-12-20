@@ -21,6 +21,7 @@ import Hero from "../components/Hero";
 import RolePage from "./RolePage";
 import { useNavigate } from "react-router-dom";
 import "./HomePage.css";
+import { useEffect } from "react";
 
 interface Props {
 	/**
@@ -68,6 +69,19 @@ const HomePage = ({ title, description, image = undefined }: Props) => {
 	 * @brief Part of react-router-dom to enable redirects to Game Page when a Card is clicked.
 	 */
 	const navigate = useNavigate();
+
+	/**
+	 * @callback scroll
+	 * @brief detect when the #hash changes and scroll to the corresponding element.
+	 */
+	useEffect(() => {
+		if (location.hash) {
+			const element = document.querySelector(location.hash);
+			if (element) {
+				element.scrollIntoView({ behavior: "smooth" });
+			}
+		}
+	}, [location]);
 
 	return (
 		<>
