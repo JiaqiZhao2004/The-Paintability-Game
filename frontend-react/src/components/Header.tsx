@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import FortressImg from "../assets/fortress.png";
 import "./Header.css";
 
@@ -17,28 +16,32 @@ const Header = ({
 	selectedIndex,
 	image = FortressImg,
 }: Props) => {
+	const navItems = items.map((item, index) => (
+		<li key={index}>
+			<a
+				href={selectedIndex === index ? "" : "/" + redirects[index]} // no redirect if select same page
+				className={
+					selectedIndex === index ? "custom-active" : "custom-inactive"
+				}
+			>
+				{item}
+			</a>
+		</li>
+	));
+
 	return (
 		<header className="header">
-			<Link className="logo" to="/home">
+			<a className="logo" href="/home">
 				<img src={image} />
 				<h2>{title}</h2>
-			</Link>
+			</a>
 
-			<ul className="nav nav-pills custom-nav">
-				{items.map((item, index) => (
-					<li key={index}>
-						<Link
-							to={selectedIndex === index ? "" : "/" + redirects[index]} // no redirect if select same page
-							className={
-								selectedIndex === index ? "custom-active" : "custom-inactive"
-							}
-							aria-current="page"
-						>
-							{item}
-						</Link>
-					</li>
-				))}
-			</ul>
+			<ul className="nav nav-pills custom-nav">{navItems}</ul>
+
+			<div className="dropdown" id="dropdown-menu">
+				<button className="button">Menu</button>
+				<ul className="items">{navItems}</ul>
+			</div>
 		</header>
 	);
 };
