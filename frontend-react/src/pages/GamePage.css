@@ -1,0 +1,47 @@
+.game-page {
+	display: flex;
+	flex-direction: row;
+	height: 90vh;
+	overflow: hidden;
+}
+
+.left-sidebar {
+	width: 25%;
+	overflow-y: auto;
+	border-right: 1px solid #ddd;
+	padding: 10px;
+	background-color: #f9f9f9;
+}
+
+.game-page .main-area {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	gap: 30px;
+}
+
+.game-page .main-area .home-player-info {
+	position: absolute;
+	top: 100px;
+	left: 110px;
+}
+
+.game-page .main-area .away-player-info {
+	position: absolute;
+	top: 100px;
+	right: 110px;
+}
+
+.game-page .main-area .alert {
+	position: "absolute";
+	top: 100px;
+	vertical-align: "middle";
+}
+
+.game-page .main-area p {
+	font-size: x-large;
+	font-weight: 500;
+}
