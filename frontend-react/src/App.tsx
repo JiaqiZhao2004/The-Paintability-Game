@@ -14,8 +14,8 @@ function App() {
 	// const [numNodes, setNumNodes] = useState(7);
 	// const [edgeDensity, setEdgeDensity] = useState(0.6);
 	const numNodes = 8;
-	const edgeDensity = 0.6;
-	const difficulty = 0.35; // difficulty for defender
+	const edgeDensity = 0.5;
+	const difficulty = 0.65; // difficulty for defender
 
 	return (
 		<Router>
