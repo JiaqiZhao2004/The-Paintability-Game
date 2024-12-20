@@ -1,9 +1,9 @@
 .role-card {
 	display: flex;
 	flex-direction: column;
-	flex-basis: 26%;
 	text-align: center;
 	padding: 13%;
+	height: 100%;
 	border-radius: 1.5%;
 	color: #e0e0e0;
 	background: radial-gradient(circle, #313539, #1d1d1d);
@@ -34,7 +34,7 @@
 }
 
 .role-card h3 {
-	font-size: 2.5rem;
+	font-size: 3vw;
 	line-height: 1;
 	padding-bottom: 1rem;
 	font-weight: bold;

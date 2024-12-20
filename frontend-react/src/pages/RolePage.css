@@ -4,7 +4,7 @@
 	text-align: center;
 	justify-content: center;
 	min-height: 100%;
-	margin: 4rem;
+    margin: clamp(1rem, 10%, 4rem);
 }
 
 .role-page h2 {
@@ -23,14 +23,10 @@
 }
 
 .role-page .card {
-	max-width: 360px;
+	max-width: 30%;
 }
 
 @media (max-width: 768px) {
-	.role-page {
-		margin: clamp(1rem, 10%, 4rem);
-	}
-
 	.role-page .card {
 		max-width: 100%;
 	}
