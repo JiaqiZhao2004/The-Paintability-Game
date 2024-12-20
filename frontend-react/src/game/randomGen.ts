@@ -19,27 +19,28 @@ export function randomGraph(n: number, p: number): number[][] {
 	return output;
 }
 
-export function randomList(adjMat: number[][], n: number, difficulty: number): number[] {
+export function randomList(
+	adjMat: number[][],
+	n: number,
+	difficulty: number
+): number[] {
 	let output: number[] = [];
 	for (let i = 0; i < n; i++) {
-		let deg: number = 0;
+		let deg: number = 1;
 		for (let j = 0; j < n; j++) {
 			if (adjMat[i][j] > 0 && Math.random() > difficulty) {
 				deg = deg + 1;
 			}
 		}
-		// let x: number = Math.random();
-		// if (x < 0.33333) {
-		// 	if (deg > 1) {
-		// 		deg = deg - 1;
-		// 	}
-		// } else {
-		// 	deg = deg + 1;
-		// }
-		if (deg <= 0) {
-			deg = 1;
-		}
 		output.push(deg);
 	}
+
+	// ensure no two connected health 1 nodes
+	for (let i = 0; i < n; i++) {
+		for (let j = 0; j < n; j++) {
+			if (adjMat[i][j] > 0 && output[i] == 1 && output[j] == 1) output[i] += 1;
+		}
+	}
+
 	return output;
 }
