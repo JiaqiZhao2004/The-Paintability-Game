@@ -98,7 +98,7 @@
 	}
 }
 
-@media (max-width: 384px) {
+@media (max-width: 422px) {
 	.header .custom-nav {
 		display: none;
 	}
