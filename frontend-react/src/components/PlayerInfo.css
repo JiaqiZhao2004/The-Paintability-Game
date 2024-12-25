@@ -1,0 +1,29 @@
+.player-info {
+	display: flex;
+	align-items: center;
+	gap: 3.5%;
+	padding: 3.5%;
+	border-radius: 8px;
+	max-height: min(7.5rem, 20vh);
+	max-width: min(16rem, 45vw);
+	transition: box-shadow 0.3s ease;
+}
+
+.player-info h3 {
+	margin: 0;
+	font-size: clamp(1rem, min(4.5vw, 7vh), 1.5rem);
+	color: #333;
+	font-style: bold;
+}
+
+.player-info h4 {
+	margin: 0;
+	font-size: clamp(0.6rem, min(2vw, 2.5vh), 1.4rem);
+	color: #333;
+	font-weight: bold;
+	font-style: italic;
+}
+
+.player-info img {
+	max-width: 33%;
+}

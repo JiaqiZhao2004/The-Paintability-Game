@@ -12,6 +12,7 @@
 
 import EvilMastermindIcon from "../assets/evil-mastermind.jpg";
 import PoliceEnforcementIcon from "../assets/police-enforcement.jpg";
+import "./PlayerInfo.css";
 
 /**
  * @typedef Props
@@ -83,52 +84,31 @@ const PlayerInfo = ({ playerName, isEvilRole, glow, left, won }: Props) => {
 			src={isEvilRole ? EvilMastermindIcon : PoliceEnforcementIcon}
 			alt={`${isEvilRole ? "EvilMastermindIcon" : "PoliceEnforcementIcon"}`}
 			style={{
-				width: "80px",
-				height: "80px",
-				objectFit: "contain",
-				border: `2px solid ${glow ? glowColor : noGlowColor}`,
+				border: `0.15rem solid ${glow ? glowColor : noGlowColor}`,
 			}}
 		/>
 	);
 
 	return (
 		<div
+			className="player-info"
 			style={{
-				display: "flex",
-				alignItems: "center",
-				gap: "10px",
-				padding: "10px",
-				border: `2px solid ${glow ? glowColor : noGlowColor}`,
-				borderRadius: "8px",
+				justifyContent: left ? "start" : "end",
+				border: `0.15rem solid ${glow ? glowColor : noGlowColor}`,
 				backgroundColor: won ? "#ffef99" : "#f9f9f9",
-				maxWidth: "300px",
 				boxShadow: `0 0 10px ${glow ? glowColor : noGlowColor}`,
-				transition: "box-shadow 0.3s ease",
 			}}
 		>
 			{left && img}
-			<div style={{ textAlign: left ? "left" : "right" }}>
-				<h3
-					style={{
-						margin: 0,
-						fontSize: "28px",
-						color: "#333",
-						fontWeight: "bold",
-					}}
-				>
-					{playerName}
-				</h3>
-				<h3
-					style={{
-						margin: 0,
-						fontSize: "16px",
-						color: "#333",
-						fontWeight: "bold",
-						fontStyle: "italic",
-					}}
-				>
-					{isEvilRole ? "Evil Mastermind" : "Police Enforcement"}
-				</h3>
+			<div
+				style={{
+					textAlign: left ? "left" : "right",
+					paddingLeft: left ? "0" : "0.5rem",
+					paddingRight: left ? "0.5rem" : "0",
+				}}
+			>
+				<h3>{playerName}</h3>
+				<h4>{isEvilRole ? "Evil\u00A0Mastermind" : "Police\u00A0Enforcement"}</h4>
 			</div>
 			{!left && img}
 		</div>
