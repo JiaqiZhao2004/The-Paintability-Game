@@ -36,6 +36,7 @@
 	position: absolute;
 	top: calc(10% + 2rem);
 	right: 2rem;
+	z-index: 10;
 }
 
 .game-page .main-area .alert {

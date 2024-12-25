@@ -265,31 +265,36 @@ const GamePage = ({ n, p, difficulty, isEvilRole }: GamePageProps) => {
 			{/* Right Section: Game Area */}
 			<div className="main-area">
 				<Header {...GamePageHeader} />
+				{(window.innerWidth >= 768 || isLeftPlayersTurn) && (
+					<div className="left-info-panel">
+						<PlayerInfo
+							playerName="Player&nbsp;1"
+							isEvilRole={isEvilRole}
+							glow={isLeftPlayersTurn}
+							left={true}
+							won={leftPlayerWon}
+						/>
 
-				<div className="left-info-panel">
-					<PlayerInfo
-						playerName="Player 1"
-						isEvilRole={isEvilRole}
-						glow={isLeftPlayersTurn}
-						left={true}
-						won={leftPlayerWon}
-					/>
-					<Button
-						label={`${showTutorial ? "Hide" : "Show"} Tutorial`}
-						color="outline-secondary"
-						onClick={() => setShowTutorial(!showTutorial)}
-						widthPctg={61}
-					/>
-				</div>
+						<Button
+							label={`${showTutorial ? "Hide" : "Show"} Tutorial`}
+							color="outline-secondary"
+							onClick={() => setShowTutorial(!showTutorial)}
+							widthPctg={61}
+						/>
+					</div>
+				)}
 				<div className="right-info-panel">
-					<PlayerInfo
-						playerName="Player 2"
-						isEvilRole={!isEvilRole}
-						glow={!isLeftPlayersTurn}
-						left={false}
-						won={gameEnd && !leftPlayerWon}
-					/>
+					{(window.innerWidth >= 768 || !isLeftPlayersTurn) && (
+						<PlayerInfo
+							playerName="Player&nbsp;2"
+							isEvilRole={!isEvilRole}
+							glow={!isLeftPlayersTurn}
+							left={false}
+							won={gameEnd && !leftPlayerWon}
+						/>
+					)}
 				</div>
+
 				<div className="alert">
 					{invalidSelectionNotice && (
 						<Alert text="Your selection must be an independent set! See Tutorial Step 4." />
@@ -301,15 +306,15 @@ const GamePage = ({ n, p, difficulty, isEvilRole }: GamePageProps) => {
 					handleNodeClick={handleNodeClick}
 				/>
 				<div className="button">
-				{gameEnd ? (
-					<p>{game.current.getGameState().winner + " is the Winner!"}</p>
-				) : (
-					<Button
-						label="End Turn"
-						color="warning"
-						onClick={handleSubmit}
-					/>
-				)}
+					{gameEnd ? (
+						<p>{game.current.getGameState().winner + " is the Winner!"}</p>
+					) : (
+						<Button
+							label="End Turn"
+							color="warning"
+							onClick={handleSubmit}
+						/>
+					)}
 				</div>
 			</div>
 		</div>
