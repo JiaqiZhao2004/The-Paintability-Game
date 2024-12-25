@@ -49,8 +49,7 @@
 	font-weight: 500;
 }
 
-/* @media (max-width: 768px) {
-	.game-page .main-area .header {
-		
-	}
-} */
+.game-page .main-area .button {
+	min-width: 200px;
+	min-height: 50px;
+}

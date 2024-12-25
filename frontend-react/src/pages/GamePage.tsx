@@ -300,6 +300,7 @@ const GamePage = ({ n, p, difficulty, isEvilRole }: GamePageProps) => {
 					edges={displayedEdges}
 					handleNodeClick={handleNodeClick}
 				/>
+				<div className="button">
 				{gameEnd ? (
 					<p>{game.current.getGameState().winner + " is the Winner!"}</p>
 				) : (
@@ -307,10 +308,9 @@ const GamePage = ({ n, p, difficulty, isEvilRole }: GamePageProps) => {
 						label="End Turn"
 						color="warning"
 						onClick={handleSubmit}
-						heightPctg={14}
-						widthPctg={25}
 					/>
 				)}
+				</div>
 			</div>
 		</div>
 	);
