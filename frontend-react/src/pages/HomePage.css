@@ -8,6 +8,11 @@
 	background: linear-gradient(to right, #a6c6b8, #f5d8a7, #c95f4a);
 }
 
+.top-half .hero {
+	margin-left: 3rem;
+	margin-right: 3rem;
+}
+
 .bottom-half {
 	min-height: 90vh;
 }

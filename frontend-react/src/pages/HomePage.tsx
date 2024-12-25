@@ -86,8 +86,9 @@ const HomePage = ({ title, description, image = undefined }: Props) => {
 	return (
 		<>
 			<section className="top-half">
-				<Hero title={title} description={description} image={image} />
-
+				<div className="hero">
+					<Hero title={title} description={description} image={image} />
+				</div>
 				<div className="button-row">
 					<Button
 						label={"Play"}

@@ -1,3 +1,5 @@
+import "./Hero.css";
+
 interface Props {
 	title: string;
 	description: string;
@@ -6,13 +8,12 @@ interface Props {
 
 const Hero = ({ title, description, image }: Props) => {
 	return (
-		<>
+		<div className="hero">
 			{image && (
 				<img
 					className="d-block mx-auto mb-4"
 					src={image}
 					alt="game icon"
-					width="22%"
 				/>
 			)}
 			<h1
@@ -24,7 +25,7 @@ const Hero = ({ title, description, image }: Props) => {
 			<div className="col-lg-6 mx-auto">
 				<p className="lead mb-4">{description}</p>
 			</div>
-		</>
+		</div>
 	);
 };
 export default Hero;
