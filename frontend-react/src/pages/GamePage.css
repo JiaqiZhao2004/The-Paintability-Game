@@ -55,3 +55,8 @@
 	font-size: clamp(0.6rem, min(3vw, 4vh), 1rem);
 	max-width: min(9rem, 27vw);
 }
+
+.game-page .main-area .btn-end-turn button {
+	width: clamp(200px, 30vw, 600px);
+	min-height: 5vh;
+}
