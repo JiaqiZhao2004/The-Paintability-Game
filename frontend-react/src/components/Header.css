@@ -75,10 +75,7 @@
 	z-index: 1000;
 }
 
-.header .dropdown .button {
-	background-color: #212529;
-	color: white;
-	border: none;
+.header .dropdown button {
 	padding: 0.5rem 4rem;
 	border-radius: 5px;
 	cursor: pointer;

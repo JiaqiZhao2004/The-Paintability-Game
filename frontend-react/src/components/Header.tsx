@@ -1,4 +1,5 @@
 import FortressImg from "../assets/fortress.png";
+import Button from "./Button";
 import "./Header.css";
 
 interface Props {
@@ -39,7 +40,7 @@ const Header = ({
 			<ul className="nav nav-pills custom-nav">{navItems}</ul>
 
 			<div className="dropdown" id="dropdown-menu">
-				<button className="button">Menu</button>
+				<Button label="Menu" color="dark"/>
 				<ul className="items">{navItems}</ul>
 			</div>
 		</header>
