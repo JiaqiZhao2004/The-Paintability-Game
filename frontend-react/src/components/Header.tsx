@@ -40,7 +40,7 @@ const Header = ({
 			<ul className="nav nav-pills custom-nav">{navItems}</ul>
 
 			<div className="dropdown" id="dropdown-menu">
-				<Button label="Menu" color="dark"/>
+				<Button className="dropdown-toggle" label="Menu" color="dark"/>
 				<ul className="items">{navItems}</ul>
 			</div>
 		</header>
