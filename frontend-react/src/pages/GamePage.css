@@ -13,6 +13,7 @@
 	background-color: #f9f9f9;
 }
 
+
 .game-page .main-area {
 	flex: 1;
 	display: flex;
@@ -22,21 +23,21 @@
 	position: relative;
 }
 
-.game-page .main-area .left-info-panel {
+.game-page .main-area .info-panels {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
 	position: absolute;
 	top: calc(10% + 2rem);
-	left: 2rem;
-	gap: 1rem;
+	padding-inline: clamp(1rem, 7vw, 5rem);
 	z-index: 10;
 }
 
-.game-page .main-area .right-info-panel {
-	position: absolute;
-	top: calc(10% + 2rem);
-	right: 2rem;
-	z-index: 10;
+.game-page .main-area .info-panel {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
 }
 
 .game-page .main-area .alert {
@@ -50,7 +51,7 @@
 	font-weight: 500;
 }
 
-.game-page .main-area .button {
-	min-width: 200px;
-	min-height: 50px;
+.game-page .main-area .info-panels .info-panel button {
+	font-size: clamp(0.6rem, min(3vw, 4vh), 1rem);
+	max-width: min(9rem, 27vw);
 }
