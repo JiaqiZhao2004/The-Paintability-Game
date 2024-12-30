@@ -5,6 +5,12 @@ import step3 from "../assets/tutorial/03.png";
 import step4 from "../assets/tutorial/04.png";
 import step5 from "../assets/tutorial/05.png";
 import step6 from "../assets/tutorial/06.png";
+import step1_v from "../assets/tutorial/01-v.png";
+import step2_v from "../assets/tutorial/02-v.png";
+import step3_v from "../assets/tutorial/03-v.png";
+import step4_v from "../assets/tutorial/04-v.png";
+import step5_v from "../assets/tutorial/05-v.png";
+import step6_v from "../assets/tutorial/06-v.png";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import "./TutorialPage.css";
@@ -25,6 +31,7 @@ interface TutorialStep {
 	subtitle: string;
 	description: string;
 	imageSrc: string | undefined;
+	imageVSrc: string | undefined;
 	altText: string;
 }
 
@@ -34,6 +41,7 @@ const tutorialSteps: TutorialStep[] = [
 		description:
 			"You choose whether you want to play as the Evil Mastermind or Police Enforcement.",
 		imageSrc: step1,
+		imageVSrc: step1_v,
 		altText: "Understanding the Game",
 	},
 
@@ -41,6 +49,7 @@ const tutorialSteps: TutorialStep[] = [
 		subtitle: "Hint 2 of 6: ",
 		description: "You start out with a graph. Each vertex has a health bar.",
 		imageSrc: step2,
+		imageVSrc: step2_v,
 		altText: "Understanding the Game",
 	},
 	{
@@ -48,6 +57,7 @@ const tutorialSteps: TutorialStep[] = [
 		description:
 			"At the start of each turn, the Evil Mastermind chooses vertices to attack however they desire.",
 		imageSrc: step3,
+		imageVSrc: step3_v,
 		altText: "Selecting Your Role",
 	},
 	{
@@ -55,6 +65,7 @@ const tutorialSteps: TutorialStep[] = [
 		description:
 			"The defender responds by protecing the attacked vertices. However, if two vertices share an edge, the defender can only protect one of them.",
 		imageSrc: step4,
+		imageVSrc: step4_v,
 		altText: "Making Your Move",
 	},
 	{
@@ -62,6 +73,7 @@ const tutorialSteps: TutorialStep[] = [
 		description:
 			"Any unprotected vertex at the end of the turn loses 1 health. Any successfully proteced vertex cannot be attacked again.",
 		imageSrc: step5,
+		imageVSrc: step5_v,
 		altText: "Winning the Game",
 	},
 	{
@@ -69,6 +81,7 @@ const tutorialSteps: TutorialStep[] = [
 		description:
 			"The attacker wins if any vertex has been reduced to zero health. The defender wins if all vertices are safe.",
 		imageSrc: step6,
+		imageVSrc: step6_v,
 		altText: "Winning the Game",
 	},
 	{
@@ -76,6 +89,7 @@ const tutorialSteps: TutorialStep[] = [
 		description:
 			"If the attacker uses the strategy of attacking all vertices each turn, then the graph is called k-colorable if the defender can win when all vertices have health k. The chromatic number of a graph is the minimum k such that a graph is k-colorable.",
 		imageSrc: undefined,
+		imageVSrc: undefined,
 		altText: "Winning the Game",
 	},
 ];
@@ -102,8 +116,14 @@ const TutorialPage = ({ inSideBar }: Props) => {
 							>
 								<h2>{step.subtitle}</h2>
 								<p>{step.description}</p>
+
 								{step.imageSrc && (
-									<img src={step.imageSrc} alt={step.altText} />
+									<img
+										src={
+											window.innerWidth > 768 ? step.imageSrc : step.imageVSrc
+										}
+										alt={step.altText}
+									/>
 								)}
 							</div>
 						))}
