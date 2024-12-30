@@ -1,10 +1,9 @@
 import ReactFlow, {
 	Node,
 	Edge,
-	MiniMap,
 	Controls,
 	Background,
-	NodeMouseHandler
+	NodeMouseHandler,
 } from "react-flow-renderer";
 import CustomNode from "./CustomNode";
 
@@ -15,23 +14,21 @@ interface Props {
 }
 
 const nodeTypes = {
-    customNode: CustomNode,
+	customNode: CustomNode,
 };
 
-function Graph({ nodes,  edges, handleNodeClick }: Props) {
-
+function Graph({ nodes, edges, handleNodeClick }: Props) {
 	return (
 		<ReactFlow
-				nodes={nodes}
-				edges={edges}
-				nodeTypes={nodeTypes}
-				onNodeClick={handleNodeClick}
-				fitView
-			>
-				{/* <MiniMap /> */}
-				<Controls />
-				<Background color="#aaa" gap={16} />
-			</ReactFlow>
+			nodes={nodes}
+			edges={edges}
+			nodeTypes={nodeTypes}
+			onNodeClick={handleNodeClick}
+			fitView
+		>
+			<Controls />
+			<Background color="#aaa" gap={16} />
+		</ReactFlow>
 	);
 }
 

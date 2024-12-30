@@ -96,6 +96,8 @@ $(function(){ initResizable(false); });
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:ae938bf667964d883ba36775e04565902" id="r_ae938bf667964d883ba36775e04565902"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_app_8tsx.html#a59be084da8908b7d77ff34b25cd84488">import</a> <a class="el" href="#a7b43fcacf193d815c4ed68e3ec77ef32">Hero</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae938bf667964d883ba36775e04565902">css</a></td></tr>
+<tr class="separator:ae938bf667964d883ba36775e04565902"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a298b12227a6d7f9d1011627edd7d65a9" id="r_a298b12227a6d7f9d1011627edd7d65a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_tutorial_page_8tsx.html#aa3a1e2451ad8722ba3513353e016c7ac">description</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a298b12227a6d7f9d1011627edd7d65a9">__pad0__</a></td></tr>
 <tr class="separator:a298b12227a6d7f9d1011627edd7d65a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d6c12a6f89f8dcd3b49573d7193ec06" id="r_a1d6c12a6f89f8dcd3b49573d7193ec06"><td class="memItemLeft" align="right" valign="top">image&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d6c12a6f89f8dcd3b49573d7193ec06">__pad1__</a></td></tr>
@@ -132,6 +134,20 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="ae938bf667964d883ba36775e04565902" name="ae938bf667964d883ba36775e04565902"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae938bf667964d883ba36775e04565902">&#9670;&#160;</a></span>css</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_app_8tsx.html#a59be084da8908b7d77ff34b25cd84488">import</a> <a class="el" href="#a7b43fcacf193d815c4ed68e3ec77ef32">Hero</a> css</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a7b43fcacf193d815c4ed68e3ec77ef32" name="a7b43fcacf193d815c4ed68e3ec77ef32"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7b43fcacf193d815c4ed68e3ec77ef32">&#9670;&#160;</a></span>Hero</h2>
 
@@ -145,22 +161,21 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= ({ title, <a class="code hl_variable" href="_tutorial_page_8tsx.html#aa3a1e2451ad8722ba3513353e016c7ac">description</a>, image }: Props) =&gt; {</div>
 <div class="line">    <span class="keywordflow">return</span> (</div>
-<div class="line">        &lt;&gt;</div>
-<div class="line">            {image &amp;&amp; &lt;img</div>
-<div class="line">                className=<span class="stringliteral">&quot;d-block mx-auto mb-4&quot;</span></div>
-<div class="line">                src={image}</div>
-<div class="line">                alt=<span class="stringliteral">&quot;&quot;</span></div>
-<div class="line">                width=<span class="stringliteral">&quot;72&quot;</span></div>
-<div class="line">                height=<span class="stringliteral">&quot;57&quot;</span></div>
-<div class="line">            /&gt;}</div>
-<div class="line">            &lt;h1 className=<span class="stringliteral">&quot;display-5 fw-bold text-body-emphasis&quot;</span>&gt;{title}&lt;/h1&gt;</div>
-<div class="line">            &lt;div className=<span class="stringliteral">&quot;col-lg-6 mx-auto&quot;</span>&gt;</div>
-<div class="line">                &lt;p className=<span class="stringliteral">&quot;lead mb-4&quot;</span>&gt;{<a class="code hl_variable" href="_tutorial_page_8tsx.html#aa3a1e2451ad8722ba3513353e016c7ac">description</a>}&lt;/p&gt;</div>
-<div class="line">            &lt;/div&gt;</div>
-<div class="line">        &lt;/&gt;</div>
+<div class="line">        &lt;div className=<span class="stringliteral">&quot;hero&quot;</span>&gt;</div>
+<div class="line">            {image &amp;&amp; (</div>
+<div class="line">                &lt;img className=<span class="stringliteral">&quot;d-block mx-auto mb-4&quot;</span> src={image} alt=<span class="stringliteral">&quot;game icon&quot;</span> /&gt;</div>
+<div class="line">            )}</div>
+<div class="line">            &lt;h1</div>
+<div class="line">                className=<span class="stringliteral">&quot;display-5 fw-bold text-body-emphasis&quot;</span></div>
+<div class="line">                style={{ WebkitTextFillColor: <span class="stringliteral">&quot;#1f1f1f&quot;</span> }}</div>
+<div class="line">            &gt;</div>
+<div class="line">                {title}</div>
+<div class="line">            &lt;/h1&gt;</div>
+<div class="line">            &lt;p className=<span class="stringliteral">&quot;lead mb-4&quot;</span>&gt;{<a class="code hl_variable" href="_tutorial_page_8tsx.html#aa3a1e2451ad8722ba3513353e016c7ac">description</a>}&lt;/p&gt;</div>
+<div class="line">        &lt;/div&gt;</div>
 <div class="line">    );</div>
 <div class="line">}</div>
-<div class="ttc" id="a_tutorial_page_8tsx_html_aa3a1e2451ad8722ba3513353e016c7ac"><div class="ttname"><a href="_tutorial_page_8tsx.html#aa3a1e2451ad8722ba3513353e016c7ac">description</a></div><div class="ttdeci">const description</div><div class="ttdoc">A brief description of the game displayed on the HomePage.</div><div class="ttdef"><b>Definition</b> TutorialPage.tsx:34</div></div>
+<div class="ttc" id="a_tutorial_page_8tsx_html_aa3a1e2451ad8722ba3513353e016c7ac"><div class="ttname"><a href="_tutorial_page_8tsx.html#aa3a1e2451ad8722ba3513353e016c7ac">description</a></div><div class="ttdeci">const description</div><div class="ttdoc">A brief description of the game displayed on the HomePage.</div><div class="ttdef"><b>Definition</b> TutorialPage.tsx:42</div></div>
 </div><!-- fragment -->
 </div>
 </div>
