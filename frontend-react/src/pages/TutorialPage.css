@@ -1,0 +1,65 @@
+.tutorial-page {
+	display: flex;
+	flex-direction: column;
+	max-width: 840px;
+	padding: 40px;
+	gap: 1rem;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.carousel-inner {
+	height: 60vh;
+}
+
+.carousel-item {
+	height: 100%; /* Ensure the item fills the carousel height */
+	display: flex;
+	align-items: center; /* Vertically center content */
+	justify-content: center; /* Horizontally center content */
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	padding: 15px;
+	background-color: #f9f9f9;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-item h2 {
+	font-size: x-large;
+	color: #333;
+}
+
+.carousel-item p {
+	font-size: large;
+	color: #555;
+	margin-bottom: 0.5rem;
+}
+
+.carousel-item img {
+	object-fit: contain; /* Ensure the image scales proportionally */
+	max-height: 50vh; /* Set a maximum height relative to the viewport */
+	max-width: 100%; /* Ensure the image doesn't exceed the container width */
+	width: auto; /* Keep aspect ratio */
+	margin: 0 auto; /* Center the image horizontally */
+	border-radius: 5px;
+	border: 1px solid #ddd;
+}
+
+.custom-carousel .carousel-control-prev-icon,
+.custom-carousel .carousel-control-next-icon {
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 50%; /* Make them circular */
+	width: 50px; /* Increase size */
+	height: 50px; /* Increase size */
+	background-size: 60%; /* Resize the arrow icon within the button */
+}
+
+.custom-carousel .carousel-control-prev:hover .carousel-control-prev-icon,
+.custom-carousel .carousel-control-next:hover .carousel-control-next-icon {
+	background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+}
+
+.custom-carousel .carousel-control-prev,
+.custom-carousel .carousel-control-next {
+	opacity: 1; /* Ensure the buttons are fully visible */
+}
