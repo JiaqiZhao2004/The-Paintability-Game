@@ -14,10 +14,11 @@
  */
 
 import { useNavigate } from "react-router-dom";
-import Card from "../components/Card";
+import RoleCard from "../components/RoleCard";
 import policeEnforcementImg from "../assets/police-enforcement.jpg";
 import evilMastermindImg from "../assets/evil-mastermind.jpg";
 import centerFortressImg from "../assets/fortress-center.png";
+import "./RolePage.css";
 
 /**
  * @function RolePage
@@ -104,25 +105,13 @@ const RolePage = () => {
 	const cards = [EvilMastermindCard, PoliceEnforcementCard, RandomRoleCard];
 
 	return (
-		<div className="d-flex flex-column text-center justify-content-center w-100 h-100 gap-2">
-			<h2
-				className="pb-2 border-bottom"
-				id="role-page"
-				style={{ fontStyle: "italic" }}
-			>
-				{title}
-			</h2>
-
-			<div
-				style={{
-					display: "flex",
-					alignItems: "stretch",
-					justifyContent: "center",
-					gap: "3.5%",
-				}}
-			>
+		<div className="role-page">
+			<h2 id="role-page">{title}</h2>
+			<div className="cards-section">
 				{cards.map((item) => (
-					<Card {...item} />
+					<div className="card">
+						<RoleCard {...item} />
+					</div>
 				))}
 			</div>
 		</div>

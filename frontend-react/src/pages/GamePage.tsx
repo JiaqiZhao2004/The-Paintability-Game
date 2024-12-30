@@ -31,6 +31,7 @@ import { randomGraph, randomList } from "../game/randomGen";
 import PlayerInfo from "../components/PlayerInfo";
 import TutorialPage from "./TutorialPage";
 import Alert from "../components/Alert";
+import "./GamePage.css";
 
 /**
  * @typedef GamePageProps
@@ -219,7 +220,6 @@ const GamePage = ({ n, p, difficulty, isEvilRole }: GamePageProps) => {
 		if (game.current.checkForWinner()) {
 			console.log("Winner is " + game.current.getGameState().winner);
 			setGameEnd(true);
-			setIsLeftPlayersTurn((prev) => !prev);
 		}
 	};
 
@@ -253,95 +253,62 @@ const GamePage = ({ n, p, difficulty, isEvilRole }: GamePageProps) => {
 			(!isEvilRole && game.current.getGameState().winner == "Defender"));
 
 	return (
-		<div
-			style={{
-				display: "flex",
-				height: "100vh",
-				overflow: "hidden", // Prevents scrollbars from appearing unnecessarily
-			}}
-		>
+		<div className="game-page">
 			{/* Left Section: Tutorial Page */}
 			{showTutorial && (
-				<div
-					style={{
-						width: "25%", // Adjust width to fit your preference
-						overflowY: "auto", // Makes the tutorial section scrollable
-						borderRight: "1px solid #ddd", // Optional: Adds a dividing line
-						padding: "10px",
-						backgroundColor: "#f9f9f9", // Optional: Light background for distinction
-					}}
-				>
+				<div className="left-sidebar">
 					<TutorialPage inSideBar={true} />
 				</div>
 			)}
 
 			{/* Right Section: Game Area */}
-			<div
-				style={{
-					flex: 1,
-					display: "flex",
-					flexDirection: "column",
-					position: "relative",
-				}}
-			>
-				<div
-					style={{
-						height: "90vh",
-						display: "flex",
-						flexDirection: "column",
-						alignItems: "center",
-						justifyContent: "center",
-						gap: "30px",
-					}}
-				>
-					<Header {...GamePageHeader} />
-					<div
-						style={{ position: "absolute", top: 215, left: 110, zIndex: 10 }}
-					>
+			<div className="main-area">
+				<Header {...GamePageHeader} />
+				<div className="info-panels">
+					<div className="info-panel">
+						{(window.innerWidth >= 768 || isLeftPlayersTurn) && (
+							<PlayerInfo
+								playerName="Player&nbsp;1"
+								isEvilRole={isEvilRole}
+								glow={isLeftPlayersTurn}
+								left={true}
+								won={leftPlayerWon}
+							/>
+						)}
 						<Button
 							label={`${showTutorial ? "Hide" : "Show"} Tutorial`}
 							color="outline-secondary"
 							onClick={() => setShowTutorial(!showTutorial)}
 						/>
 					</div>
-					<div style={{ position: "absolute", top: 100, left: 110 }}>
-						<PlayerInfo
-							playerName="Player 1"
-							isEvilRole={isEvilRole}
-							glow={isLeftPlayersTurn}
-							left={true}
-							won={leftPlayerWon}
-						/>
-					</div>
-					<div style={{ position: "absolute", top: 100, right: 110 }}>
-						<PlayerInfo
-							playerName="Player 2"
-							isEvilRole={!isEvilRole}
-							glow={!isLeftPlayersTurn}
-							left={false}
-							won={gameEnd && !leftPlayerWon}
-						/>
-					</div>
-					<div style={{ position: "absolute", top: 100, verticalAlign: "middle" }}>
-						{invalidSelectionNotice && (
-							<Alert text="Your selection must be an independent set! See Tutorial Step 4." />
+
+					<div className="info-panel">
+						{(window.innerWidth >= 768 || !isLeftPlayersTurn) && (
+							<PlayerInfo
+								playerName="Player&nbsp;2"
+								isEvilRole={!isEvilRole}
+								glow={!isLeftPlayersTurn}
+								left={false}
+								won={gameEnd && !leftPlayerWon}
+							/>
 						)}
 					</div>
-					<Graph
-						nodes={displayedNodes}
-						edges={displayedEdges}
-						handleNodeClick={handleNodeClick}
-					/>
+				</div>
+				<div className="alert">
+					{invalidSelectionNotice && (
+						<Alert text="Your selection must be an independent set! See Tutorial Step 4." />
+					)}
+				</div>
+				<Graph
+					nodes={displayedNodes}
+					edges={displayedEdges}
+					handleNodeClick={handleNodeClick}
+				/>
+				<div className="btn-end-turn">
 					{gameEnd ? (
-						<h4>{game.current.getGameState().winner + " is the Winner!"}</h4>
+						<p>{game.current.getGameState().winner + " is the Winner!"}</p>
 					) : (
-						<Button
-							label="End Turn"
-							color="warning"
-							onClick={handleSubmit}
-							heightPctg={15}
-							widthPctg={25}
-						/>
+						<Button label="End Turn" color="warning" onClick={handleSubmit} />
 					)}
 				</div>
 			</div>

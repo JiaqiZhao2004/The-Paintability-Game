@@ -5,8 +5,15 @@ import step3 from "../assets/tutorial/03.png";
 import step4 from "../assets/tutorial/04.png";
 import step5 from "../assets/tutorial/05.png";
 import step6 from "../assets/tutorial/06.png";
+import step1_v from "../assets/tutorial/01-v.png";
+import step2_v from "../assets/tutorial/02-v.png";
+import step3_v from "../assets/tutorial/03-v.png";
+import step4_v from "../assets/tutorial/04-v.png";
+import step5_v from "../assets/tutorial/05-v.png";
+import step6_v from "../assets/tutorial/06-v.png";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
+import "./TutorialPage.css";
 
 interface Props {
 	inSideBar: boolean;
@@ -15,7 +22,7 @@ interface Props {
 const TutorialPageHeader = {
 	title: "The Paintability Game",
 	items: ["Home", "Tutorial", "Play"],
-	redirects: ["home", "tutorial", "play"],
+	redirects: ["home", "tutorial", "home#role-page"],
 	selectedIndex: 1,
 	image: undefined,
 };
@@ -24,50 +31,57 @@ interface TutorialStep {
 	subtitle: string;
 	description: string;
 	imageSrc: string | undefined;
+	imageVSrc: string | undefined;
 	altText: string;
 }
 
 const tutorialSteps: TutorialStep[] = [
 	{
-		subtitle: "Step 1 of 6:",
+		subtitle: "Hint 1 of 6:",
 		description:
 			"You choose whether you want to play as the Evil Mastermind or Police Enforcement.",
 		imageSrc: step1,
+		imageVSrc: step1_v,
 		altText: "Understanding the Game",
 	},
 
 	{
-		subtitle: "Step 2 of 6: ",
+		subtitle: "Hint 2 of 6: ",
 		description: "You start out with a graph. Each vertex has a health bar.",
 		imageSrc: step2,
+		imageVSrc: step2_v,
 		altText: "Understanding the Game",
 	},
 	{
-		subtitle: "Step 3 of 6: ",
+		subtitle: "Hint 3 of 6: ",
 		description:
 			"At the start of each turn, the Evil Mastermind chooses vertices to attack however they desire.",
 		imageSrc: step3,
+		imageVSrc: step3_v,
 		altText: "Selecting Your Role",
 	},
 	{
-		subtitle: "Step 4 of 6: ",
+		subtitle: "Hint 4 of 6: ",
 		description:
 			"The defender responds by protecing the attacked vertices. However, if two vertices share an edge, the defender can only protect one of them.",
 		imageSrc: step4,
+		imageVSrc: step4_v,
 		altText: "Making Your Move",
 	},
 	{
-		subtitle: "Step 5 of 6: ",
+		subtitle: "Hint 5 of 6: ",
 		description:
 			"Any unprotected vertex at the end of the turn loses 1 health. Any successfully proteced vertex cannot be attacked again.",
 		imageSrc: step5,
+		imageVSrc: step5_v,
 		altText: "Winning the Game",
 	},
 	{
-		subtitle: "Step 6 of 6: ",
+		subtitle: "Hint 6 of 6: ",
 		description:
 			"The attacker wins if any vertex has been reduced to zero health. The defender wins if all vertices are safe.",
 		imageSrc: step6,
+		imageVSrc: step6_v,
 		altText: "Winning the Game",
 	},
 	{
@@ -75,6 +89,7 @@ const tutorialSteps: TutorialStep[] = [
 		description:
 			"If the attacker uses the strategy of attacking all vertices each turn, then the graph is called k-colorable if the defender can win when all vertices have health k. The chromatic number of a graph is the minimum k such that a graph is k-colorable.",
 		imageSrc: undefined,
+		imageVSrc: undefined,
 		altText: "Winning the Game",
 	},
 ];
@@ -89,73 +104,63 @@ const TutorialPage = ({ inSideBar }: Props) => {
 	return (
 		<>
 			{!inSideBar && <Header {...TutorialPageHeader} />}
-			<div
-				style={{
-					padding: "40px",
-					maxWidth: "840px",
-					margin: "0 auto",
-					textAlign: "center",
-					paddingBottom: "100px",
-				}}
-			>
-				<h1 style={{ fontSize: "36px", marginBottom: "20px" }}>
-					Welcome to The Paintability Game!
-				</h1>
-				<div
-					style={{
-						display: "flex",
-						flexDirection: "column",
-						gap: "30px",
-						paddingBottom: "40px",
-					}}
-				>
-					{tutorialSteps.map((step, index) => (
-						<div
-							key={index}
-							style={{
-								border: "1px solid #ddd",
-								borderRadius: "10px",
-								padding: "15px",
-								textAlign: "left",
-								backgroundColor: "#f9f9f9",
-								boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-							}}
-						>
-							<h2 style={{ fontSize: "24px", color: "#333" }}>
-								{step.subtitle}
-							</h2>
-							<p
-								style={{
-									fontSize: "20px",
-									color: "#555",
-									marginBottom: "15px",
-								}}
+			<div className="tutorial-page">
+				<h1>Welcome to The Paintability Game!</h1>
+				<div id="carousel" className="carousel slide custom-carousel">
+					<div className="carousel-inner">
+						{tutorialSteps.map((step, index) => (
+							<div
+								className={
+									index == 0 ? "carousel-item active" : "carousel-item"
+								}
 							>
-								{step.description}
-							</p>
-							{step.imageSrc && (
-								<img
-									src={step.imageSrc}
-									alt={step.altText}
-									style={{
-										width: "100%",
-										maxHeight: "450px",
-										objectFit: "contain",
-										borderRadius: "5px",
-										border: "1px solid #ddd",
-									}}
-								/>
-							)}
-						</div>
-					))}
+								<h2>{step.subtitle}</h2>
+								<p>{step.description}</p>
+
+								{step.imageSrc && (
+									<img
+										src={
+											window.innerWidth > 768 ? step.imageSrc : step.imageVSrc
+										}
+										alt={step.altText}
+									/>
+								)}
+							</div>
+						))}
+					</div>
+					<button
+						className="carousel-control-prev"
+						type="button"
+						data-bs-target="#carousel"
+						data-bs-slide="prev"
+					>
+						<span
+							className="carousel-control-prev-icon"
+							aria-hidden="true"
+						></span>
+						<span className="visually-hidden">Previous</span>
+					</button>
+					<button
+						className="carousel-control-next"
+						type="button"
+						data-bs-target="#carousel"
+						data-bs-slide="next"
+					>
+						<span
+							className="carousel-control-next-icon"
+							aria-hidden="true"
+						></span>
+						<span className="visually-hidden">Next</span>
+					</button>
 				</div>
 				{!inSideBar && (
-					<Button
-						label="Return"
-						color="outline-secondary"
-						onClick={() => navigate("/home")}
-						widthPctg={50}
-					/>
+					<div className="btn-return">
+						<Button
+							label="Return"
+							color="outline-secondary"
+							onClick={() => navigate("/home")}
+						/>
+					</div>
 				)}
 			</div>
 		</>
