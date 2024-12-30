@@ -154,11 +154,13 @@ const TutorialPage = ({ inSideBar }: Props) => {
 					</button>
 				</div>
 				{!inSideBar && (
-					<Button
-						label="Return"
-						color="outline-secondary"
-						onClick={() => navigate("/home")}
-					/>
+					<div className="btn-return">
+						<Button
+							label="Return"
+							color="outline-secondary"
+							onClick={() => navigate("/home")}
+						/>
+					</div>
 				)}
 			</div>
 		</>
