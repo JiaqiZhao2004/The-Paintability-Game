@@ -220,7 +220,6 @@ const GamePage = ({ n, p, difficulty, isEvilRole }: GamePageProps) => {
 		if (game.current.checkForWinner()) {
 			console.log("Winner is " + game.current.getGameState().winner);
 			setGameEnd(true);
-			setIsLeftPlayersTurn((prev) => !prev);
 		}
 	};
 
