@@ -10,11 +10,7 @@ const Hero = ({ title, description, image }: Props) => {
 	return (
 		<div className="hero">
 			{image && (
-				<img
-					className="d-block mx-auto mb-4"
-					src={image}
-					alt="game icon"
-				/>
+				<img className="d-block mx-auto mb-4" src={image} alt="game icon" />
 			)}
 			<h1
 				className="display-5 fw-bold text-body-emphasis"
@@ -22,9 +18,7 @@ const Hero = ({ title, description, image }: Props) => {
 			>
 				{title}
 			</h1>
-			<div className="col-lg-6 mx-auto">
-				<p className="lead mb-4">{description}</p>
-			</div>
+			<p className="lead mb-4">{description}</p>
 		</div>
 	);
 };

@@ -9,8 +9,8 @@
 }
 
 .top-half .hero {
-	margin-left: 3rem;
-	margin-right: 3rem;
+	margin-left: 1rem;
+	margin-right: 1rem;
 }
 
 .bottom-half {
@@ -21,8 +21,15 @@
 	display: flex;
 	flex-direction: row;
 	width: 100vw;
-	max-width: 50%;
+	max-width: 80%;
 	gap: 2rem;
+	justify-content: center;
+}
+
+.button-row button {
+	width: clamp(6rem, 15vw, 12rem);
+	padding-inline: auto;
+	font-size: larger;
 }
 
 .colored-triangle {
