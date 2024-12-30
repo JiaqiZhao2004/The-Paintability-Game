@@ -1,0 +1,43 @@
+.top-half {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	min-height: 100vh;
+	background: linear-gradient(to right, #a6c6b8, #f5d8a7, #c95f4a);
+}
+
+.top-half .hero {
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
+
+.bottom-half {
+	min-height: 90vh;
+}
+
+.top-half .button-row {
+	display: flex;
+	flex-direction: row;
+	width: 100vw;
+	max-width: 80%;
+	gap: 2rem;
+	justify-content: center;
+}
+
+.button-row button {
+	width: clamp(6rem, 15vw, 12rem);
+	padding-inline: auto;
+	font-size: larger;
+}
+
+.colored-triangle {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background: linear-gradient(to right, #a6c6b8, #f5d8a7, #c95f4a);
+	clip-path: polygon(0 0, 100% 0, 100% 0%, 0% 5%);
+}

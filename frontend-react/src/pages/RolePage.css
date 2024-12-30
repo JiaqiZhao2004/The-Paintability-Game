@@ -1,0 +1,33 @@
+.role-page {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	min-height: 100%;
+    margin: clamp(1rem, 10%, 4rem);
+}
+
+.role-page h2 {
+	border-bottom: 1rem;
+	font-style: italic;
+	padding-bottom: 1rem;
+}
+
+.role-page .cards-section {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: stretch;
+	justify-content: center;
+	gap: 1.5rem;
+}
+
+.role-page .card {
+	max-width: 30%;
+}
+
+@media (max-width: 768px) {
+	.role-page .card {
+		max-width: 100%;
+	}
+}

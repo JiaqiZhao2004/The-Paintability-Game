@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+import FortressImg from "../assets/fortress.png";
+import Button from "./Button";
+import "./Header.css";
 
 interface Props {
 	title: string;
@@ -8,41 +10,40 @@ interface Props {
 	image?: string;
 }
 
-const Header = ( {title, items, redirects, selectedIndex, image = undefined} : Props) => {
-
+const Header = ({
+	title,
+	items,
+	redirects,
+	selectedIndex,
+	image = FortressImg,
+}: Props) => {
+	const navItems = items.map((item, index) => (
+		<li key={index}>
+			<a
+				href={selectedIndex === index ? "" : "/" + redirects[index]} // no redirect if select same page
+				className={
+					selectedIndex === index ? "custom-active" : "custom-inactive"
+				}
+			>
+				{item}
+			</a>
+		</li>
+	));
 
 	return (
-		<div className="container"
-		style ={{height: "10vh",}}
-		>
-			<header className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-				<Link
-					to="/home"
-					className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
-				>
-					<svg className="bi me-2" width="40" height="32">
-						{image}
-					</svg>
-					<span className="fs-4">{title}</span>
-				</Link>
+		<header className="header">
+			<a className="logo" href="/home">
+				<img src={image} />
+				<h2>{title}</h2>
+			</a>
 
-				<ul className="nav nav-pills">
-					{items.map((item, index) => (
-						<li key={index} className="nav-item">
-							<Link
-								to={'/' + redirects[index]}
-								className={
-									selectedIndex === index ? "nav-link active" : "nav-link"
-								}
-								aria-current="page"
-							>
-								{item}
-							</Link>
-						</li>
-					))}
-				</ul>
-			</header>
-		</div>
+			<ul className="nav nav-pills custom-nav">{navItems}</ul>
+
+			<div className="dropdown" id="dropdown-menu">
+				<Button className="dropdown-toggle" label="Menu" color="dark"/>
+				<ul className="items">{navItems}</ul>
+			</div>
+		</header>
 	);
 };
 export default Header;

@@ -28,7 +28,7 @@ function Graph({ nodes,  edges, handleNodeClick }: Props) {
 				onNodeClick={handleNodeClick}
 				fitView
 			>
-				<MiniMap />
+				{/* <MiniMap /> */}
 				<Controls />
 				<Background color="#aaa" gap={16} />
 			</ReactFlow>

@@ -1,0 +1,101 @@
+.tutorial-page {
+	display: flex;
+	flex-direction: column;
+	max-width: 840px;
+	height: 90vh;
+	height: 90vh;
+	padding: 40px;
+	gap: 1rem;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.carousel-item .carousel-item.active {
+	display: flex;
+	flex-direction: column;
+	flex-direction: column;
+	align-items: center; /* Vertically center content */
+	justify-content: center; /* Horizontally center content */
+	height: 100%; /* Ensure the item fills the carousel height */
+	height: 100%; /* Ensure the item fills the carousel height */
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	padding: 15px;
+	background-color: #f9f9f9;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-inner {
+	height: 60vh;
+}
+
+.carousel-inner {
+	height: 60vh;
+}
+
+.carousel-item h2 {
+	color: #333;
+}
+
+.carousel-item p {
+	color: #555;
+	margin-bottom: 0.5rem;
+}
+
+.carousel-item img {
+	object-fit: contain; /* Ensure the image scales proportionally */
+	max-width: min(
+		80%,
+		100vh
+	); /* Ensure the image doesn't exceed the container width */
+	max-width: min(
+		80%,
+		100vh
+	); /* Ensure the image doesn't exceed the container width */
+	width: auto; /* Keep aspect ratio */
+	margin: 0 auto; /* Center the image horizontally */
+	border-radius: 5px;
+	border: 1px solid #ddd;
+}
+
+.custom-carousel .carousel-control-prev-icon,
+.custom-carousel .carousel-control-next-icon {
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 50%; /* Make them circular */
+	width: 50px; /* Increase size */
+	height: 50px; /* Increase size */
+	background-size: 60%; /* Resize the arrow icon within the button */
+}
+
+.custom-carousel .carousel-control-prev:hover .carousel-control-prev-icon,
+.custom-carousel .carousel-control-next:hover .carousel-control-next-icon {
+	background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+}
+
+.custom-carousel .carousel-control-prev,
+.custom-carousel .carousel-control-next {
+	opacity: 1; /* Ensure the buttons are fully visible */
+}
+
+.tutorial-page .btn-return button {
+	width: 70%;
+}
+
+@media (max-width: 768px) {
+	.tutorial-page h1 {
+		display: none;
+	}
+	.tutorial-page {
+		gap: 0;
+		padding: 20px;
+	}
+	.carousel-item img {
+		max-width: min(
+			90%,
+			37vh
+		); /* Ensure the image doesn't exceed the container width */
+	}
+	.carousel-inner {
+		height: 77vh;
+	}
+}
