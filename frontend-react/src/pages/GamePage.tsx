@@ -275,11 +275,11 @@ const GamePage = ({ n, p, difficulty, isEvilRole }: GamePageProps) => {
 								won={leftPlayerWon}
 							/>
 						)}
-						<Button
+						{(window.innerWidth >= 768) && <Button
 							label={`${showTutorial ? "Hide" : "Show"} Tutorial`}
 							color="outline-secondary"
 							onClick={() => setShowTutorial(!showTutorial)}
-						/>
+						/>}
 					</div>
 
 					<div className="info-panel">
