@@ -24,6 +24,7 @@ function Graph({ nodes, edges, handleNodeClick }: Props) {
 			edges={edges}
 			nodeTypes={nodeTypes}
 			onNodeClick={handleNodeClick}
+			panOnDrag={false} 
 			fitView
 		>
 			<Controls />
