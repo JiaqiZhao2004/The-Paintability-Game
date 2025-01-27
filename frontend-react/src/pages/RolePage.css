@@ -11,6 +11,7 @@
 	border-bottom: 1rem;
 	font-style: italic;
 	padding-bottom: 1rem;
+	padding-top: 2rem;
 }
 
 .role-page .cards-section {
@@ -28,6 +29,6 @@
 
 @media (max-width: 768px) {
 	.role-page .card {
-		max-width: 100%;
+		min-width: 100%;
 	}
 }
