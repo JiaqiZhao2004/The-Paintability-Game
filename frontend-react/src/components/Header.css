@@ -96,6 +96,10 @@
 }
 
 @media (max-width: 422px) {
+	.header .logo {
+		max-width: 40%;
+	}
+
 	.header .custom-nav {
 		display: none;
 	}

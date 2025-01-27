@@ -1,8 +1,7 @@
 .game-page {
 	display: flex;
 	flex-direction: row;
-	height: 90vh;
-	overflow: hidden;
+	height: 100dvh;
 }
 
 .left-sidebar {
@@ -21,6 +20,7 @@
 	align-items: center;
 	justify-content: center;
 	position: relative;
+	width: 100%;
 }
 
 .game-page .main-area .info-panels {
@@ -59,4 +59,7 @@
 .game-page .main-area .btn-end-turn button {
 	width: clamp(200px, 30vw, 600px);
 	min-height: 5vh;
+	margin-top: 1rem;
+	margin-bottom: 15%;
+	padding-block: 0.8rem;
 }
