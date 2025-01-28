@@ -1,6 +1,7 @@
 .tutorial-page {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	max-width: 840px;
 	height: 90vh;
 	height: 90vh;
@@ -26,11 +27,7 @@
 }
 
 .carousel-inner {
-	height: 60vh;
-}
-
-.carousel-inner {
-	height: 60vh;
+	height: 100%;
 }
 
 .carousel-item h2 {
@@ -44,14 +41,7 @@
 
 .carousel-item img {
 	object-fit: contain; /* Ensure the image scales proportionally */
-	max-width: min(
-		80%,
-		100vh
-	); /* Ensure the image doesn't exceed the container width */
-	max-width: min(
-		80%,
-		100vh
-	); /* Ensure the image doesn't exceed the container width */
+	max-width: 100%;
 	width: auto; /* Keep aspect ratio */
 	margin: 0 auto; /* Center the image horizontally */
 	border-radius: 5px;
