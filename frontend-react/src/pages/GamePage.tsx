@@ -247,10 +247,29 @@ const GamePage = ({ n, p, difficulty, isEvilRole }: GamePageProps) => {
 		});
 	};
 
+	/**
+	 * @var leftPlayerWon
+	 * @brief True if game has ended and left player wins
+	 */
 	let leftPlayerWon =
 		gameEnd &&
 		((isEvilRole && game.current.getGameState().winner == "Attacker") ||
 			(!isEvilRole && game.current.getGameState().winner == "Defender"));
+
+	/**
+	 * @brief Effect to recenter react flow graph when tutorial sidebar is opened or closed
+	 */
+	useEffect(() => {
+		const timeout = setTimeout(() => {
+			const fitViewButton = document.querySelector(
+				".react-flow__controls-button:nth-child(3)"
+			) as HTMLButtonElement;
+			if (fitViewButton) {
+				fitViewButton.click();
+			}
+		}, 100);
+		return () => clearTimeout(timeout);
+	}, [showTutorial]);
 
 	return (
 		<div className="game-page">
@@ -275,11 +294,13 @@ const GamePage = ({ n, p, difficulty, isEvilRole }: GamePageProps) => {
 								won={leftPlayerWon}
 							/>
 						)}
-						{(window.innerWidth >= 768) && <Button
-							label={`${showTutorial ? "Hide" : "Show"} Tutorial`}
-							color="outline-secondary"
-							onClick={() => setShowTutorial(!showTutorial)}
-						/>}
+						{window.innerWidth >= 768 && (
+							<Button
+								label={`${showTutorial ? "Hide" : "Show"} Tutorial`}
+								color="outline-secondary"
+								onClick={() => setShowTutorial(!showTutorial)}
+							/>
+						)}
 					</div>
 
 					<div className="info-panel">

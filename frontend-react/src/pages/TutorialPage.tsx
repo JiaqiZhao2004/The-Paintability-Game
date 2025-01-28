@@ -105,7 +105,7 @@ const TutorialPage = ({ inSideBar }: Props) => {
 		<>
 			{!inSideBar && <Header {...TutorialPageHeader} />}
 			<div className="tutorial-page">
-				<h1>Welcome to The Paintability Game!</h1>
+				{!inSideBar && <h1>Welcome to The Paintability Game!</h1>}
 				<div id="carousel" className="carousel slide custom-carousel">
 					<div className="carousel-inner">
 						{tutorialSteps.map((step, index) => (
@@ -120,7 +120,7 @@ const TutorialPage = ({ inSideBar }: Props) => {
 								{step.imageSrc && (
 									<img
 										src={
-											window.innerWidth > 768 ? step.imageSrc : step.imageVSrc
+											(window.innerWidth <= 768 || inSideBar) ? step.imageVSrc : step.imageSrc
 										}
 										alt={step.altText}
 									/>
